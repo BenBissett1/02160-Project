@@ -2,7 +2,7 @@
 
 import java.util.ArrayList;
 
-// Emmanuel Andr� Ryom (s184371)
+// Emmanuel Ryom (s184371)
 class client extends dataStructure{
 	String Name;
 	int cID;
