@@ -5,7 +5,6 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 import java.awt.Window.Type;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
