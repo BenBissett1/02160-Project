@@ -75,7 +75,7 @@ Feature: Registering a Journey
     When finished registration
     Then display registration unsuccessful, invalid journey
     
-  @tag
+  @tag7
   Scenario Outline: Title of your scenario outline
     Given I want to write a step with <name>
     When I check for the <value> in step
