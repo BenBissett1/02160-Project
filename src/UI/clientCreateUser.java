@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.BoxLayout;
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
@@ -84,6 +85,31 @@ public class clientCreateUser extends JFrame{
 		clientCreateSave.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 		clientCreateSave.setBounds(160, 170, 130, 25);
 		panel.add(clientCreateSave);
+		clientCreateSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String inputName = textFieldName.getText();
+				String inputAddress = textFieldAddress.getText();
+				String inputEmail = textFieldEmail.getText();
+				String inputTelephone = textFieldTelephone.getText();
+				int inputTelephoneAsInt = 0;
+				try {
+					inputTelephoneAsInt = Integer.parseInt(inputTelephone);
+				} catch (NumberFormatException E) {
+					JOptionPane.showMessageDialog(panel,
+						    "Please enter a telephone NUMBER",
+						    "Number Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+				if (inputTelephoneAsInt > 0 & inputName != null & inputAddress != null & inputEmail != null) {
+					dataStructure.dataStructure.regNewClient(inputName,inputAddress,inputEmail,inputTelephoneAsInt);
+				} else {
+					JOptionPane.showMessageDialog(panel,
+						    "Please fill in the form correctly",
+						    "Incorrect Input",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		
 		JLabel createClientEmail = new JLabel("Email:");
 		createClientEmail.setHorizontalTextPosition(SwingConstants.CENTER);

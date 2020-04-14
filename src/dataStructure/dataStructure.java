@@ -64,7 +64,7 @@ public class dataStructure {
 		}
 		return -1;
 	}
-	static void regNewClient(String name, String address, String email, int phone) {
+	public static void regNewClient(String name, String address, String email, int phone) {
 		client c = new client();
 		c.Name = name;
 		c.Address = address;
