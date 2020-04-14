@@ -9,6 +9,7 @@ import java.awt.Window.Type;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
+@SuppressWarnings("serial")
 class clientInterface extends JFrame {
 	private ButtonGroup group;
 	private JPanel panel;
@@ -44,6 +45,7 @@ class clientInterface extends JFrame {
 	}
 }
 
+@SuppressWarnings("serial")
 class companyInterface extends JFrame {
 	private ButtonGroup group;
 	private JPanel panel;
