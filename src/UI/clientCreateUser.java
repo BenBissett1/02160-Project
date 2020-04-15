@@ -4,23 +4,22 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.BoxLayout;
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.border.SoftBevelBorder;
+
+import main.dataStructure;
 
 public class clientCreateUser extends JFrame{
 	private JTextField textFieldAddress;
@@ -74,6 +73,7 @@ public class clientCreateUser extends JFrame{
 		clientCreateBack.setBounds(10, 170, 130, 25);
 		panel.add(clientCreateBack);
 		clientCreateBack.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				clientLogin.clientLogin();
 				dispose();				
@@ -86,6 +86,7 @@ public class clientCreateUser extends JFrame{
 		clientCreateSave.setBounds(160, 170, 130, 25);
 		panel.add(clientCreateSave);
 		clientCreateSave.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String inputName = textFieldName.getText();
 				String inputAddress = textFieldAddress.getText();
@@ -156,7 +157,7 @@ public class clientCreateUser extends JFrame{
 	
 	public static void clientCreateUser() {
 		clientCreateUser cltCrtUsr= new clientCreateUser();
-		cltCrtUsr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		cltCrtUsr.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		cltCrtUsr.setLocationRelativeTo(null);
 		cltCrtUsr.setVisible(true);
 	}

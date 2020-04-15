@@ -6,12 +6,11 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.awt.Window.Type;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
@@ -43,7 +42,7 @@ class companyInterface extends JFrame {
 
 	public static void companyInterface() {
 		companyInterface cmpInterface = new companyInterface();
-		cmpInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		cmpInterface.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		cmpInterface.setSize(800, 700);
 		cmpInterface.setLocationRelativeTo(null);
 		cmpInterface.setVisible(true);

@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.SystemColor;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,15 +14,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import java.awt.Dimension;
-import javax.swing.border.CompoundBorder;
-import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 import javax.swing.JLabel;
-import javax.swing.JCheckBox;
 
 public class initInterface extends JFrame {
 	private ButtonGroup group;
@@ -86,7 +81,8 @@ public class initInterface extends JFrame {
 		exitButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		exitButton.setBounds(10, 170, 130, 25);
 		exitButton.addActionListener(new ActionListener() {
-			  public void actionPerformed(ActionEvent e) {
+			  @Override
+			public void actionPerformed(ActionEvent e) {
 			    System.exit(0);
 			  }
 			});
@@ -97,6 +93,7 @@ public class initInterface extends JFrame {
 		nextButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		nextButton.setBounds(160, 170, 130, 25);
 		nextButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if( companyButton.isSelected() == false && clientButton.isSelected() == false ) {
 					JOptionPane.showMessageDialog(panel,
@@ -127,7 +124,7 @@ public class initInterface extends JFrame {
 
 	public static void initInterface() {
 		initInterface init = new initInterface();
-		init.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		init.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		init.setLocationRelativeTo(null);
 		init.setVisible(true);
 	}

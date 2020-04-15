@@ -4,18 +4,16 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
-import javax.swing.BoxLayout;
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -85,6 +83,7 @@ public class clientLogin extends JFrame{
 		createUserButton.setBounds(10, 170, 130, 25);
 		panel.add(createUserButton);
 		createUserButton.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				clientCreateUser.clientCreateUser();
 				dispose();
@@ -100,7 +99,7 @@ public class clientLogin extends JFrame{
 	
 	public static void clientLogin() {
 		clientLogin cltLogin = new clientLogin();
-		cltLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		cltLogin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		cltLogin.setLocationRelativeTo(null);
 		cltLogin.setVisible(true);
 	}

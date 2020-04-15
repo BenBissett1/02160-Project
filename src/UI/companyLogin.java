@@ -4,12 +4,10 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Window.Type;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -83,7 +81,7 @@ public class companyLogin extends JFrame{
 	
 	public static void companyLogin() {
 		companyLogin cmpLogin = new companyLogin();
-		cmpLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		cmpLogin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		cmpLogin.setLocationRelativeTo(null);
 		cmpLogin.setVisible(true);
 	}
