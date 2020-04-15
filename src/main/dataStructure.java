@@ -73,7 +73,19 @@ public class dataStructure {
 		c.cID = IDgen.cIDgen(clients);
 		clients.set(c.cID,c);	
 	}
+	public static void updateClient(String name, String address, String email, int phone, int ID) {
+		client c = new client();
+		c.Name = name;
+		c.Address = address;
+		c.Email = email;
+		c.Phone = phone;
+		c.cID = ID;
+		clients.set(c.cID,c);	
+	}
+	
 	public static void main(String[] args) {
+		
+		
 		for (int i =0; i<clientsSize; i++) {
 			clients.add(new client());
 		}		
