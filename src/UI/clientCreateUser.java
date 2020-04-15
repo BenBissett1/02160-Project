@@ -108,8 +108,8 @@ public class clientCreateUser extends JFrame{
 								"Number Error",
 						    	JOptionPane.ERROR_MESSAGE);
 					}
+					dataStructure.regNewClient(inputName, inputAddress, inputEmail, inputTelephoneAsInt);
 				}
-//				dataStructure.regNewClient(inputName, address, email, phone);
 			}
 		});
 		
