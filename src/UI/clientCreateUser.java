@@ -92,23 +92,24 @@ public class clientCreateUser extends JFrame{
 				String inputAddress = textFieldAddress.getText();
 				String inputEmail = textFieldEmail.getText();
 				String inputTelephone = textFieldTelephone.getText();
-				int inputTelephoneAsInt = 0;
-				try {
-					inputTelephoneAsInt = Integer.parseInt(inputTelephone);
-				} catch (NumberFormatException E) {
+				if (inputName.isEmpty() || inputAddress.isEmpty() || inputEmail.isEmpty() || inputTelephone.isEmpty() ) {
 					JOptionPane.showMessageDialog(panel,
-						    "Please enter a telephone NUMBER",
-						    "Number Error",
-						    JOptionPane.ERROR_MESSAGE);
+							"All fields must be completed",
+							"Empty Field(s)",
+							JOptionPane.ERROR_MESSAGE);
 				}
-				if (inputTelephoneAsInt > 0 & inputName != null & inputAddress != null & inputEmail != null) {
-					dataStructure.dataStructure.regNewClient(inputName,inputAddress,inputEmail,inputTelephoneAsInt);
-				} else {
-					JOptionPane.showMessageDialog(panel,
-						    "Please fill in the form correctly",
-						    "Incorrect Input",
-						    JOptionPane.ERROR_MESSAGE);
+				else {
+					int inputTelephoneAsInt = 0;
+					try {
+						inputTelephoneAsInt = Integer.parseInt(inputTelephone);
+					} catch (NumberFormatException E) {
+						JOptionPane.showMessageDialog(panel,
+								"Please enter a telephone NUMBER",
+								"Number Error",
+						    	JOptionPane.ERROR_MESSAGE);
+					}
 				}
+//				dataStructure.regNewClient(inputName, address, email, phone);
 			}
 		});
 		
