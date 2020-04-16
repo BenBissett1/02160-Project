@@ -28,7 +28,6 @@ public class dataStructure {
 		for (int i =0; i<clientsSize; i++) {
 			if (clients.get(i) == null) {continue;}
 			if (keyword.equals(clients.get(i).get(type))) {
-				System.out.println("YAY");
 				return i;
 			}
 		}
@@ -52,7 +51,7 @@ public class dataStructure {
 		vars.add(phone);
 		clients.put(ID,vars);	
 	}
-	public static void main(String[] args) {
+//	public static void main(String[] args) {
 //		System.out.println(clients.size());
 //		ArrayList<String> test =  new ArrayList<String>() ;
 //		test.add("John&co");
@@ -62,5 +61,5 @@ public class dataStructure {
 //		test.add("123456");
 //		clients.put(IDgen.cIDgen(), test);
 //		System.out.println(clients.get(search("John&co",0)));
-	}
+//	}
 }
