@@ -1,4 +1,142 @@
 package test;
+
+import static org.junit.Assert.assertEquals;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class StepDefinition {
+	
+	/////////////////////////////////
+	// Start ////////////////////////
+	// JourneyRegistration.feature //
+	/////////////////////////////////
+	
+	Port port = new Port();
+    Container container = new Container();
+	Client client = new Client();
+	Database data = new Database();
+	ResponseObject response;
+	
+	@Given("port of origin {string}")
+	public void port_of_origin(String location) {
+	    port.setLocationInitial(location);
+	}
+
+	@Given("destination {string}")
+	public void destination(String location) {
+	    port.setLocationFinal(location);
+	}
+
+	@Given("content {string}")
+	public void content(String content) {
+	    container.setContent(content);
+	}
+
+	@Given("company {string}")
+	public void company(String name) {
+		client.setName(name);
+	}
+	
+	@Given("^registration status is (true|false)$")
+	public void registration_status_is(boolean isRegistered) {
+		port.setRegistered(isRegistered);
+		container.setRegistered(isRegistered);
+		client.setRegistered(isRegistered);
+	}
+
+	@When("register")
+	public void register() {
+		response = data.register(client, port, container);
+		
+	}
+
+	@Then("store data to CompanyID")
+	public void store_data_to_CompanyID() {
+		//TODO: STORE THE FUCKING DATA
+	    data.storeCompanyData();
+	}
+
+	@Then("store data to CustomerID")
+	public void store_data_to_CustomerID() {
+		data.storeCustomerData();
+	}
+
+	@Then("automaton displays message that registration was successful")
+	public void automaton_displays_message_that_registration_was_successful() {
+	    assertEquals(response.getErrorMessage(), "Registration successful");
+	}
+	
+	@Then("automaton displays message that already registered")
+	public void automaton_displays_message_that_already_registered() {
+	    assertEquals(response.getErrorMessage(), "Already registered");
+	}
+	
+	@Then("automaton displays message that registration was unsuccessful")
+	public void automaton_displays_message_that_registration_was_unsuccessful() {
+		assertEquals(response.getErrorMessage(), "Registration unsuccessful");
+	}
+	
+	
+	/////////////////////////////////
+	// End //////////////////////////
+	// JourneyRegistration.feature //
+	/////////////////////////////////
+	
+	////////////////////
+	// Start ///////////
+	// Client.feature //
+	////////////////////
+	
+	//DOES A JOURNEY HAVE ITS OWN ID AS WELL AS A CONTAINER HAVE ITS OWN ID?
+	
+	/*
+	@Given("journey is {string}")
+	public void journey_is(String journey) {
+		port.setJourney(journey);
+	}
+
+	@Given("containerID is {string}")
+	public void containerid_is(int identity) {
+	    container.setIdentity(identity);
+	}
+	
+	@Given("^complete data set is (true|false)$")
+	public void complete_data_set_is(boolean isCompleteDataSet) {
+	    data.setCompleteDataSet(isCompleteDataSet);
+	}
+
+	@When("retrieve data")
+	public void retrieve_data() {
+	    //TODO: response or getContainerID directly?
+	}
+
+	@Then("visual output")
+	public void visual_output() {
+	    //TODO: Visual output
+	}
+	
+	@Then("display no data available invalid specificID")
+	public void display_no_data_available_invalid_specificID() {
+		assertEquals(response.getErrorMessage(), "Invalid container ID");
+	}
+	*/
+	
+	
+	////////////////////
+	// End /////////////
+	// Client.feature //
+	////////////////////
+	
+}
+
+
+
+
+
+/*
+
 import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -91,4 +229,4 @@ public class StepDefinition {
 	    throw new io.cucumber.java.PendingException();
 	}
 	
-}
+}*/

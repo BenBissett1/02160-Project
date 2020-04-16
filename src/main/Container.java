@@ -1,4 +1,49 @@
 package main;
+
+public class Container {
+	
+	String content;
+	boolean isRegistered;
+	int identity;
+
+	public int getIdentity() {
+		return identity;
+	}
+
+	public void setIdentity(int identity) {
+		this.identity = identity;
+	}
+
+	public Container() {
+		super();
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
+	public boolean isRegistered() {
+		return isRegistered;
+	}
+
+	public void setRegistered (boolean isRegistered) {
+		this.isRegistered = isRegistered;
+		
+	}
+	
+	
+}
+
+
+
+
+
+
+/*
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -66,6 +111,6 @@ public class Container {
 		}
 		sc.close();
 	}
-}
+}*/
 
 

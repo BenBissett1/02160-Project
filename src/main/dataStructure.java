@@ -1,6 +1,6 @@
 package main;
 
-
+/*
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,4 +62,4 @@ public class dataStructure {
 //		clients.put(IDgen.cIDgen(), test);
 //		System.out.println(clients.get(search("John&co",0)));
 //	}
-}
+}*/
