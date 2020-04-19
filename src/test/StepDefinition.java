@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 import main.Client;
 import main.Container;
 import main.Database;
@@ -88,6 +89,62 @@ public class StepDefinition {
 	// End //////////////////////////
 	// JourneyRegistration.feature //
 	/////////////////////////////////
+	
+	
+	///////////////////////////////
+	// Start //////////////////////
+	// ContainerPosition.feature //
+	///////////////////////////////
+	
+	@Given("a containerid {int}")
+	public void a_containerid(Integer int1) {
+	    container.setIdentity(int1);
+	}
+
+	@Given("^containeridInvalid is (true|false)$")
+	public void containeridinvalid_is_false(boolean validContainerID) {
+	    container.setValidContainerID(validContainerID);
+	}
+
+	@Given("^enroute status is (true|false)$")
+	public void enroute_status_is_true(boolean isEnroute) {
+		container.isEnroute(isEnroute);
+	}
+
+	@When("retrieving")
+	public void retrieving() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("output coordinates of container")
+	public void output_coordinates_of_container() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("output container arrived at destination")
+	public void output_container_arrived_at_destination() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("output containerID not found in database")
+	public void output_containerID_not_found_in_database() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+	
+	
+	
+	///////////////////////////////
+	// End ////////////////////////
+	// ContainerPosition.feature //
+	///////////////////////////////
+	
+	
+	
+	
 	
 	////////////////////
 	// Start ///////////

@@ -4,6 +4,7 @@ package main;
 public class Database {
 	
 	boolean isCompleteDataSet;
+	Container container2 = new Container();
 	
 	public ResponseObject register(Client client, Port port, Container container) {
 		ResponseObject response;
@@ -39,6 +40,8 @@ public class Database {
 	public void setCompleteDataSet(boolean isCompleteDataSet) {
 		this.isCompleteDataSet = isCompleteDataSet;
 	}
+
+	
 
 	
 

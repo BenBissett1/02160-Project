@@ -5,6 +5,17 @@ public class Container {
 	String content;
 	boolean isRegistered;
 	int identity;
+	int[] position;
+	boolean isValidContainerID;
+	boolean isEnroute;
+
+	public int[] getPosition() {
+		return position;
+	}
+
+	public void setPosition(int[] position) {
+		this.position = position;
+	}
 
 	public int getIdentity() {
 		return identity;
@@ -32,6 +43,16 @@ public class Container {
 
 	public void setRegistered (boolean isRegistered) {
 		this.isRegistered = isRegistered;
+		
+	}
+	
+	public void setValidContainerID(boolean isValidContainerID) {
+		this.isValidContainerID = isValidContainerID;
+		
+	}
+
+	public void isEnroute(boolean isEnroute) {
+		this.isEnroute = isEnroute;
 		
 	}
 	
