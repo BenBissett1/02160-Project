@@ -89,6 +89,45 @@ public class StepDefinition {
 	// JourneyRegistration.feature //
 	/////////////////////////////////
 	
+	// Start
+	// admin.feature
+	
+	
+	
+	
+	@Given("journey id is {int}")
+	public void journey_id_is(Integer journeyID) {
+	    
+	}
+
+	@Given("journey id does exist is (true|false)$")
+	public void journey_id_does_exist_is(boolean doesJourney) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Given("internal status parameter is {string}")
+	public void internal_status_parameter_is(String string) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Given("data to add is {string}")
+	public void data_to_add_is(String string) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Given("automaton displays message that data was successfully added")
+	public void automaton_displays_message_that_data_was_successfully_added() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+	
+	
+	
+	
+	
 	////////////////////
 	// Start ///////////
 	// Client.feature //
