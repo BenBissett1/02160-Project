@@ -2,6 +2,11 @@ package main;
 
 
 import java.util.Map;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,15 +64,39 @@ public class dataStructure {
 		vars.add(phone);
 		clients.put(ID,vars);	
 	}
+	public static void save() {
+		try {
+	        File file=new File("clients");
+	        FileOutputStream fos=new FileOutputStream(file);
+	        ObjectOutputStream oos=new ObjectOutputStream(fos);
+
+	        oos.writeObject(clients);
+	        oos.flush();
+	        oos.close();
+	        fos.close();
+	    } catch(Exception e) {}
+	}
+	public static void load() {
+		try {
+	        File toRead=new File("clients");
+	        FileInputStream fis=new FileInputStream(toRead);
+	        ObjectInputStream ois=new ObjectInputStream(fis);
+
+	        clients=(HashMap<Integer, List<String>>)ois.readObject();
+
+	        ois.close();
+	        fis.close();
+	    } catch(Exception e) {}
+	}
 //	public static void main(String[] args) {
+//		load();
+//		System.out.println(clients.get(search("Johnny&co",0)));
+//		
 //		System.out.println(clients.size());
-//		ArrayList<String> test =  new ArrayList<String>() ;
-//		test.add("John&co");
-//		test.add("Snow");
-//		test.add("275 Brookmere rd");
-//		test.add("John89@johnco.com");
-//		test.add("123456");
-//		clients.put(IDgen.cIDgen(), test);
-//		System.out.println(clients.get(search("John&co",0)));
+//		regNewClient("Johnny&co","Snow132","276 Brookmere rd","John99@johnco.com","123466");
+//		System.out.println(clients.get(search("Johnny&co",0)));
+//		save();
+//		System.out.println(clients.size());
+		
 //	}
 }

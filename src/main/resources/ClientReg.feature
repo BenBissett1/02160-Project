@@ -32,5 +32,16 @@ Feature: Registering a client
     When register clientN
     Then message already registered 
  
+ @tag4
+ Scenario: Succesful saving
+   Given name is "John&co"
+   And password is "Snow123"
+   And address is "275 Brookmere rd"
+   And email is "John89@johnco.com"
+   And phone is "123456"
+   When register clientN
+   Then display client info
+   When user closes program
+	 Then message files saved
 
   
