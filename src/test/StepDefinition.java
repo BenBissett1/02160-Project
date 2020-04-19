@@ -7,10 +7,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import main.Client;
+import main.Client2;
 import main.Container;
 import main.Database;
 import main.Port;
 import main.ResponseObject;
+import main.dataStructure;
 
 public class StepDefinition {
 	
@@ -183,7 +185,7 @@ public class StepDefinition {
 	public void display_no_data_available_invalid_specificID() {
 		assertEquals(response.getErrorMessage(), "Invalid container ID");
 	}
-	*/
+	
 	
 	
 	////////////////////
@@ -191,6 +193,58 @@ public class StepDefinition {
 	// Client.feature //
 	////////////////////
 	
+	*/
+	///////////////////////
+	// Start //////////////
+	// ClientReg.feature //
+	///////////////////////
+	
+	
+	@Given("name is {string}")
+	public void setName(String n) {
+		Client2.setName(n);
+	}
+	@Given("password is {string}")
+	public void setPassword(String n) {
+		Client2.setPassword(n);
+	}
+	@Given("address is {string}")
+	public void setAddress(String n) {
+		Client2.setAddress(n);
+	}
+	@Given("email is {string}")
+	public void setEmail(String n) {
+		Client2.setEmail(n);
+	}
+	@Given("phone is {string}")
+	public void phone_is(String string) {
+	    Client2.setPhone(string);
+	}
+	@When("register clientN") 
+	public void regClient() {
+		dataStructure.regNewClient(Client2.name, Client2.password, Client2.address, Client2.email, Client2.phone);
+	}
+	@Then("display client info")
+	public void displayInfo() {
+		System.out.println(dataStructure.search(Client2.getName(), 0));
+	}
+	@Then("message unsuccesful registration")
+	public void message_unsuccesful_registration() {
+		System.out.println(dataStructure.search(Client2.getName(), 0));
+	}
+	@Then("message already registered")
+	public void message_already_registered() {
+		System.out.println(dataStructure.search(Client2.getName(), 0));
+	}
+	@When("user closes program")
+	public void user_closes_program() {
+	    dataStructure.save();
+	}
+
+	@Then("message files saved")
+	public void message_files_saved() {
+	    System.out.println("Saved file");;
+	}
 }
 
 

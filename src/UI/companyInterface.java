@@ -14,6 +14,13 @@ import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
+import main.dataStructure;
+
+import javax.swing.JButton;
+import java.awt.Window.Type;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 class companyInterface extends JFrame {
 	private ButtonGroup group;
 	private JPanel panel;
@@ -38,6 +45,19 @@ class companyInterface extends JFrame {
 		panel.setBackground(Color.BLACK);
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+		
+		JButton regNewClientButton = new JButton("Register a New Client");
+		regNewClientButton.setBounds(165, 120, 150, 40);
+		regNewClientButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.saveC();
+				dataStructure.saveJ();
+				clientCreateUser.clientCreateUser();
+				dispose();				
+			}
+		});
+		panel.add(regNewClientButton);
 	}
 
 	public static void companyInterface() {
