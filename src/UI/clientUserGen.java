@@ -17,12 +17,15 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+
+import main.dataStructure;
+
 import javax.swing.JTextField;
 
 public class clientUserGen extends JFrame {
 	private JTextField clientIDField;
 	private JTextField clientPasswordField;
-	public clientUserGen() {
+	public clientUserGen(int cID, String pass) {
 		super("Client User Created");
 		setSize(new Dimension(313, 280));
 		setLocationByPlatform(true);
@@ -56,10 +59,11 @@ public class clientUserGen extends JFrame {
 		clientIDLabel.setBounds(44, 90, 96, 17);
 		panel.add(clientIDLabel);
 		
-		clientIDField = new JTextField();
+		clientIDField = new JTextField(Integer.toString(cID));
 		clientIDField.setHorizontalAlignment(SwingConstants.CENTER);
 		clientIDField.setFont(new Font("Tahoma", Font.BOLD, 13));
 		clientIDField.setColumns(10);
+		clientIDField.setEditable(false);
 		clientIDField.setBounds(150, 90, 96, 25);
 		panel.add(clientIDField);
 		
@@ -70,10 +74,11 @@ public class clientUserGen extends JFrame {
 		clientPasswordLabel.setBounds(44, 130, 96, 17);
 		panel.add(clientPasswordLabel);
 		
-		clientPasswordField = new JTextField();
+		clientPasswordField = new JTextField(pass);
 		clientPasswordField.setHorizontalAlignment(SwingConstants.CENTER);
 		clientPasswordField.setFont(new Font("Tahoma", Font.BOLD, 13));
 		clientPasswordField.setColumns(10);
+		clientPasswordField.setEditable(false);
 		clientPasswordField.setBounds(150, 130, 96, 25);
 		panel.add(clientPasswordField);
 		
@@ -84,6 +89,8 @@ public class clientUserGen extends JFrame {
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
+				dataStructure.saveC();
+				dataStructure.saveJ();
 			    System.exit(0);
 			  }
 			});
@@ -96,14 +103,16 @@ public class clientUserGen extends JFrame {
 		loginPageButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
-			    clientLogin.clientLogin();
+				dataStructure.saveC();
+				dataStructure.saveJ();
+			    companyInterface.companyInterface();
 			    dispose();
 			  }
 			});
 		panel.add(loginPageButton);
 	}
-	public static void clientUserGen() {
-		clientUserGen cltUsrGen= new clientUserGen();
+	public static void clientUserGen(int cID, String pass) {
+		clientUserGen cltUsrGen= new clientUserGen(cID, pass);
 		cltUsrGen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		cltUsrGen.setLocationRelativeTo(null);
 		cltUsrGen.setVisible(true);

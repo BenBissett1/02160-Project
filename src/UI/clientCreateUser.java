@@ -76,6 +76,8 @@ public class clientCreateUser extends JFrame{
 		clientCreateBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				dataStructure.saveC();
+				dataStructure.saveJ();
 				clientLogin.clientLogin();
 				dispose();				
 			}
@@ -110,8 +112,10 @@ public class clientCreateUser extends JFrame{
 								"Number Error",
 						    	JOptionPane.ERROR_MESSAGE);
 					}
-					dataStructure.regNewClient(inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
-					clientUserGen.clientUserGen();
+					int cID = dataStructure.regNewClient(inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
+					dataStructure.saveC();
+					dataStructure.saveJ();
+					clientUserGen.clientUserGen(cID,inputPassword);
 					dispose();
 				}
 			}

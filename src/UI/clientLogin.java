@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
@@ -19,8 +21,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.border.SoftBevelBorder;
 
+import main.dataStructure;
+
 public class clientLogin extends JFrame{
-	private JTextField textField;
+	private JTextField textFieldUsername;
 	private JPasswordField passwordField;
 	public clientLogin() {
 		super("Client Login");
@@ -50,12 +54,12 @@ public class clientLogin extends JFrame{
 		header.setBackground(Color.LIGHT_GRAY);
 		panel.add(header);
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		textField.setBounds(155, 70, 96, 25);
-		panel.add(textField);
-		textField.setColumns(10);
+		textFieldUsername = new JTextField();
+		textFieldUsername.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldUsername.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textFieldUsername.setBounds(155, 70, 96, 25);
+		panel.add(textFieldUsername);
+		textFieldUsername.setColumns(10);
 		
 		passwordField = new JPasswordField();
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -98,6 +102,8 @@ public class clientLogin extends JFrame{
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
+				dataStructure.saveC();
+				dataStructure.saveJ();
 			    System.exit(0);
 			  }
 			});
@@ -107,6 +113,22 @@ public class clientLogin extends JFrame{
 		logInButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		logInButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 		logInButton.setBounds(160, 170, 130, 25);
+		logInButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int genUser = Integer.parseInt(textFieldUsername.getText());
+				if (passwordField.equals(dataStructure.clients.get(genUser).get(1))) {
+					dataStructure.saveC();
+					dataStructure.saveJ();
+					clientInterface.clientInterface();
+				} else {
+					JOptionPane.showMessageDialog(panel,
+						    "Incorrect Information",
+						    "Wrong ClientID or Password",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		panel.add(logInButton);
 	}
 	

@@ -17,6 +17,9 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+
+import main.dataStructure;
+
 import java.awt.Dimension;
 import javax.swing.WindowConstants;
 import javax.swing.JLabel;
@@ -83,6 +86,8 @@ public class initInterface extends JFrame {
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
+				dataStructure.saveC();
+				dataStructure.saveJ();
 			    System.exit(0);
 			  }
 			});
@@ -102,10 +107,14 @@ public class initInterface extends JFrame {
 						    JOptionPane.ERROR_MESSAGE);
 				} 
 				else if (companyButton.isSelected() == true){
+					dataStructure.saveC();
+					dataStructure.saveJ();
 					companyInterface.companyInterface();
 					dispose();
 				}
 				else if (clientButton.isSelected() == true) {
+					dataStructure.saveC();
+					dataStructure.saveJ();
 					clientLogin.clientLogin();
 					dispose();
 				}

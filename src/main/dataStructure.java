@@ -32,7 +32,7 @@ class IDgen extends dataStructure{
 }
 
 public class dataStructure {
-	static Map<Integer, List<String>> clients= new HashMap<Integer, List<String>>();
+	public static Map<Integer, List<String>> clients= new HashMap<Integer, List<String>>();
 	// Map structure [client id, [name, password, address, email, phone]]
 	//                              0      1         2       3      4
 	static Map<Integer, List<List<String>>> journeys= new HashMap<Integer, List<List<String>>>();
