@@ -29,6 +29,6 @@ public class Client2 {
 		dataStructure.regNewClient(name, password, address, email, phone);
 	}
 	public void display() {
-		System.out.println(dataStructure.search(name, 0));
+		System.out.println(dataStructure.searchC(name, 0));
 	}
 }
