@@ -42,7 +42,7 @@ public class clientLogin extends JFrame{
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel header = new JLabel("Please Log In or Create User");
+		JLabel header = new JLabel("Please Log In");
 		header.setBounds(0, 20, 311, 20);
 		header.setHorizontalAlignment(SwingConstants.CENTER);
 		header.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -53,42 +53,55 @@ public class clientLogin extends JFrame{
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		textField.setBounds(141, 70, 96, 25);
+		textField.setBounds(155, 70, 96, 25);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		passwordField.setBounds(141, 115, 96, 25);
+		passwordField.setBounds(155, 115, 96, 25);
 		panel.add(passwordField);
 		
 		JLabel usernameClient = new JLabel("Username:");
 		usernameClient.setHorizontalTextPosition(SwingConstants.CENTER);
 		usernameClient.setHorizontalAlignment(SwingConstants.CENTER);
 		usernameClient.setFont(new Font("Tahoma", Font.BOLD, 16));
-		usernameClient.setBounds(35, 73, 96, 17);
+		usernameClient.setBounds(45, 73, 96, 17);
 		panel.add(usernameClient);
 		
 		JLabel passwordClient = new JLabel("Password:");
 		passwordClient.setHorizontalTextPosition(SwingConstants.CENTER);
 		passwordClient.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordClient.setFont(new Font("Tahoma", Font.BOLD, 16));
-		passwordClient.setBounds(35, 118, 96, 17);
+		passwordClient.setBounds(45, 118, 96, 17);
 		panel.add(passwordClient);
 		
-		JButton createUserButton = new JButton("Create User");
-		createUserButton.setFont(new Font("Tahoma", Font.BOLD, 16));
-		createUserButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		createUserButton.setBounds(10, 170, 130, 25);
-		panel.add(createUserButton);
-		createUserButton.addActionListener(new ActionListener(){
-			@Override
+// Obsolete
+//		JButton createUserButton = new JButton("Create User");
+//		createUserButton.setFont(new Font("Tahoma", Font.BOLD, 16));
+//		createUserButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+//		createUserButton.setBounds(10, 170, 130, 25);
+//		panel.add(createUserButton);
+//		createUserButton.addActionListener(new ActionListener(){
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				clientCreateUser.clientCreateUser();
+//				dispose();
+//			}
+//		});
+		
+		JButton exitButton = new JButton("Exit");
+		exitButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		exitButton.setFont(new Font("Tahoma", Font.BOLD, 16));
+		exitButton.setBounds(15, 170, 130, 25);
+		exitButton.addActionListener(new ActionListener() {
+			  @Override
 			public void actionPerformed(ActionEvent e) {
-				clientCreateUser.clientCreateUser();
-				dispose();
-			}
-		});
+			    System.exit(0);
+			  }
+			});
+		panel.add(exitButton);
 		
 		JButton logInButton = new JButton("Log In");
 		logInButton.setFont(new Font("Tahoma", Font.BOLD, 16));

@@ -102,7 +102,7 @@ public class initInterface extends JFrame {
 						    JOptionPane.ERROR_MESSAGE);
 				} 
 				else if (companyButton.isSelected() == true){
-					companyLogin.companyLogin();
+					companyInterface.companyInterface();
 					dispose();
 				}
 				else if (clientButton.isSelected() == true) {
@@ -113,7 +113,7 @@ public class initInterface extends JFrame {
 		});
 		panel.add(nextButton);
 		
-		JLabel initHeader = new JLabel("Are you a Client or a Company?");
+		JLabel initHeader = new JLabel("Client or Company Login:");
 		initHeader.setForeground(Color.BLACK);
 		initHeader.setFont(new Font("Tahoma", Font.BOLD, 16));
 		initHeader.setHorizontalAlignment(SwingConstants.CENTER);
