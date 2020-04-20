@@ -2,6 +2,9 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+import java.util.Map.Entry;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -101,7 +104,7 @@ public class StepDefinition {
 	
 	@Given("a containerid {int}")
 	public void a_containerid(Integer int1) {
-	    container.setIdentity(int1);
+	    container.setJourneyID(int1);
 	}
 
 	@Given("^containeridInvalid is (true|false)$")
@@ -116,26 +119,28 @@ public class StepDefinition {
 
 	@When("retrieving")
 	public void retrieving() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		//Do we need to create a responseObject2 for each feature file????
+		//Do we need responseObjects at all in this project?
 	}
 
 	@Then("output coordinates of container")
 	public void output_coordinates_of_container() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
+	    System.out.println(var);
 	}
 
 	@Then("output container arrived at destination")
 	public void output_container_arrived_at_destination() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
+	    System.out.println(var);
 	}
 
 	@Then("output containerID not found in database")
 	public void output_containerID_not_found_in_database() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		for (Entry<Integer, List<List<String>>> entry : data.journeys.entrySet()) {
+			System.out.println("Key: " + entry);
+			System.out.println("Not found");
+		}
 	}
 	
 	

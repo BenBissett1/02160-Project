@@ -18,11 +18,11 @@ public class Container {
 		this.position = position;
 	}
 
-	public int getIdentity() {
+	public int getJourneyID() {
 		return identity;
 	}
 
-	public void setIdentity(int identity) {
+	public void setJourneyID(int identity) {
 		this.identity = identity;
 	}
 
