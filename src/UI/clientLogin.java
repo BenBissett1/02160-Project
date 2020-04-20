@@ -133,7 +133,7 @@ public class clientLogin extends JFrame{
 						if (genPass.equals(dataStructure.clients.get(genUser).get(1))) {
 							dataStructure.saveC();
 							dataStructure.saveJ();
-							clientInterface.clientInterface();
+							clientInterface.clientInterface(genUser);
 							dispose();
 						} else {
 							JOptionPane.showMessageDialog(panel,

@@ -60,9 +60,9 @@ class companyInterface extends JFrame {
 		clientManagePanel.add(clientManageLabel);
 		
 		JButton regNewClientButton = new JButton("Register a New Client");
-		regNewClientButton.setBounds(29, 142, 149, 23);
+		regNewClientButton.setBounds(25, 70, 150, 25);
 		regNewClientButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-		regNewClientButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		regNewClientButton.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		clientManagePanel.add(regNewClientButton);
 		regNewClientButton.addActionListener(new ActionListener() {
 			@Override
@@ -89,7 +89,7 @@ class companyInterface extends JFrame {
 		JButton exitButton = new JButton("Exit");
 		exitButton.setBounds(60, 530, 80, 25);
 		exitButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-		exitButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		exitButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, Color.BLACK, null, null, null));
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
