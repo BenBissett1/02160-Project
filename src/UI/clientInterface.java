@@ -99,6 +99,20 @@ class clientInterface extends JFrame {
 		journeyManageLabel.setBounds(10, 25, 175, 20);
 		journeyManagePanel.add(journeyManageLabel);
 		
+		JButton regContainerJourneyButton = new JButton("Register a Container");
+		regContainerJourneyButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		regContainerJourneyButton.setFont(new Font("Tahoma", Font.BOLD, 10));
+		regContainerJourneyButton.setBounds(25, 70, 150, 25);
+		regContainerJourneyButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.saveC();
+				dataStructure.saveJ();
+				clientRegContainer.clientRegContainer(genUser);
+			}
+		});
+		journeyManagePanel.add(regContainerJourneyButton);
+		
 		JPanel containerStatusPanel = new JPanel();
 		containerStatusPanel.setBackground(SystemColor.desktop);
 		containerStatusPanel.setBounds(400, 50, 200, 620);
