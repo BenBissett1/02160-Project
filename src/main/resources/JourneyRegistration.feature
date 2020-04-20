@@ -9,8 +9,8 @@ Feature: Registering a Journey
     And client "Fruits Co."
     And registration status is false
     When register
-#    Then store data to journey
-#    And store data to client
+    Then store data to journey
+    And store data to client
     And automaton displays message that registration was successful
     
   @tag2

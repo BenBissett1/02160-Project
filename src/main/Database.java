@@ -160,7 +160,7 @@ public class Database {
 		vars.add(address);
 		vars.add(email);
 		vars.add(phone);
-		vars.add("" + journeyIDSpaceHolder);
+		//vars.add("" + journeyIDSpaceHolder);
 		if (searchC(name, 0) !=-1 | searchC(address, 2) !=-1 | searchC(email, 3) != -1 | searchC(phone, 4) != -1) {
 			return -1;
 		}
@@ -195,13 +195,7 @@ public class Database {
 		vars.add(address);
 		vars.add(email);
 		vars.add(phone);
-		
-		List<String> vars2 = clients.get(ID);
-		String beforeJourneyIDs = vars2.get(5);
-		
-		vars.add(beforeJourneyIDs + ", " + journeyIDs);
 		clients.put(ID,vars);
-		//clients.replace(ID,vars);
 	}
 	public void updateJourney(int ID, String origin, String destination, String status, String content, String cID) {
 		ArrayList<String> vars = new ArrayList<String>();
