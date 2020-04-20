@@ -64,22 +64,7 @@ public class dataStructure {
 		}
 		return response;
 	}
-	
-	public boolean isClientCompleteDataSet(int clientID) {
-		List<String> list = clients.get(clientID);
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i) == "") return false;
-		}
-		return true;
-	}
-	public boolean isJourneyCompleteDataSet(int journeyID) {
-		List<String> list = journeys.get(journeyID).get(0);
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i) == "") return false;
-		}
-		return true;
-	}
-	
+		
 	
 	public static Map<Integer, List<String>> clients= new HashMap<Integer, List<String>>();
 	// Map structure [client id, [name, password, address, email, phone]]

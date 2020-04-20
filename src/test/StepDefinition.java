@@ -23,13 +23,7 @@ public class StepDefinition {
 	Client client = new Client();
 	ResponseObject response;
 	
-	int newestJourneyAddition;
-	
-	
-	
-	
-	
-	////////////////////
+		////////////////////
 	// Start ///////////
 	// Client.feature //
 	////////////////////
@@ -103,25 +97,27 @@ public class StepDefinition {
 	}
 	@When("register clientN") 
 	public void regClient() {
-//		System.out.println(client.getName());
-		dataStructure.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone()));
-//		System.out.println(dataStructure.clients);
+		client.setID(dataStructure.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone()));
 	}
 	@Then("display client info")
 	public void displayInfo() {
-//		System.out.println(dataStructure.clients);
-//		System.out.println(client.getName());
-		dataStructure.clients.get(dataStructure.searchC(client.getName(), 0));
+		System.out.println(dataStructure.clients.get(client.getID()));
+	}
+	@Then("display all client info")
+	public void displayAllInfo() {
+		System.out.println(dataStructure.clients);
 	}
 	@Then("message unsuccesful registration")
 	public void message_unsuccesful_registration() {
-//		System.out.println(dataStructure.clients);
-//		System.out.println(client.getName());
-//		System.out.println(dataStructure.searchC(client.getName(), 0));
+		if (client.getID() == -1) {
+			System.out.println("already registered");
+		}
 	}
 	@Then("message already registered")
 	public void message_already_registered() {
-		System.out.println(dataStructure.searchC(client.getName(), 0));
+		if (client.getID() == -1) {
+			System.out.println("already registered");
+		};
 	}
 	@When("user closes program")
 	public void user_closes_program() {
@@ -132,6 +128,11 @@ public class StepDefinition {
 	public void message_files_saved() {
 	    System.out.println("Saved file");;
 	}
+	@When("load file")
+	public void loadclients() {
+		dataStructure.loadC();
+	}
+	
 	
 	///////////////////////
 	// End ////////////////
