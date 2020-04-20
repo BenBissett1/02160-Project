@@ -60,14 +60,14 @@ public class Database {
 	
 	public ResponseObject register(Client client, Port port, Container container) {
 		ResponseObject response;
-		if (!client.isRegistered()) {
+		if (!container.isRegistered()) {
 			
 			if (port.getLocationInitial().equals("")
 					|| port.getLocationFinal().equals("")
 					|| container.getContent().equals("")) {
 				response = new ResponseObject(220, "Registration unsuccessful");
 			} else {
-				client.setRegistered(true);
+				container.setRegistered(true);
 				response = new ResponseObject(200, "Registration successful");
 			}
 		} else {
@@ -79,7 +79,7 @@ public class Database {
 	public ResponseObject position(Container container) {
 		ResponseObject response;
 		
-		if (container.isValidContainerID()) {
+		if (container.getJourneyID() < 1000) {
 			response = new ResponseObject(320, "Container not found");
 		} else {
 			if (container.isEnroute()) {
@@ -105,12 +105,19 @@ public class Database {
 	
 	
 
-	public boolean isCompleteDataSet() {
-		return isCompleteDataSet;
+	public boolean isClientCompleteDataSet(int clientID) {
+		List<String> list = clients.get(clientID);
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i) == "") return false;
+		}
+		return true;
 	}
-
-	public void setCompleteDataSet(boolean isCompleteDataSet) {
-		this.isCompleteDataSet = isCompleteDataSet;
+	public boolean isJourneyCompleteDataSet(int journeyID) {
+		List<String> list = journeys.get(journeyID).get(0);
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i) == "") return false;
+		}
+		return true;
 	}
 	
 	
