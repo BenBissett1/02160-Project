@@ -18,7 +18,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
-import main.Database;
+import main.dataStructure;
 
 import javax.swing.JTextField;
 
@@ -89,8 +89,8 @@ public class clientUserGen extends JFrame {
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
-				Database.saveC();
-				Database.saveJ();
+				dataStructure.saveC();
+				dataStructure.saveJ();
 			    System.exit(0);
 			  }
 			});
@@ -103,8 +103,8 @@ public class clientUserGen extends JFrame {
 		loginPageButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
-				Database.saveC();
-				Database.saveJ();
+				dataStructure.saveC();
+				dataStructure.saveJ();
 			    dispose();
 			  }
 			});
