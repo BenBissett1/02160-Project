@@ -8,6 +8,7 @@ public class Container {
 	int[] position;
 	boolean isValidContainerID;
 	boolean isEnroute;
+	int journeyID;
 
 	public int[] getPosition() {
 		return position;
@@ -54,6 +55,14 @@ public class Container {
 	public void isEnroute(boolean isEnroute) {
 		this.isEnroute = isEnroute;
 		
+	}
+	
+	public int getJourney() {
+		return journeyID;
+	}
+
+	public void setJourney(int journeyID) {
+		this.journeyID = journeyID;
 	}
 	
 	

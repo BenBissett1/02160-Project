@@ -1,5 +1,5 @@
 package main;
-
+/*
 public class Client2 {
 	public static String name;
 	public static String password;
@@ -32,3 +32,4 @@ public class Client2 {
 		System.out.println(dataStructure.searchC(name, 0));
 	}
 }
+*/
