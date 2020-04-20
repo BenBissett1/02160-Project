@@ -1,13 +1,13 @@
 package UI;
 import javax.swing.*;
 
-import main.Database;
+import main.dataStructure;
 
 public class mainInterface extends JFrame{	
 	
 	public static void main(String[] args) {
-		Database.loadC();
-		Database.loadJ();
+		dataStructure.loadC();
+		dataStructure.loadJ();
 		initInterface.initInterface();
 	}
 }
