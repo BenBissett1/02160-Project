@@ -162,25 +162,5 @@ public class dataStructure {
 	        fis.close();
 	    } catch(Exception e) {}
 	}
-//	public static void main(String[] args) {
-//		long startTime = System.nanoTime();
-//		loadC();
-//		System.out.println(clients);
-//		loadJ();
-//		System.out.println(searchJ("Dildos",3,1679));
-//		long endTime = System.nanoTime();
-//		long timeElapsed = endTime - startTime;
-//		System.out.println("Execution time in seconds  : " + timeElapsed);
-//		System.out.println(journeys);
-//		System.out.println(journeys.get(15731634).get(0).get(3));
-//		System.out.println(journeys.get(searchJ("Dildos",3).get(0)).get(0));		
-//		int johnsID = regNewClient("Johnny&co","Snow132","276 Brookmere rd","John99@johnco.com","123466");
-//		int johnjourney = regNewJourney("Your mom","Swedes","Dildos",johnsID);
-//		saveC();
-//		saveJ();
-//		System.out.println(johnsID);
-//		save();
-//		System.out.println(clients.size());
-//		
-//	}
+	
 }
