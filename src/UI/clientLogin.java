@@ -67,7 +67,7 @@ public class clientLogin extends JFrame{
 		passwordField.setBounds(155, 115, 96, 25);
 		panel.add(passwordField);
 		
-		JLabel usernameClient = new JLabel("Username:");
+		JLabel usernameClient = new JLabel("ClientID:");
 		usernameClient.setHorizontalTextPosition(SwingConstants.CENTER);
 		usernameClient.setHorizontalAlignment(SwingConstants.CENTER);
 		usernameClient.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -116,16 +116,37 @@ public class clientLogin extends JFrame{
 		logInButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int genUser = Integer.parseInt(textFieldUsername.getText());
-				if (passwordField.equals(dataStructure.clients.get(genUser).get(1))) {
-					dataStructure.saveC();
-					dataStructure.saveJ();
-					clientInterface.clientInterface();
-				} else {
+				int genUser = -1;
+				String genPass = "";
+				try {
+					genUser = Integer.parseInt(textFieldUsername.getText());
+					genPass = passwordField.getText();
+				} catch (NumberFormatException | NullPointerException g) {}
+
+				if( genUser == -1 || genPass == "" ) {
 					JOptionPane.showMessageDialog(panel,
-						    "Incorrect Information",
-						    "Wrong ClientID or Password",
+						    "Please fill in both fields",
+						    "Empty field(s)",
 						    JOptionPane.ERROR_MESSAGE);
+				} else {
+					try {
+						if (genPass.equals(dataStructure.clients.get(genUser).get(1))) {
+							dataStructure.saveC();
+							dataStructure.saveJ();
+							clientInterface.clientInterface();
+							dispose();
+						} else {
+							JOptionPane.showMessageDialog(panel,
+									"Incorrect Information",
+									"Wrong ClientID or Password",
+									JOptionPane.ERROR_MESSAGE);
+						}
+					} catch (NumberFormatException | NullPointerException h) {
+							JOptionPane.showMessageDialog(panel,
+									"Incorrect Information",
+									"Wrong ClientID or Password",
+									JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});
