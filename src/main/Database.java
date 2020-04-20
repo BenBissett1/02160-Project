@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*
 class IDgen2 extends Database {
 	int generate(int max, int type) {
 		int newID = 0;
@@ -26,15 +27,36 @@ class IDgen2 extends Database {
 			}
 		}
 	}
-}
+}*/
 
 
 
 public class Database {
-	IDgen2 gen = new IDgen2();
 	
 	boolean isCompleteDataSet;
 	Container container2 = new Container();
+	
+	
+	public int generate(int max, int type) {
+		int newID = 0;
+		while(true) {
+			newID = (int) (max + 0 + Math.floor(Math.random() * (( max - 0 ) +1 )));
+			if (type == 1) {
+				if (clients.get(newID) == null) {
+					return newID;
+				}
+			}
+			if (type == 2) {
+				if (journeys.get(newID) == null) {
+					return newID;
+				}
+			}
+		}
+	}
+	
+	
+	
+	
 	
 	public ResponseObject register(Client client, Port port, Container container) {
 		ResponseObject response;
@@ -107,7 +129,7 @@ public class Database {
 			return -1;
 		}
 		else {
-			int cID = gen.generate(clientsSize, 1);
+			int cID = generate(clientsSize, 1);
 			clients.put(cID, vars);
 			return cID;
 		}
@@ -125,7 +147,7 @@ public class Database {
 			return -1;
 		}
 		else {
-			int jID=Integer.parseInt(clientID+""+gen.generate(journeysSize, 2));
+			int jID=Integer.parseInt(clientID+""+generate(journeysSize, 2));
 			journeys.put(jID, vars2);
 			return jID;
 		}
