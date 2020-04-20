@@ -66,6 +66,7 @@ public class dataStructure {
 	}
 	
 	
+	
 	public static Map<Integer, List<String>> clients= new HashMap<Integer, List<String>>();
 	// Map structure [client id, [name, password, address, email, phone]]
 	//                              0      1         2       3      4
