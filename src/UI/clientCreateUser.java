@@ -112,7 +112,7 @@ public class clientCreateUser extends JFrame{
 								"Number Error",
 						    	JOptionPane.ERROR_MESSAGE);
 					}
-					int cID = Database.regNewClient(inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
+					int cID = Database.regNewClient(inputName, inputPassword, inputAddress, inputEmail, inputTelephone, 0);
 					Database.saveC();
 					Database.saveJ();
 					clientUserGen.clientUserGen(cID,inputPassword);
