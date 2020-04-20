@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.SoftBevelBorder;
 
-import main.dataStructure;
+import main.Database;
 
 public class clientCreateUser extends JFrame{
 	private JTextField textFieldAddress;
@@ -76,8 +76,8 @@ public class clientCreateUser extends JFrame{
 		clientCreateBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				Database.saveC();
+				Database.saveJ();
 				clientLogin.clientLogin();
 				dispose();				
 			}
@@ -112,9 +112,9 @@ public class clientCreateUser extends JFrame{
 								"Number Error",
 						    	JOptionPane.ERROR_MESSAGE);
 					}
-					int cID = dataStructure.regNewClient(inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
-					dataStructure.saveC();
-					dataStructure.saveJ();
+					int cID = Database.regNewClient(inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
+					Database.saveC();
+					Database.saveJ();
 					clientUserGen.clientUserGen(cID,inputPassword);
 					dispose();
 				}
