@@ -83,7 +83,7 @@ public class dataStructure {
 			}
 		}
 		return -1;
-	}
+	} 
 	public static List<Integer> searchJ(String keyword, int type, int cID) {
 		List<Integer> journeyIDs = new ArrayList<Integer>();
 		System.out.println(journeys);

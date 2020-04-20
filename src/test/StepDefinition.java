@@ -148,7 +148,7 @@ public class StepDefinition {
 	/////////////////////////////////
 	
 	
-	
+
 	@Given("port of origin {string}")
 	public void port_of_origin(String location) {
 	port.setLocationInitial(location);
