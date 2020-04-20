@@ -14,7 +14,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
-import main.dataStructure;
+import main.Database;
 
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
@@ -67,8 +67,8 @@ class companyInterface extends JFrame {
 		regNewClientButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				Database.saveC();
+				Database.saveJ();
 				clientCreateUser.clientCreateUser();		
 			}
 		});
@@ -93,8 +93,8 @@ class companyInterface extends JFrame {
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				Database.saveC();
+				Database.saveJ();
 			    System.exit(0);
 			  }
 			});
