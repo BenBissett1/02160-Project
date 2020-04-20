@@ -41,20 +41,22 @@ public class Container {
 	public boolean isRegistered() {
 		return isRegistered;
 	}
-
 	public void setRegistered (boolean isRegistered) {
 		this.isRegistered = isRegistered;
-		
 	}
 	
+	public boolean isValidContainerID() {
+		return isValidContainerID;
+	}
 	public void setValidContainerID(boolean isValidContainerID) {
 		this.isValidContainerID = isValidContainerID;
-		
 	}
-
-	public void isEnroute(boolean isEnroute) {
+	
+	public boolean isEnroute() {
+		return isEnroute;
+	}
+	public void setEnroute(boolean isEnroute) {
 		this.isEnroute = isEnroute;
-		
 	}
 	
 	public int getJourney() {

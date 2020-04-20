@@ -3,7 +3,7 @@ Feature: Retrieving container position
 
   @tag1
   Scenario: Container enroute
-    Given a containerid 00000000
+    Given a containerid 5000
     And containeridInvalid is false
     And enroute status is true
     When retrieving
@@ -11,7 +11,7 @@ Feature: Retrieving container position
     
   @tag1
   Scenario: Container arrived
-    Given a containerid 00000000
+    Given a containerid 5000
     And containeridInvalid is false
     And enroute status is false
     When retrieving

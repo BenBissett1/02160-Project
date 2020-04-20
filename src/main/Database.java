@@ -75,6 +75,35 @@ public class Database {
 		}
 		return response;
 	}
+	
+	public ResponseObject position(Container container) {
+		ResponseObject response;
+		
+		if (container.isValidContainerID()) {
+			response = new ResponseObject(320, "Container not found");
+		} else {
+			if (container.isEnroute()) {
+				response = new ResponseObject(310, "Container enroute");
+			} else {
+				response = new ResponseObject(300, "Container arrived");
+			}
+		}
+		return response;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public boolean isCompleteDataSet() {
 		return isCompleteDataSet;

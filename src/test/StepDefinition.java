@@ -114,33 +114,35 @@ public class StepDefinition {
 
 	@Given("^enroute status is (true|false)$")
 	public void enroute_status_is_true(boolean isEnroute) {
-		container.isEnroute(isEnroute);
+		container.setEnroute(isEnroute);
 	}
 
 	@When("retrieving")
 	public void retrieving() {
-		//Do we need to create a responseObject2 for each feature file????
-		//Do we need responseObjects at all in this project?
+		response = data.position(container);
 	}
 
 	@Then("output coordinates of container")
 	public void output_coordinates_of_container() {
-	    String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
-	    System.out.println(var);
+	    //String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
+	    //System.out.println(var);
+	    assertEquals(response.getErrorMessage(), "Container enroute");
 	}
 
 	@Then("output container arrived at destination")
 	public void output_container_arrived_at_destination() {
-		String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
-	    System.out.println(var);
+		//String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
+	    //System.out.println(var);
+	    assertEquals(response.getErrorMessage(), "Container arrived");
 	}
 
 	@Then("output containerID not found in database")
 	public void output_containerID_not_found_in_database() {
-		for (Entry<Integer, List<List<String>>> entry : data.journeys.entrySet()) {
+		/*for (Entry<Integer, List<List<String>>> entry : data.journeys.entrySet()) {
 			System.out.println("Key: " + entry);
 			System.out.println("Not found");
-		}
+		}*/
+		assertEquals(response.getErrorMessage(), "Container not found");
 	}
 	
 	
