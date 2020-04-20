@@ -117,10 +117,6 @@ public class clientCreateUser extends JFrame{
 					dataStructure.saveC();
 					dataStructure.saveJ();
 
-					int cID = dataStructure.regNewClient(inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
-					dataStructure.saveC();
-					dataStructure.saveJ();
-
 					clientUserGen.clientUserGen(cID,inputPassword);
 					dispose();
 				}
