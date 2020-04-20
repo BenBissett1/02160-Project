@@ -6,15 +6,8 @@ public class Port {
 	String locationInitial;
 	String locationFinal;
 	boolean isRegistered;
-	String journey = locationInitial + " -> " + locationFinal;
 
-	public String getJourney() {
-		return journey;
-	}
-
-	public void setJourney(String journey) {
-		this.journey = journey;
-	}
+	
 
 	public Port() {
 		super();

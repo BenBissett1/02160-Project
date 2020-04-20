@@ -6,11 +6,11 @@ Feature: Registering a Journey
     Given port of origin "Copenhagen"
     And destination "New York"
     And content "Apples"
-    And company "Fruits Co."
+    And client "Fruits Co."
     And registration status is false
     When register
-    Then store data to CompanyID
-    And store data to CustomerID
+#    Then store data to journey
+#    And store data to client
     And automaton displays message that registration was successful
     
   @tag2
@@ -18,7 +18,7 @@ Feature: Registering a Journey
     Given port of origin "Copenhagen"
     And destination "New York"
     And content "Apples"
-    And company "Fruits Co."
+    And client "Fruits Co."
     And registration status is true
     When register
     Then automaton displays message that already registered
@@ -28,7 +28,7 @@ Feature: Registering a Journey
     Given port of origin ""
     And destination ""
     And content ""
-    And company ""
+    And client ""
     And registration status is false
     When register
     Then automaton displays message that registration was unsuccessful
