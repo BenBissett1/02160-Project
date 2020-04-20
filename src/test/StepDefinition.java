@@ -12,17 +12,15 @@ import io.cucumber.java.en.When;
 import main.Client;
 //import main.Client2;
 import main.Container;
-import main.Database;
+import main.dataStructure;
 import main.Port;
 import main.ResponseObject;
-//import main.dataStructure;
 
 public class StepDefinition {
 	
 	Port port = new Port();
 	Container container = new Container();
 	Client client = new Client();
-	Database data = new Database();
 	ResponseObject response;
 	
 	int newestJourneyAddition;
@@ -105,23 +103,29 @@ public class StepDefinition {
 	}
 	@When("register clientN") 
 	public void regClient() {
-		data.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone(), 0);
+//		System.out.println(client.getName());
+		dataStructure.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone()));
+//		System.out.println(dataStructure.clients);
 	}
 	@Then("display client info")
 	public void displayInfo() {
-		System.out.println(data.searchC(client.getName(), 0));
+//		System.out.println(dataStructure.clients);
+//		System.out.println(client.getName());
+		dataStructure.clients.get(dataStructure.searchC(client.getName(), 0));
 	}
 	@Then("message unsuccesful registration")
 	public void message_unsuccesful_registration() {
-		System.out.println(data.searchC(client.getName(), 0));
+//		System.out.println(dataStructure.clients);
+//		System.out.println(client.getName());
+//		System.out.println(dataStructure.searchC(client.getName(), 0));
 	}
 	@Then("message already registered")
 	public void message_already_registered() {
-		System.out.println(data.searchC(client.getName(), 0));
+		System.out.println(dataStructure.searchC(client.getName(), 0));
 	}
 	@When("user closes program")
 	public void user_closes_program() {
-	    data.saveC();
+	    dataStructure.saveC();
 	}
 
 	@Then("message files saved")
@@ -172,7 +176,7 @@ public class StepDefinition {
 	
 	@When("register")
 	public void register() {
-	response = data.register(client, port, container);
+	response = dataStructure.register(client, port, container);
 	
 	}
 	
@@ -230,7 +234,7 @@ public class StepDefinition {
 	
 	@When("retrieving")
 	public void retrieving() {
-	response = data.position(container);
+	response = dataStructure.position(container);
 	}
 	
 	@Then("output coordinates of container")

@@ -21,7 +21,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.border.SoftBevelBorder;
 
-import main.Database;
+import main.dataStructure;
 
 public class clientLogin extends JFrame{
 	private JTextField textFieldUsername;
@@ -102,8 +102,8 @@ public class clientLogin extends JFrame{
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
-				Database.saveC();
-				Database.saveJ();
+				dataStructure.saveC();
+				dataStructure.saveJ();
 			    System.exit(0);
 			  }
 			});
@@ -130,9 +130,9 @@ public class clientLogin extends JFrame{
 						    JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-						if (genPass.equals(Database.clients.get(genUser).get(1))) {
-							Database.saveC();
-							Database.saveJ();
+						if (genPass.equals(dataStructure.clients.get(genUser).get(1))) {
+							dataStructure.saveC();
+							dataStructure.saveJ();
 							clientInterface.clientInterface();
 							dispose();
 						} else {
