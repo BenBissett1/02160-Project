@@ -13,16 +13,6 @@ Feature: Registering a client
  
 
   @tag2
-  Scenario: Unsuccessful registration
-    Given name is ""
-    And password is ""
-    And address is ""
-    And email is ""
-    And phone is ""
-    When register clientN
-    Then message unsuccesful registration
-  
-  @tag3
   Scenario: Already registered
     Given name is "John&co"
     And password is "Snow123"
@@ -32,7 +22,7 @@ Feature: Registering a client
     When register clientN
     Then message already registered 
  
- @tag4
+ @tag3
  Scenario: Succesful saving
    Given name is "John&co"
    And password is "Snow123"
