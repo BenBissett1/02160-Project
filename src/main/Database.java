@@ -27,7 +27,7 @@ class IDgen2 extends Database {
 			}
 		}
 	}
-}*/
+}
 
 
 
@@ -265,7 +265,7 @@ public class Database {
 
 	}
 }
-	
+*/
 //	public static void main(String[] args) {
 //	long startTime = System.nanoTime();
 //	loadC();

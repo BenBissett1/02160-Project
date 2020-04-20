@@ -104,7 +104,7 @@ public class StepDefinition {
 	@When("register clientN") 
 	public void regClient() {
 //		System.out.println(client.getName());
-		dataStructure.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone()));
+		dataStructure.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone());
 //		System.out.println(dataStructure.clients);
 	}
 	@Then("display client info")
@@ -148,35 +148,35 @@ public class StepDefinition {
 	
 	
 	@Given("port of origin {string}")
-	public void port_of_origin(String location) {
-	port.setLocationInitial(location);
+		public void port_of_origin(String location) {
+		port.setLocationInitial(location);
 	}
 	
 	@Given("destination {string}")
-	public void destination(String location) {
-	port.setLocationFinal(location);
+		public void destination(String location) {
+		port.setLocationFinal(location);
 	}
 	
 	@Given("content {string}")
-	public void content(String content) {
-	container.setContent(content);
+		public void content(String content) {
+		container.setContent(content);
 	}
 	
 	@Given("client {string}")
-	public void client(String name) {
-	client.setName(name);
+		public void client(String name) {
+		client.setName(name);
 	}
 	
 	@Given("^registration status is (true|false)$")
-	public void registration_status_is(boolean isRegistered) {
-	port.setRegistered(isRegistered);
-	container.setRegistered(isRegistered);
-	client.setRegistered(isRegistered);
+		public void registration_status_is(boolean isRegistered) {
+		port.setRegistered(isRegistered);
+		container.setRegistered(isRegistered);
+		client.setRegistered(isRegistered);
 	}
 	
 	@When("register")
-	public void register() {
-	response = dataStructure.register(client, port, container);
+		public void register() {
+		response = dataStructure.register(client, port, container);
 	
 	}
 	
@@ -190,19 +190,19 @@ public class StepDefinition {
 	data.updateClient(client.getID(), client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone(), newestJourneyAddition);
 	}*/
 	
-	@Then("automaton displays message that registration was successful")
-	public void automaton_displays_message_that_registration_was_successful() {
-	assertEquals(response.getErrorMessage(), "Registration successful");
+	@Then("displays message that registration was successful")
+		public void displays_message_that_registration_was_successful() {
+		assertEquals(response.getErrorMessage(), "Registration successful");
 	}
 	
-	@Then("automaton displays message that already registered")
-	public void automaton_displays_message_that_already_registered() {
-	assertEquals(response.getErrorMessage(), "Already registered");
+	@Then("displays message that already registered")
+		public void displays_message_that_already_registered() {
+		assertEquals(response.getErrorMessage(), "Already registered");
 	}
 	
-	@Then("automaton displays message that registration was unsuccessful")
-	public void automaton_displays_message_that_registration_was_unsuccessful() {
-	assertEquals(response.getErrorMessage(), "Registration unsuccessful");
+	@Then("displays message that registration was unsuccessful")
+		public void displays_message_that_registration_was_unsuccessful() {
+		assertEquals(response.getErrorMessage(), "Registration unsuccessful");
 	}
 	
 	
