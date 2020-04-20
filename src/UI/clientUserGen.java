@@ -105,7 +105,6 @@ public class clientUserGen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dataStructure.saveC();
 				dataStructure.saveJ();
-			    companyInterface.companyInterface();
 			    dispose();
 			  }
 			});
