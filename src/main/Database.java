@@ -125,10 +125,10 @@ public class Database {
 	
 	
 
-	public Map<Integer, List<String>> clients= new HashMap<Integer, List<String>>();
+	public static Map<Integer, List<String>> clients= new HashMap<Integer, List<String>>();
 	// Map structure [client id, [name, password, address, email, phone]]
 	//                              0      1         2       3      4
-	public Map<Integer, List<List<String>>> journeys= new HashMap<Integer, List<List<String>>>();
+	public static Map<Integer, List<List<String>>> journeys= new HashMap<Integer, List<List<String>>>();
 	// Map structure [Journey ID, [[origin, destination, status,  content, ClientID], [val1 list], [val2 list], [val3 list]]]
 	//                                00         01         02       03       04          10           20           30
 	int clientsSize = 1000;
@@ -209,7 +209,7 @@ public class Database {
 		journeys.put(ID, vars2);
 		//journeys.replace(ID, vars2);
 	}
-	public void saveC() {
+	public static void saveC() {
 		try {
 	        File file=new File("clients");
 	        FileOutputStream fos=new FileOutputStream(file);
@@ -221,7 +221,7 @@ public class Database {
 	        fos.close();
 	    } catch(Exception e) {}
 	}
-	public void loadC() {
+	public static void loadC() {
 		try {
 	        File toRead=new File("clients");
 	        FileInputStream fis=new FileInputStream(toRead);
@@ -233,7 +233,7 @@ public class Database {
 	        fis.close();
 	    } catch(Exception e) {}
 	}
-	public void saveJ() {
+	public static void saveJ() {
 		try {
 	        File file=new File("journeys");
 	        FileOutputStream fos=new FileOutputStream(file);
@@ -245,7 +245,7 @@ public class Database {
 	        fos.close();
 	    } catch(Exception e) {}
 	}
-	public void loadJ() {
+	public static void loadJ() {
 		try {
 	        File toRead=new File("journeys");
 	        FileInputStream fis=new FileInputStream(toRead);

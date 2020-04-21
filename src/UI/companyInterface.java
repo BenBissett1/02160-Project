@@ -14,12 +14,12 @@ import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
-import main.dataStructure;
+import main.Database;
 
 import javax.swing.JButton;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 
 class companyInterface extends JFrame {
 	private ButtonGroup group;
@@ -32,7 +32,7 @@ class companyInterface extends JFrame {
 		setAlwaysOnTop(true);
 		setFont(new Font("Times New Roman", Font.BOLD, 20));
 		setResizable(false);
-		setType(Type.POPUP);
+		setType(Type.NORMAL);
 		setTitle("Company Interface");
 		getContentPane().setForeground(Color.BLACK);
 		
@@ -46,24 +46,90 @@ class companyInterface extends JFrame {
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		JPanel clientManagePanel = new JPanel();
+		clientManagePanel.setBorder(null);
+		clientManagePanel.setBackground(Color.BLACK);
+		clientManagePanel.setBounds(0, 50, 200, 620);
+		panel.add(clientManagePanel);
+		clientManagePanel.setLayout(null);
+		
+		JLabel clientManageLabel = new JLabel("Client Management");
+		clientManageLabel.setBounds(21, 25, 157, 20);
+		clientManageLabel.setForeground(SystemColor.controlShadow);
+		clientManageLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		clientManagePanel.add(clientManageLabel);
+		
 		JButton regNewClientButton = new JButton("Register a New Client");
-		regNewClientButton.setBounds(165, 120, 150, 40);
+		regNewClientButton.setBounds(29, 142, 149, 23);
+		regNewClientButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		regNewClientButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		clientManagePanel.add(regNewClientButton);
 		regNewClientButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
-				clientCreateUser.clientCreateUser();
-				dispose();				
+				Database.saveC();
+				Database.saveJ();
+				clientCreateUser.clientCreateUser();		
 			}
 		});
-		panel.add(regNewClientButton);
+		
+		JPanel journeyManagePanel = new JPanel();
+		journeyManagePanel.setBorder(null);
+		journeyManagePanel.setBackground(Color.BLACK);
+		journeyManagePanel.setBounds(200, 50, 200, 620);
+		panel.add(journeyManagePanel);
+		journeyManagePanel.setLayout(null);
+		
+		JLabel journeyManageLabel = new JLabel("Journey Management");
+		journeyManageLabel.setBounds(10, 25, 175, 20);
+		journeyManageLabel.setForeground(SystemColor.controlShadow);
+		journeyManageLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		journeyManagePanel.add(journeyManageLabel);
+		
+		JButton exitButton = new JButton("Exit");
+		exitButton.setBounds(60, 530, 80, 25);
+		exitButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		exitButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		exitButton.addActionListener(new ActionListener() {
+			  @Override
+			public void actionPerformed(ActionEvent e) {
+				Database.saveC();
+				Database.saveJ();
+			    System.exit(0);
+			  }
+			});
+		journeyManagePanel.add(exitButton);
+		
+		JPanel containerStatusPanel = new JPanel();
+		containerStatusPanel.setBorder(null);
+		containerStatusPanel.setBackground(Color.BLACK);
+		containerStatusPanel.setBounds(400, 50, 200, 620);
+		panel.add(containerStatusPanel);
+		containerStatusPanel.setLayout(null);
+		
+		JLabel containerStatusLabel = new JLabel("Container Status");
+		containerStatusLabel.setBounds(30, 25, 134, 20);
+		containerStatusLabel.setForeground(SystemColor.controlShadow);
+		containerStatusLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		containerStatusPanel.add(containerStatusLabel);
+		
+		JPanel headerPanel = new JPanel();
+		headerPanel.setForeground(SystemColor.desktop);
+		headerPanel.setBackground(SystemColor.desktop);
+		headerPanel.setBounds(0, 0, 600, 50);
+		panel.add(headerPanel);
+		
+		JLabel companyHeaderLabel = new JLabel("Company Interface");
+		companyHeaderLabel.setForeground(SystemColor.controlShadow);
+		companyHeaderLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		headerPanel.add(companyHeaderLabel);
+		
 	}
 
 	public static void companyInterface() {
 		companyInterface cmpInterface = new companyInterface();
 		cmpInterface.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		cmpInterface.setSize(800, 700);
+		cmpInterface.setSize(600, 670);
 		cmpInterface.setLocationRelativeTo(null);
 		cmpInterface.setVisible(true);
 	}
