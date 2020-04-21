@@ -6,18 +6,10 @@ Feature: Registering a Journey
     Given port of origin "Copenhagen"
     And destination "New York"
     And content "Apples"
-<<<<<<< HEAD
     And client "1978"
     When register journey
     Then display journey info
-=======
-    And client "Fruits Co."
-    And registration status is false
-    When register
-    Then store data to journey
-    And store data to client
-    And automaton displays message that registration was successful
->>>>>>> branch 'master' of https://github.com/BenBissett1/02160-Project
+
     
   @tag2
   Scenario: Searching for a clients journeys

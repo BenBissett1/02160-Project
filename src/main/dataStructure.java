@@ -115,7 +115,6 @@ public class dataStructure {
 		vars.add(""+ClientID);
 		List<List<String>> vars2 = new ArrayList<List<String>>();
 		vars2.add(vars);
-		
 		int jID=Integer.parseInt(ClientID+""+generate(journeysSize, 2));
 		journeys.put(jID, vars2);
 		return jID;

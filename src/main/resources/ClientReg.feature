@@ -29,7 +29,7 @@ Feature: Registering a client
    And address is "276 Brookmere rd"
    And email is "John88@johnco.com"
    And phone is "123466"
-   When register clientN
+   When register client
    Then display client info
    When user closes program
 	 Then message files saved

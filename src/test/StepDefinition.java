@@ -97,7 +97,7 @@ public class StepDefinition {
 	public void phone_is(String string) {
 		client.setPhone(string);
 	}
-	@When("register clientN") 
+	@When("register client") 
 	public void regClient() {
 		client.setID(dataStructure.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone()));
 	}
@@ -129,6 +129,10 @@ public class StepDefinition {
 		dataStructure.loadC();
 		dataStructure.loadJ();
 	
+	}
+	@When("search by name") 
+	public void searchName() {
+		client.setID(dataStructure.searchC(client.getName(), 0));
 	}
 	
 	
@@ -177,6 +181,21 @@ public class StepDefinition {
 		System.out.println(dataStructure.journeys.get(journey.getJID()));
 
 	}
+	@Then("display all journey info")
+	public void displayAllJinfo() {
+		System.out.println(dataStructure.journeys);
+
+	}
+	@When("search for clients journeys")
+	public void search_for_clients_journeys() {
+		System.out.println(dataStructure.searchJ(""+journey.getClientID(), 4, journey.getClientID()));
+	}
+	@When("save journey info")
+	public void saveJ() {
+		dataStructure.saveJ();
+	}
+	
+	
 	
 	
 	/////////////////////////////////
@@ -207,7 +226,7 @@ public class StepDefinition {
 	
 	@When("retrieving")
 	public void retrieving() {
-		response = data.position(container);
+		response = dataStructure.position(container);
 	}
 	
 	@Then("output coordinates of container")
