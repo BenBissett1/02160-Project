@@ -12,26 +12,20 @@ import io.cucumber.java.en.When;
 import main.Client;
 //import main.Client2;
 import main.Container;
-import main.Database;
+import main.dataStructure;
 import main.Port;
 import main.ResponseObject;
-//import main.dataStructure;
 
 public class StepDefinition {
 	
 	Port port = new Port();
 	Container container = new Container();
 	Client client = new Client();
-	Database data = new Database();
+	dataStructure data = new dataStructure();
 	ResponseObject response;
+	//int newestJourneyAddition;
 	
-	int newestJourneyAddition;
-	
-	
-	
-	
-	
-	////////////////////
+		////////////////////
 	// Start ///////////
 	// Client.feature //
 	////////////////////
@@ -105,29 +99,43 @@ public class StepDefinition {
 	}
 	@When("register clientN") 
 	public void regClient() {
-		data.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone(), 0);
+		client.setID(dataStructure.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone()));
 	}
 	@Then("display client info")
 	public void displayInfo() {
-		System.out.println(data.searchC(client.getName(), 0));
+		System.out.println(dataStructure.clients.get(client.getID()));
+	}
+	@Then("display all client info")
+	public void displayAllInfo() {
+		System.out.println(dataStructure.clients);
 	}
 	@Then("message unsuccesful registration")
 	public void message_unsuccesful_registration() {
-		System.out.println(data.searchC(client.getName(), 0));
+		if (client.getID() == -1) {
+			System.out.println("already registered");
+		}
 	}
 	@Then("message already registered")
 	public void message_already_registered() {
-		System.out.println(data.searchC(client.getName(), 0));
+		if (client.getID() == -1) {
+			System.out.println("already registered");
+		};
 	}
 	@When("user closes program")
 	public void user_closes_program() {
-	    data.saveC();
+	    dataStructure.saveC();
 	}
 
 	@Then("message files saved")
 	public void message_files_saved() {
 	    System.out.println("Saved file");;
 	}
+	@When("load file")
+	public void loadclients() {
+		dataStructure.loadC();
+	
+	}
+	
 	
 	///////////////////////
 	// End ////////////////
@@ -142,7 +150,7 @@ public class StepDefinition {
 	/////////////////////////////////
 	
 	
-	
+
 	@Given("port of origin {string}")
 	public void port_of_origin(String location) {
 		port.setLocationInitial(location);
@@ -172,21 +180,25 @@ public class StepDefinition {
 	
 	@When("register")
 	public void register() {
+//<<<<<<< HEAD
 		response = data.register(client, port, container);
+//=======
+		//response = dataStructure.register(client, port, container);
+//>>>>>>> branch 'master' of https://github.com/BenBissett1/02160-Project.git
 	
 	}
 	
 	@Then("store data to journey")
 	public void store_data_to_journey() {
-		newestJourneyAddition = data.regNewJourney(port.getLocationInitial(), port.getLocationFinal(), container.getContent(), 5000);
+		int newestJourneyAddition = data.regNewJourney(port.getLocationInitial(), port.getLocationFinal(), container.getContent(), 5000);
 	}
 	
 	@Then("store data to client")
 	public void store_data_to_client() {
 		//data.regNewClient(name, password, address, email, phone, journeyIDSpaceHolder)
 		//data.updateClient(client.getID(), client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone(), newestJourneyAddition);
-		int x = data.regNewClient("John", "ABC", "DEF", "GHI", "JKL", 0);
-		data.updateClient(x, "John", "ABC", "DEF", "GHI", "JKL", newestJourneyAddition);
+		int x = data.regNewClient("John", "ABC", "DEF", "GHI", "JKL");
+		data.updateClient(x, "John", "ABC", "DEF", "GHI", "JKL");
 	}
 	
 	@Then("automaton displays message that registration was successful")
@@ -233,7 +245,11 @@ public class StepDefinition {
 	
 	@When("retrieving")
 	public void retrieving() {
+//<<<<<<< HEAD
 		response = data.position(container);
+//=======
+		//response = dataStructure.position(container);
+//>>>>>>> branch 'master' of https://github.com/BenBissett1/02160-Project.git
 	}
 	
 	@Then("output coordinates of container")

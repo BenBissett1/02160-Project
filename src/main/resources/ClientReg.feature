@@ -13,16 +13,6 @@ Feature: Registering a client
  
 
   @tag2
-  Scenario: Unsuccessful registration
-    Given name is ""
-    And password is ""
-    And address is ""
-    And email is ""
-    And phone is ""
-    When register clientN
-    Then message unsuccesful registration
-  
-  @tag3
   Scenario: Already registered
     Given name is "John&co"
     And password is "Snow123"
@@ -32,16 +22,23 @@ Feature: Registering a client
     When register clientN
     Then message already registered 
  
- @tag4
- Scenario: Succesful saving
-   Given name is "John&co"
+ @tag3
+ Scenario: Saving & Search by name
+   Given name is "John&co2"
    And password is "Snow123"
-   And address is "275 Brookmere rd"
-   And email is "John89@johnco.com"
-   And phone is "123456"
+   And address is "276 Brookmere rd"
+   And email is "John88@johnco.com"
+   And phone is "123466"
    When register clientN
    Then display client info
    When user closes program
 	 Then message files saved
-
+	 Given name is "John&co2"
+	 When search by name
+	 Then display client info
+	 
+	@tag4
+	Scenario: Loading
+    When load file
+    Then display all client info
   

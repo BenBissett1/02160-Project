@@ -37,7 +37,7 @@ public class Database {
 	Container container2 = new Container();
 	
 	
-	public int generate(int max, int type) {
+	public static int generate(int max, int type) {
 		int newID = 0;
 		while(true) {
 			newID = (int) (max + 0 + Math.floor(Math.random() * (( max - 0 ) +1 )));
@@ -131,9 +131,9 @@ public class Database {
 	public static Map<Integer, List<List<String>>> journeys= new HashMap<Integer, List<List<String>>>();
 	// Map structure [Journey ID, [[origin, destination, status,  content, ClientID], [val1 list], [val2 list], [val3 list]]]
 	//                                00         01         02       03       04          10           20           30
-	int clientsSize = 1000;
+	static int clientsSize = 1000;
 	int journeysSize = 100000;
-	public int searchC(String keyword, int type) {
+	public static int searchC(String keyword, int type) {
 		for (int i =0; i<clientsSize; i++) {
 			if (clients.get(i) == null || clients.get(i).get(0).equals("")) {continue;}
 			if (keyword.equals(clients.get(i).get(type))) {
@@ -153,7 +153,7 @@ public class Database {
 		}
 		return journeyIDs;
 	}
-	public int regNewClient(String name, String password, String address, String email, String phone, int journeyIDSpaceHolder) {
+	public static int regNewClient(String name, String password, String address, String email, String phone, int journeyIDSpaceHolder) {
 		ArrayList<String> vars = new ArrayList<String>();
 		vars.add(name);
 		vars.add(password);
