@@ -109,7 +109,7 @@ public class initInterface extends JFrame {
 				else if (companyButton.isSelected() == true){
 					dataStructure.saveC();
 					dataStructure.saveJ();
-					companyInterface.companyInterface();
+					companyLogin.companyLogin();
 					dispose();
 				}
 				else if (clientButton.isSelected() == true) {

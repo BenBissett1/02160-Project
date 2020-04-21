@@ -20,6 +20,7 @@ import javax.swing.border.SoftBevelBorder;
 import main.dataStructure;
 
 import javax.swing.border.BevelBorder;
+import javax.swing.JPanel;
 
 public class companyLogin extends JFrame{
 	private JPasswordField passwordField;
@@ -37,31 +38,37 @@ public class companyLogin extends JFrame{
 		getContentPane().setForeground(Color.BLACK);
 		getContentPane().setLayout(null);
 		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.LIGHT_GRAY);
+		panel.setBounds(0, 0, 313, 250);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
 		JLabel header = new JLabel("Please enter the company password");
+		header.setBounds(0, 25, 300, 25);
 		header.setHorizontalTextPosition(SwingConstants.CENTER);
 		header.setHorizontalAlignment(SwingConstants.CENTER);
 		header.setFont(new Font("Tahoma", Font.BOLD, 16));
 		header.setBackground(Color.LIGHT_GRAY);
-		header.setBounds(0, 20, 311, 20);
-		getContentPane().add(header);
+		panel.add(header);
 		
 		passwordField = new JPasswordField();
+		passwordField.setBounds(150, 95, 100, 25);
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		passwordField.setBounds(145, 90, 100, 25);
-		getContentPane().add(passwordField);
+		panel.add(passwordField);
 		
 		JLabel passwordClient = new JLabel("Password:");
+		passwordClient.setBounds(50, 95, 100, 25);
 		passwordClient.setHorizontalTextPosition(SwingConstants.CENTER);
 		passwordClient.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordClient.setFont(new Font("Tahoma", Font.BOLD, 16));
-		passwordClient.setBounds(40, 90, 100, 25);
-		getContentPane().add(passwordClient);
+		panel.add(passwordClient);
 		
 		JButton logInButton = new JButton("Log In");
+		logInButton.setBounds(160, 175, 130, 25);
 		logInButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		logInButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		logInButton.setBounds(160, 175, 130, 25);
 		logInButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -70,48 +77,50 @@ public class companyLogin extends JFrame{
 					genPass = passwordField.getText();
 				} catch (NumberFormatException | NullPointerException g) {}
 
-				if(genPass == "" ) {
+				if (genPass == "" ) {
 					JOptionPane.showMessageDialog(panel,
-						    "Please fill in both fields",
-						    "Empty field(s)",
+						    "Please enter a password",
+						    "Empty password field",
 						    JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-						if (genPass.equals(0)) {
+						if (genPass.equals("0000")) {
 							dataStructure.saveC();
 							dataStructure.saveJ();
 							companyInterface.companyInterface();
 							dispose();
 						} else {
 							JOptionPane.showMessageDialog(panel,
-									"Incorrect Information",
-									"Wrong ClientID or Password",
+									"Incorrect password",
+									"Wrong Password",
 									JOptionPane.ERROR_MESSAGE);
 						}
 					} catch (NumberFormatException | NullPointerException h) {
 							JOptionPane.showMessageDialog(panel,
 									"Incorrect Information",
-									"Wrong ClientID or Password",
+									"Wrong Password",
 									JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
 		});
-		getContentPane().add(logInButton);
+		panel.add(logInButton);
 		
-		JButton backButton = new JButton("Exit");
-		backButton.setFont(new Font("Tahoma", Font.BOLD, 16));
-		backButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		backButton.setBounds(20, 175, 130, 25);
-		backButton.addActionListener(new ActionListener() {
-			@Override
+		JButton exitButton = new JButton("Exit");
+		exitButton.setBounds(15, 175, 130, 25);
+		exitButton.setFont(new Font("Tahoma", Font.BOLD, 16));
+		exitButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		exitButton.addActionListener(new ActionListener() {
+			  @Override
 			public void actionPerformed(ActionEvent e) {
 				dataStructure.saveC();
 				dataStructure.saveJ();
-				System.exit(0);				
-			}
-		});
-		getContentPane().add(backButton);
+			    System.exit(0);
+			  }
+			});
+		panel.add(exitButton);
+		
+
 	}
 	
 	public static void companyLogin() {
