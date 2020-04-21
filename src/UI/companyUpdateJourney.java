@@ -185,7 +185,7 @@ public class companyUpdateJourney extends JFrame {
 								"Number Error",
 						    	JOptionPane.ERROR_MESSAGE);
 					}
-					if(Client.isRegistered(inputClientIDAsInt) && Container.isRegistered(inputJourneyIDAsInt)) {
+					if(dataStructure.clientExists(inputClientIDAsInt) && dataStructure.journeyExists(inputJourneyIDAsInt)) {
 						dataStructure.updateJourney(inputJourneyIDAsInt, inputOrigin, inputDestination, inputStatus, inputContents, inputClientID);
 						JOptionPane.showMessageDialog(panel,
 								"Journey Updated!",
