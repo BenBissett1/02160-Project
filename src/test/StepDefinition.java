@@ -10,8 +10,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import main.Client;
-//import main.Client2;
 import main.Container;
+import main.Journey;
 import main.dataStructure;
 import main.Port;
 import main.ResponseObject;
@@ -21,6 +21,7 @@ public class StepDefinition {
 	Port port = new Port();
 	Container container = new Container();
 	Client client = new Client();
+	Journey journey = new Journey();
 	ResponseObject response;
 	
 		////////////////////
@@ -107,12 +108,6 @@ public class StepDefinition {
 	public void displayAllInfo() {
 		System.out.println(dataStructure.clients);
 	}
-	@Then("message unsuccesful registration")
-	public void message_unsuccesful_registration() {
-		if (client.getID() == -1) {
-			System.out.println("already registered");
-		}
-	}
 	@Then("message already registered")
 	public void message_already_registered() {
 		if (client.getID() == -1) {
@@ -131,6 +126,7 @@ public class StepDefinition {
 	@When("load file")
 	public void loadclients() {
 		dataStructure.loadC();
+		dataStructure.loadJ();
 	
 	}
 	
@@ -151,60 +147,32 @@ public class StepDefinition {
 
 	@Given("port of origin {string}")
 	public void port_of_origin(String location) {
-	port.setLocationInitial(location);
+		journey.setOrigin(location);
 	}
 	
 	@Given("destination {string}")
 	public void destination(String location) {
-	port.setLocationFinal(location);
+		journey.setDestination(location);
 	}
 	
 	@Given("content {string}")
 	public void content(String content) {
-	container.setContent(content);
+		journey.setContent(content);
 	}
 	
 	@Given("client {string}")
 	public void client(String name) {
-	client.setName(name);
+		journey.setClientID(name);
 	}
 	
-	@Given("^registration status is (true|false)$")
-	public void registration_status_is(boolean isRegistered) {
-	port.setRegistered(isRegistered);
-	container.setRegistered(isRegistered);
-	client.setRegistered(isRegistered);
-	}
-	
-	@When("register")
+	@When("register journey")
 	public void register() {
-	response = dataStructure.register(client, port, container);
-	
+		journey.setJID(dataStructure.regNewJourney(journey.getOrigin(),journey.getDestination(),journey.getContent(),journey.getClientID()));
 	}
 	
-	/*@Then("store data to journey")
-	public void store_data_to_CompanyID() {
-	newestJourneyAddition = data.regNewJourney(port.getLocationInitial(), port.getLocationFinal(), container.getContent(), 5000);
-	}
-	
-	@Then("store data to client")
-	public void store_data_to_CustomerID() {
-	data.updateClient(client.getID(), client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone(), newestJourneyAddition);
-	}*/
-	
-	@Then("automaton displays message that registration was successful")
-	public void automaton_displays_message_that_registration_was_successful() {
-	assertEquals(response.getErrorMessage(), "Registration successful");
-	}
-	
-	@Then("automaton displays message that already registered")
-	public void automaton_displays_message_that_already_registered() {
-	assertEquals(response.getErrorMessage(), "Already registered");
-	}
-	
-	@Then("automaton displays message that registration was unsuccessful")
-	public void automaton_displays_message_that_registration_was_unsuccessful() {
-	assertEquals(response.getErrorMessage(), "Registration unsuccessful");
+	@Then("display journey info")
+	public void displayJinfo() {
+		System.out.println(dataStructure.journeys.get(journey.getJID()));
 	}
 	
 	

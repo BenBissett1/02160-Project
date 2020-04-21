@@ -10,11 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 public class dataStructure {
-	
-	boolean isCompleteDataSet;
-	Container container2 = new Container();
-	
-	
 	public static int generate(int max, int type) {
 		int newID = 0;
 		while(true) {
@@ -70,7 +65,7 @@ public class dataStructure {
 	public static Map<Integer, List<String>> clients= new HashMap<Integer, List<String>>();
 	// Map structure [client id, [name, password, address, email, phone]]
 	//                              0      1         2       3      4
-	static Map<Integer, List<List<String>>> journeys= new HashMap<Integer, List<List<String>>>();
+	public static Map<Integer, List<List<String>>> journeys= new HashMap<Integer, List<List<String>>>();
 	// Map structure [Journey ID, [[origin, destination, status,  content, ClientID], [val1 list], [val2 list], [val3 list]]]
 	//                                00         01         02       03       04          10           20           30
 	static int clientsSize = 1000;
@@ -120,14 +115,11 @@ public class dataStructure {
 		vars.add(""+ClientID);
 		List<List<String>> vars2 = new ArrayList<List<String>>();
 		vars2.add(vars);
-		if (origin.equals("") | destination.equals("") | content.equals("") | clients.get(ClientID)==null ) {
-			return -1;
-		}
-		else {
-			int jID=Integer.parseInt(ClientID+""+generate(journeysSize, 2));
-			journeys.put(jID, vars2);
-			return jID;
-		}
+		
+		int jID=Integer.parseInt(ClientID+""+generate(journeysSize, 2));
+		journeys.put(jID, vars2);
+		return jID;
+		
 	}
 	public static void updateClient(int ID, String name, String password, String address, String email, String phone) {
 		ArrayList<String> vars = new ArrayList<String>();
@@ -190,5 +182,21 @@ public class dataStructure {
 	        ois.close();
 	        fis.close();
 	    } catch(Exception e) {}
+	}
+	public static boolean clientExists(int cID) {
+		if (clients.get(cID)==null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	public static boolean journeyExists(int jID) {
+		if (journeys.get(jID)==null) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 }
