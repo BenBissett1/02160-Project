@@ -7,7 +7,7 @@ public class Journey {
 	String destination;
 	String status;
 	String content;
-	int ClientID;
+	String ClientID;
 	public int getJID() {
 		return journeyID;
 	}
@@ -23,7 +23,7 @@ public class Journey {
 	public String getContent() {
 		return content;
 	}
-	public int getClientID() {
+	public String getClientID() {
 		return ClientID;
 	}
 	public void setJID(int jID) {
@@ -42,7 +42,7 @@ public class Journey {
 		this.content=x;
 	}
 	public void setClientID(String x) {
-		this.ClientID=Integer.parseInt(x);
+		this.ClientID=x;
 	}
 	
 	

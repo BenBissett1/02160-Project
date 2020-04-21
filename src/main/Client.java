@@ -18,9 +18,9 @@ public class Client {
 	public String getName() {
 		return name;
 	}
-	public Map<Integer, List<String>> getData() {
-		return dataStructure.clients;
-	}
+//	public Map<Integer, List<String>> getData() {
+//		return dataStructure.clients;
+//	}
 
 	public String getPassword() {
 		return password;
@@ -53,14 +53,11 @@ public class Client {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public void register( ) {
-		dataStructure.regNewClient(name, password, address, email, phone);
-	}
-	public void display() {
-		System.out.println(dataStructure.searchC(name, 0));
-	}
+//	public void display() {
+//		System.out.println(dataStructure.searchC(name, 0));
+//	}
 	public void setID(int id) {
-		this.clientID=id;
+		clientID=id;
 		
 	}
 	

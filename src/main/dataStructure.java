@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class dataStructure {
-	public static int generate(int max, int type) {
+	public int generate(int max, int type) {
 		int newID = 0;
 		while(true) {
 			newID = (int) (max + 0 + Math.floor(Math.random() * (( max - 0 ) +1 )));
@@ -45,7 +45,7 @@ public class dataStructure {
 		return response;
 	}
 	
-	public static ResponseObject position(Container container) {
+	public ResponseObject position(Container container) {
 		ResponseObject response;
 		
 		if (container.getJourneyID() < 1000) {
@@ -62,15 +62,15 @@ public class dataStructure {
 	
 	
 	
-	public static Map<Integer, List<String>> clients= new HashMap<Integer, List<String>>();
+	public Map<Integer, List<String>> clients= new HashMap<Integer, List<String>>();
 	// Map structure [client id, [name, password, address, email, phone]]
 	//                              0      1         2       3      4
-	public static Map<Integer, List<List<String>>> journeys= new HashMap<Integer, List<List<String>>>();
+	public Map<Integer, List<List<String>>> journeys= new HashMap<Integer, List<List<String>>>();
 	// Map structure [Journey ID, [[origin, destination, status,  content, ClientID], [val1 list], [val2 list], [val3 list]]]
 	//                                00         01         02       03       04          10           20           30
 	static int clientsSize = 1000;
 	static int journeysSize = 100000;
-	public static int searchC(String keyword, int type) {
+	public int searchC(String keyword, int type) {
 		for (int i =clientsSize; i<2*clientsSize; i++) {
 			if (clients.get(i) == null || clients.get(i).get(0).equals("")) {continue;}
 			if (keyword.equals(clients.get(i).get(type))) {
@@ -79,7 +79,7 @@ public class dataStructure {
 		}
 		return -1;
 	} 
-	public static List<Integer> searchJ(String keyword, int type, int cID) {
+	public List<Integer> searchJ(String keyword, int type, int cID) {
 		List<Integer> journeyIDs = new ArrayList<Integer>();
 		System.out.println(journeys);
 		for (int i = Integer.parseInt(cID+""+journeysSize); i<Integer.parseInt(cID+""+2*journeysSize); i++) {
@@ -90,7 +90,7 @@ public class dataStructure {
 		}
 		return journeyIDs;
 	}
-	public static int regNewClient(String name, String password, String address, String email, String phone) {
+	public int regNewClient(String name, String password, String address, String email, String phone) {
 		ArrayList<String> vars = new ArrayList<String>();
 		vars.add(name);
 		vars.add(password);
@@ -106,7 +106,7 @@ public class dataStructure {
 			return cID;
 		}
 	}
-	public static int regNewJourney(String origin, String destination, String content, int ClientID) {
+	public int regNewJourney(String origin, String destination, String content, int ClientID) {
 		ArrayList<String> vars = new ArrayList<String>();
 		vars.add(origin);
 		vars.add(destination);
@@ -120,7 +120,7 @@ public class dataStructure {
 		return jID;
 		
 	}
-	public static void updateClient(int ID, String name, String password, String address, String email, String phone) {
+	public void updateClient(int ID, String name, String password, String address, String email, String phone) {
 		ArrayList<String> vars = new ArrayList<String>();
 		vars.add(name);
 		vars.add(password);
@@ -129,7 +129,7 @@ public class dataStructure {
 		vars.add(phone);
 		clients.put(ID,vars);	
 	}
-	public static void updateJourney(int ID, String origin, String destination, String status, String content, String cID) {
+	public void updateJourney(int ID, String origin, String destination, String status, String content, String cID) {
 		ArrayList<String> vars = new ArrayList<String>();
 		vars.add(origin);
 		vars.add(destination);
@@ -140,7 +140,7 @@ public class dataStructure {
 		vars2.add(vars);
 		journeys.put(ID, vars2);		
 	}
-	public static void saveC() {
+	public void saveC() {
 		try {
 	        File file=new File("clients");
 	        FileOutputStream fos=new FileOutputStream(file);
@@ -151,7 +151,7 @@ public class dataStructure {
 	        fos.close();
 	    } catch(Exception e) {}
 	}
-	public static void loadC() {
+	public void loadC() {
 		try {
 	        File toRead=new File("clients");
 	        FileInputStream fis=new FileInputStream(toRead);
@@ -161,7 +161,7 @@ public class dataStructure {
 	        fis.close();
 	    } catch(Exception e) {}
 	}
-	public static void saveJ() {
+	public void saveJ() {
 		try {
 	        File file=new File("journeys");
 	        FileOutputStream fos=new FileOutputStream(file);
@@ -172,7 +172,7 @@ public class dataStructure {
 	        fos.close();
 	    } catch(Exception e) {}
 	}
-	public static void loadJ() {
+	public void loadJ() {
 		try {
 	        File toRead=new File("journeys");
 	        FileInputStream fis=new FileInputStream(toRead);
@@ -182,7 +182,7 @@ public class dataStructure {
 	        fis.close();
 	    } catch(Exception e) {}
 	}
-	public static boolean clientExists(int cID) {
+	public boolean clientExists(int cID) {
 		if (clients.get(cID)==null) {
 			return false;
 		}
@@ -190,7 +190,7 @@ public class dataStructure {
 			return true;
 		}
 	}
-	public static boolean journeyExists(int jID) {
+	public boolean journeyExists(int jID) {
 		if (journeys.get(jID)==null) {
 			return false;
 		}
@@ -198,4 +198,5 @@ public class dataStructure {
 			return true;
 		}
 	}
+	
 }

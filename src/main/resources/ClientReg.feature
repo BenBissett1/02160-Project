@@ -41,4 +41,15 @@ Feature: Registering a client
 	Scenario: Loading
     When load file
     Then display all client info
+    
+  @tag5
+  Scenario: updating client info
+  	Given name is "John&co2"
+  	When search by name
+  	Given password is "Snow123"
+  	And address is "277 Brookmere rd"
+  	And email is "John88@johnco.com"
+  	And phone is "123467"
+  	Then update client
+  	
   

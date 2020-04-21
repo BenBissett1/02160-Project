@@ -36,5 +36,13 @@ Feature: Registering a Journey
 	Scenario: Loading
     When load file
     Then display all journey info
-   
+  
+  @tag5
+  Scenario: updating journey info
+  	Given port of origin "Copenhagen"
+    And destination "New York"
+    And content "Apples"
+    And client "1978"
+    And status "on the way"
+  	Then update journey
 
