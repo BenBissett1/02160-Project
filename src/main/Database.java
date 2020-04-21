@@ -1,4 +1,5 @@
 package main;
+/*
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,7 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Map;*/
 
 /*
 class IDgen2 extends Database {
@@ -29,7 +30,7 @@ class IDgen2 extends Database {
 	}
 }*/
 
-
+/*
 
 public class Database {
 	
@@ -258,7 +259,7 @@ public class Database {
 	    } catch(Exception e) {}
 
 	}
-}
+}*/
 	
 //	public static void main(String[] args) {
 //	long startTime = System.nanoTime();
