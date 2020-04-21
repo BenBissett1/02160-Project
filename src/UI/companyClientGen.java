@@ -22,10 +22,10 @@ import main.dataStructure;
 
 import javax.swing.JTextField;
 
-public class clientUserGen extends JFrame {
+public class companyClientGen extends JFrame {
 	private JTextField clientIDField;
 	private JTextField clientPasswordField;
-	public clientUserGen(int cID, String pass) {
+	public companyClientGen(int cID, String pass) {
 		super("Client User Created");
 		setSize(new Dimension(313, 280));
 		setLocationByPlatform(true);
@@ -110,10 +110,10 @@ public class clientUserGen extends JFrame {
 			});
 		panel.add(loginPageButton);
 	}
-	public static void clientUserGen(int cID, String pass) {
-		clientUserGen cltUsrGen= new clientUserGen(cID, pass);
-		cltUsrGen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		cltUsrGen.setLocationRelativeTo(null);
-		cltUsrGen.setVisible(true);
+	public static void companyClientGen(int cID, String pass) {
+		companyClientGen cmpCltGen= new companyClientGen(cID, pass);
+		cmpCltGen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		cmpCltGen.setLocationRelativeTo(null);
+		cmpCltGen.setVisible(true);
 	}
 }
