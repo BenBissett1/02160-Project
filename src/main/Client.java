@@ -1,8 +1,9 @@
 package main;
 
+import java.util.List;
+import java.util.Map;
+
 public class Client {
-	
-	Database data = new Database();
 	
 	int clientID;
 	String name;
@@ -11,36 +12,14 @@ public class Client {
 	String email;
 	String phone;
 	
-	boolean isRegistered;
-
-	public Client() {
-		super();
-	}
-	
 	public int getID() {
 		return clientID;
-	}
-	public void setID(int clientID) {
-		this.clientID = clientID;
 	}
 	public String getName() {
 		return name;
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public boolean isRegistered() {
-		return isRegistered;
-	}
-
-	public Database getData() {
-		return data;
-	}
-
-	public void setData(Database data) {
-		this.data = data;
+	public Map<Integer, List<String>> getData() {
+		return dataStructure.clients;
 	}
 
 	public String getPassword() {
@@ -59,12 +38,9 @@ public class Client {
 		return phone;
 	}
 
-	public void setRegistered (boolean isRegistered) {
-		this.isRegistered = isRegistered;
-		
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -78,10 +54,14 @@ public class Client {
 		this.phone = phone;
 	}
 	public void register( ) {
-		data.regNewClient(name, password, address, email, phone, 0);
+		dataStructure.regNewClient(name, password, address, email, phone);
 	}
 	public void display() {
-		System.out.println(data.searchC(name, 0));
+		System.out.println(dataStructure.searchC(name, 0));
+	}
+	public void setID(int id) {
+		this.clientID=id;
+		
 	}
 	
 	

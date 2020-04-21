@@ -10,8 +10,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import main.Client;
-//import main.Client2;
 import main.Container;
+import main.Journey;
 import main.dataStructure;
 import main.Port;
 import main.ResponseObject;
@@ -21,7 +21,9 @@ public class StepDefinition {
 	Port port = new Port();
 	Container container = new Container();
 	Client client = new Client();
+	Journey journey = new Journey();
 	ResponseObject response;
+	//int newestJourneyAddition;
 	
 		////////////////////
 	// Start ///////////
@@ -95,7 +97,7 @@ public class StepDefinition {
 	public void phone_is(String string) {
 		client.setPhone(string);
 	}
-	@When("register clientN") 
+	@When("register client") 
 	public void regClient() {
 		client.setID(dataStructure.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone()));
 	}
@@ -106,12 +108,6 @@ public class StepDefinition {
 	@Then("display all client info")
 	public void displayAllInfo() {
 		System.out.println(dataStructure.clients);
-	}
-	@Then("message unsuccesful registration")
-	public void message_unsuccesful_registration() {
-		if (client.getID() == -1) {
-			System.out.println("already registered");
-		}
 	}
 	@Then("message already registered")
 	public void message_already_registered() {
@@ -131,7 +127,12 @@ public class StepDefinition {
 	@When("load file")
 	public void loadclients() {
 		dataStructure.loadC();
+		dataStructure.loadJ();
 	
+	}
+	@When("search by name") 
+	public void searchName() {
+		client.setID(dataStructure.searchC(client.getName(), 0));
 	}
 	
 	
@@ -151,61 +152,50 @@ public class StepDefinition {
 
 	@Given("port of origin {string}")
 	public void port_of_origin(String location) {
-	port.setLocationInitial(location);
+		journey.setOrigin(location);
 	}
 	
 	@Given("destination {string}")
 	public void destination(String location) {
-	port.setLocationFinal(location);
+		journey.setDestination(location);
 	}
 	
 	@Given("content {string}")
 	public void content(String content) {
-	container.setContent(content);
+		journey.setContent(content);
 	}
 	
 	@Given("client {string}")
 	public void client(String name) {
-	client.setName(name);
+		journey.setClientID(name);
 	}
 	
-	@Given("^registration status is (true|false)$")
-	public void registration_status_is(boolean isRegistered) {
-	port.setRegistered(isRegistered);
-	container.setRegistered(isRegistered);
-	client.setRegistered(isRegistered);
-	}
-	
-	@When("register")
+
+	@When("register journey")
 	public void register() {
-	response = dataStructure.register(client, port, container);
-	
+		journey.setJID(dataStructure.regNewJourney(journey.getOrigin(),journey.getDestination(),journey.getContent(),journey.getClientID()));
+	}
+
+	@Then("display journey info")
+	public void displayJinfo() {
+		System.out.println(dataStructure.journeys.get(journey.getJID()));
+
+	}
+	@Then("display all journey info")
+	public void displayAllJinfo() {
+		System.out.println(dataStructure.journeys);
+
+	}
+	@When("search for clients journeys")
+	public void search_for_clients_journeys() {
+		System.out.println(dataStructure.searchJ(""+journey.getClientID(), 4, journey.getClientID()));
+	}
+	@When("save journey info")
+	public void saveJ() {
+		dataStructure.saveJ();
 	}
 	
-	/*@Then("store data to journey")
-	public void store_data_to_CompanyID() {
-	newestJourneyAddition = data.regNewJourney(port.getLocationInitial(), port.getLocationFinal(), container.getContent(), 5000);
-	}
 	
-	@Then("store data to client")
-	public void store_data_to_CustomerID() {
-	data.updateClient(client.getID(), client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone(), newestJourneyAddition);
-	}*/
-	
-	@Then("automaton displays message that registration was successful")
-	public void automaton_displays_message_that_registration_was_successful() {
-	assertEquals(response.getErrorMessage(), "Registration successful");
-	}
-	
-	@Then("automaton displays message that already registered")
-	public void automaton_displays_message_that_already_registered() {
-	assertEquals(response.getErrorMessage(), "Already registered");
-	}
-	
-	@Then("automaton displays message that registration was unsuccessful")
-	public void automaton_displays_message_that_registration_was_unsuccessful() {
-	assertEquals(response.getErrorMessage(), "Registration unsuccessful");
-	}
 	
 	
 	/////////////////////////////////
@@ -221,45 +211,45 @@ public class StepDefinition {
 	
 	@Given("a containerid {int}")
 	public void a_containerid(Integer int1) {
-	container.setJourneyID(int1);
+		container.setJourneyID(int1);
 	}
 	
 	@Given("^containeridInvalid is (true|false)$")
 	public void containeridinvalid_is_false(boolean validContainerID) {
-	container.setValidContainerID(validContainerID);
+		container.setValidContainerID(validContainerID);
 	}
 	
 	@Given("^enroute status is (true|false)$")
 	public void enroute_status_is_true(boolean isEnroute) {
-	container.setEnroute(isEnroute);
+		container.setEnroute(isEnroute);
 	}
 	
 	@When("retrieving")
 	public void retrieving() {
-	response = dataStructure.position(container);
+		response = dataStructure.position(container);
 	}
 	
 	@Then("output coordinates of container")
 	public void output_coordinates_of_container() {
-	//String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
-	//System.out.println(var);
-	assertEquals(response.getErrorMessage(), "Container enroute");
+		//String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
+		//System.out.println(var);
+		assertEquals(response.getErrorMessage(), "Container enroute");
 	}
 	
 	@Then("output container arrived at destination")
 	public void output_container_arrived_at_destination() {
-	//String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
-	//System.out.println(var);
-	assertEquals(response.getErrorMessage(), "Container arrived");
+		//String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
+		//System.out.println(var);
+		assertEquals(response.getErrorMessage(), "Container arrived");
 	}
 	
 	@Then("output containerID not found in database")
 	public void output_containerID_not_found_in_database() {
-	/*for (Entry<Integer, List<List<String>>> entry : data.journeys.entrySet()) {
-	System.out.println("Key: " + entry);
-	System.out.println("Not found");
-	}*/
-	assertEquals(response.getErrorMessage(), "Container not found");
+		/*for (Entry<Integer, List<List<String>>> entry : data.journeys.entrySet()) {
+		System.out.println("Key: " + entry);
+		System.out.println("Not found");
+		}*/
+		assertEquals(response.getErrorMessage(), "Container not found");
 	}
 	
 	///////////////////////////////
