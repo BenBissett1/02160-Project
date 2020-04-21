@@ -47,7 +47,7 @@ public class clientLogin extends JFrame{
 		panel.setLayout(null);
 		
 		JLabel header = new JLabel("Please Log In");
-		header.setBounds(0, 20, 311, 20);
+		header.setBounds(0, 20, 300, 20);
 		header.setHorizontalAlignment(SwingConstants.CENTER);
 		header.setHorizontalTextPosition(SwingConstants.CENTER);
 		header.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -57,28 +57,28 @@ public class clientLogin extends JFrame{
 		textFieldUsername = new JTextField();
 		textFieldUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldUsername.setFont(new Font("Tahoma", Font.BOLD, 13));
-		textFieldUsername.setBounds(155, 70, 96, 25);
+		textFieldUsername.setBounds(155, 70, 100, 25);
 		panel.add(textFieldUsername);
 		textFieldUsername.setColumns(10);
 		
 		passwordField = new JPasswordField();
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		passwordField.setBounds(155, 115, 96, 25);
+		passwordField.setBounds(155, 115, 100, 25);
 		panel.add(passwordField);
 		
 		JLabel usernameClient = new JLabel("ClientID:");
 		usernameClient.setHorizontalTextPosition(SwingConstants.CENTER);
 		usernameClient.setHorizontalAlignment(SwingConstants.CENTER);
 		usernameClient.setFont(new Font("Tahoma", Font.BOLD, 16));
-		usernameClient.setBounds(45, 73, 96, 17);
+		usernameClient.setBounds(45, 70, 100, 25);
 		panel.add(usernameClient);
 		
 		JLabel passwordClient = new JLabel("Password:");
 		passwordClient.setHorizontalTextPosition(SwingConstants.CENTER);
 		passwordClient.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordClient.setFont(new Font("Tahoma", Font.BOLD, 16));
-		passwordClient.setBounds(45, 118, 96, 17);
+		passwordClient.setBounds(45, 115, 100, 25);
 		panel.add(passwordClient);
 		
 // Obsolete

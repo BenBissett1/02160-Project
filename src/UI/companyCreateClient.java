@@ -21,13 +21,13 @@ import javax.swing.border.SoftBevelBorder;
 
 import main.dataStructure;
 
-public class clientCreateUser extends JFrame{
+public class companyCreateClient extends JFrame{
 	private JTextField textFieldAddress;
 	private JTextField textFieldEmail;
 	private JTextField textFieldTelephone;
 	private JTextField textFieldName;
 	private JTextField textFieldPassword;
-	public clientCreateUser() {
+	public companyCreateClient() {
 		super("Create Client User");
 		setSize(new Dimension(313, 280));
 		setLocationByPlatform(true);
@@ -78,7 +78,6 @@ public class clientCreateUser extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				dataStructure.saveC();
 				dataStructure.saveJ();
-				clientLogin.clientLogin();
 				dispose();				
 			}
 		});
@@ -106,19 +105,26 @@ public class clientCreateUser extends JFrame{
 					int inputTelephoneAsInt = 0;
 					try {
 						inputTelephoneAsInt = Integer.parseInt(inputTelephone);
+						if (inputTelephoneAsInt == (int)inputTelephoneAsInt) {
+							int cID = dataStructure.regNewClient(inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
+							if (cID == -1) {
+								JOptionPane.showMessageDialog(panel,
+										"There is already a ClientID associated to this information",
+										"Duplicate Error",
+										JOptionPane.ERROR_MESSAGE);
+							} else {
+								dataStructure.saveC();
+								dataStructure.saveJ();
+								companyClientGen.companyClientGen(cID,inputPassword);
+								dispose();
+							}
+						}
 					} catch (NumberFormatException E) {
 						JOptionPane.showMessageDialog(panel,
 								"Please enter a telephone NUMBER",
 								"Number Error",
 						    	JOptionPane.ERROR_MESSAGE);
 					}
-
-					int cID = dataStructure.regNewClient(inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
-					dataStructure.saveC();
-					dataStructure.saveJ();
-
-					clientUserGen.clientUserGen(cID,inputPassword);
-					dispose();
 				}
 			}
 		});
@@ -180,10 +186,10 @@ public class clientCreateUser extends JFrame{
 		panel.add(textFieldPassword);
 	}
 	
-	public static void clientCreateUser() {
-		clientCreateUser cltCrtUsr= new clientCreateUser();
-		cltCrtUsr.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		cltCrtUsr.setLocationRelativeTo(null);
-		cltCrtUsr.setVisible(true);
+	public static void companyCreateClient() {
+		companyCreateClient cmpCrtClt = new companyCreateClient();
+		cmpCrtClt.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		cmpCrtClt.setLocationRelativeTo(null);
+		cmpCrtClt.setVisible(true);
 	}
 }

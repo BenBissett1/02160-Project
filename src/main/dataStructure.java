@@ -81,7 +81,7 @@ public class dataStructure {
 	} 
 	public List<Integer> searchJ(String keyword, int type, int cID) {
 		List<Integer> journeyIDs = new ArrayList<Integer>();
-		System.out.println(journeys);
+//		System.out.println(journeys);
 		for (int i = Integer.parseInt(cID+""+journeysSize); i<Integer.parseInt(cID+""+2*journeysSize); i++) {
 			if (journeys.get(i) == null || journeys.get(i).get(0).get(0).equals("")) {continue;}
 			if (keyword.equals(journeys.get(i).get(0).get(type))) {

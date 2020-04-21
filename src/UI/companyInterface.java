@@ -62,16 +62,30 @@ class companyInterface extends JFrame {
 		JButton regNewClientButton = new JButton("Register a New Client");
 		regNewClientButton.setBounds(25, 70, 150, 25);
 		regNewClientButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-		regNewClientButton.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		clientManagePanel.add(regNewClientButton);
+		regNewClientButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 		regNewClientButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dataStructure.saveC();
 				dataStructure.saveJ();
-				clientCreateUser.clientCreateUser();		
+				companyCreateClient.companyCreateClient();		
 			}
 		});
+		clientManagePanel.add(regNewClientButton);
+		
+		JButton searchClientButton = new JButton("Search for a Client");
+		searchClientButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		searchClientButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		searchClientButton.setBounds(25, 120, 150, 25);
+		searchClientButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.saveC();
+				dataStructure.saveJ();
+				companySearchClient.companySearchClient();		
+			}
+		});
+		clientManagePanel.add(searchClientButton);
 		
 		JPanel journeyManagePanel = new JPanel();
 		journeyManagePanel.setBorder(null);
@@ -99,6 +113,34 @@ class companyInterface extends JFrame {
 			  }
 			});
 		journeyManagePanel.add(exitButton);
+		
+		JButton updateJourneyButton = new JButton("Update a Journey");
+		updateJourneyButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		updateJourneyButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		updateJourneyButton.setBounds(25, 70, 150, 25);
+		updateJourneyButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.saveC();
+				dataStructure.saveJ();
+				companyUpdateJourney.companyUpdateJourney();		
+			}
+		});
+		journeyManagePanel.add(updateJourneyButton);
+		
+		JButton searchJourneyButton = new JButton("Search for a Journey");
+		searchJourneyButton.setBounds(25, 120, 150, 25);
+		searchJourneyButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		searchJourneyButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		searchJourneyButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.saveC();
+				dataStructure.saveJ();
+				companySearchJourney.companySearchJourney();		
+			}
+		});
+		journeyManagePanel.add(searchJourneyButton);
 		
 		JPanel containerStatusPanel = new JPanel();
 		containerStatusPanel.setBorder(null);
