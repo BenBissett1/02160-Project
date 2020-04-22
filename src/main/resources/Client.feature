@@ -1,27 +1,10 @@
 @tag
-Feature: Storing internal container status data to journey id
+Feature: client retrieve data
 
   @tag1
-  Scenario: adding data
-  	Given journey is "CHO"
-  	And containerID is "123821"
-  	When retrieve all data
-  	And visual output
-  	
-  Scenario: removing data
-    Given journey is "CHO"
-  	And containerID is "123821"
-  	When retrieve data "temp"
-  	And display no data available invalid specificID 	
-  	
-  Scenario: adding data and false journey id
-    Given journey is "CHO"
-  	And containerID is "123821"
-  	When retrieve data "temp"
-  	And display no data available invalid specificID 
-
-  Scenario: inserting data
-    Given journey is "CHO"
-  	And containerID is "123821"
-  	When retrieve data "temp"
-  	And display no data available invalid specificID 	
+  Scenario: retrieve data
+   Given journey id is 12234
+    And journey id does exist is true
+    And internal status parameter is "humidity"
+    And list is not empty
+    And retrieve data

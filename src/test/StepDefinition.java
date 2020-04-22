@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import main.AdminReq;
+import main.request;
 import main.Client;
 import main.Container;
 import main.Journey;
@@ -23,7 +23,7 @@ public class StepDefinition {
 	Client client = new Client();
 	dataStructure data = new dataStructure();
 	Journey journey = new Journey();
-	AdminReq adminreq = new AdminReq();
+	request request = new request();
 	ResponseObject response;
 //	//int newestJourneyAddition;
 //	
@@ -100,27 +100,27 @@ public class StepDefinition {
 	
 	@Given("journey id is {int}")
 	public void journey_id_is(Integer journeyID) {
-	    adminreq.setJourneyID(journeyID);
+	    request.setJourneyID(journeyID);
 	}
 	
 	@Given("internal status parameter is {string}")
 	public void internal_status_parameter_is(String thisData) {
-	   adminreq.setThisData(thisData);
+		request.setThisData(thisData);
 	}
 	
 	@Given("journey id does exist is (true|false)$")
 	public void journey_id_does_exist_is() {
-	    adminreq.doesJourneyExist();
+		request.doesJourneyExist();
 	}
 	
 	@Given("list is not empty")
 	public void list_is_not_empty() {
-	    adminreq.listNotEmpty();
+		request.listNotEmpty();
 	}
 
 	@Given("data to add is {string}")
 	public void data_to_add_is(List<String> data) {
-		adminreq.addData(data);
+		request.addData(data);
 	}
 
 	
@@ -132,47 +132,18 @@ public class StepDefinition {
 	// Client.feature //
 	////////////////////
 	
-	//DOES A JOURNEY HAVE ITS OWN ID AS WELL AS A CONTAINER HAVE ITS OWN ID?
-	
-	/*
-	@Given("journey is {string}")
-	public void journey_is(String journey) {
-		port.setJourney(journey);
-	}
-
-	@Given("containerID is {string}")
-	public void containerid_is(int identity) {
-	    container.setIdentity(identity);
-	}
-	
-	@Given("^complete data set is (true|false)$")
-	public void complete_data_set_is(boolean isCompleteDataSet) {
-	    data.setCompleteDataSet(isCompleteDataSet);
-	}
-
-	@When("retrieve data")
+	@Given("retrieve data")
 	public void retrieve_data() {
-	    //TODO: response or getContainerID directly?
+		
 	}
-
-	@Then("visual output")
-	public void visual_output() {
-	    //TODO: Visual output
-	}
-	
-	@Then("display no data available invalid specificID")
-	public void display_no_data_available_invalid_specificID() {
-		assertEquals(response.getErrorMessage(), "Invalid container ID");
-	}
-	
-	
 	
 	////////////////////
 	// End /////////////
 	// Client.feature //
 	////////////////////
 	
-	*/
+	
+	
 	///////////////////////
 	// Start //////////////
 	// ClientReg.feature //

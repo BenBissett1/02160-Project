@@ -2,7 +2,7 @@ package main;
 
 import java.util.List;
 
-public class AdminReq {
+public class request {
 	int journeyID;
 	String thisData;
 	List<List<String>> list = dataStructure.journeys.get(journeyID);
@@ -58,7 +58,11 @@ public class AdminReq {
 	}
 
 	public void addData(List<String> data) {
-		dataStructure.journeys.get(journeyID).get(reqIndex).addAll(data);
+		list.get(reqIndex).addAll(data);
+	}
+	
+	public List<String> getData() {
+		return list.get(reqIndex);
 	}
 
 }
