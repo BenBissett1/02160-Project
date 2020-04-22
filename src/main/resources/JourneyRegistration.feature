@@ -6,31 +6,43 @@ Feature: Registering a Journey
     Given port of origin "Copenhagen"
     And destination "New York"
     And content "Apples"
-    And company "Fruits Co."
-    And registration status is false
-    When register
-    Then store data to CompanyID
-    And store data to CustomerID
-    And automaton displays message that registration was successful
+    And client "1978"
+    When register journey
+    Then display journey info
+
     
   @tag2
-  Scenario: Already registered
-    Given port of origin "Copenhagen"
+  Scenario: Searching for a clients journeys
+  	Given port of origin "Copenhagen"
     And destination "New York"
     And content "Apples"
-    And company "Fruits Co."
-    And registration status is true
-    When register
-    Then automaton displays message that already registered
+    And client "1978"
+    When register journey
+    Then display journey info
+    When search for clients journeys
+    Then display journey info
     
   @tag3
-  Scenario: Unsuccessful registration
-    Given port of origin ""
-    And destination ""
-    And content ""
-    And company ""
-    And registration status is false
-    When register
-    Then automaton displays message that registration was unsuccessful
-
+  Scenario: Saving journeys
+  	Given port of origin "Copenhagen"
+    And destination "New York"
+    And content "Apples"
+    And client "1978"
+    When register journey
+    Then display journey info
+    When save journey info
+  
+	@tag4
+	Scenario: Loading
+    When load file
+    Then display all journey info
+  
+  @tag5
+  Scenario: updating journey info
+  	Given port of origin "Copenhagen"
+    And destination "New York"
+    And content "Apples"
+    And client "1978"
+    And status "on the way"
+  	Then update journey
 

@@ -21,14 +21,15 @@ import javax.swing.border.SoftBevelBorder;
 
 import main.dataStructure;
 
-public class clientCreateUser extends JFrame{
+public class companyCreateClient extends JFrame{
 	private JTextField textFieldAddress;
 	private JTextField textFieldEmail;
 	private JTextField textFieldTelephone;
 	private JTextField textFieldName;
-	public clientCreateUser() {
+	private JTextField textFieldPassword;
+	public companyCreateClient() {
 		super("Create Client User");
-		setSize(new Dimension(313, 250));
+		setSize(new Dimension(313, 280));
 		setLocationByPlatform(true);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		setAlwaysOnTop(true);
@@ -70,12 +71,13 @@ public class clientCreateUser extends JFrame{
 		JButton clientCreateBack = new JButton("Back");
 		clientCreateBack.setFont(new Font("Tahoma", Font.BOLD, 16));
 		clientCreateBack.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		clientCreateBack.setBounds(10, 170, 130, 25);
+		clientCreateBack.setBounds(10, 205, 130, 25);
 		panel.add(clientCreateBack);
 		clientCreateBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				clientLogin.clientLogin();
+				dataStructure.saveC();
+				dataStructure.saveJ();
 				dispose();				
 			}
 		});
@@ -83,7 +85,7 @@ public class clientCreateUser extends JFrame{
 		JButton clientCreateSave = new JButton("Create User");
 		clientCreateSave.setFont(new Font("Tahoma", Font.BOLD, 16));
 		clientCreateSave.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		clientCreateSave.setBounds(160, 170, 130, 25);
+		clientCreateSave.setBounds(160, 205, 130, 25);
 		panel.add(clientCreateSave);
 		clientCreateSave.addActionListener(new ActionListener() {
 			@Override
@@ -92,7 +94,8 @@ public class clientCreateUser extends JFrame{
 				String inputAddress = textFieldAddress.getText();
 				String inputEmail = textFieldEmail.getText();
 				String inputTelephone = textFieldTelephone.getText();
-				if (inputName.isEmpty() || inputAddress.isEmpty() || inputEmail.isEmpty() || inputTelephone.isEmpty() ) {
+				String inputPassword = textFieldPassword.getText();
+				if (inputName.isEmpty() || inputAddress.isEmpty() || inputEmail.isEmpty() || inputTelephone.isEmpty() || inputPassword.isEmpty() ) {
 					JOptionPane.showMessageDialog(panel,
 							"All fields must be completed",
 							"Empty Field(s)",
@@ -102,13 +105,26 @@ public class clientCreateUser extends JFrame{
 					int inputTelephoneAsInt = 0;
 					try {
 						inputTelephoneAsInt = Integer.parseInt(inputTelephone);
+						if (inputTelephoneAsInt == (int)inputTelephoneAsInt) {
+							int cID = dataStructure.regNewClient(inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
+							if (cID == -1) {
+								JOptionPane.showMessageDialog(panel,
+										"There is already a ClientID associated to this information",
+										"Duplicate Error",
+										JOptionPane.ERROR_MESSAGE);
+							} else {
+								dataStructure.saveC();
+								dataStructure.saveJ();
+								companyClientGen.companyClientGen(cID,inputPassword);
+								dispose();
+							}
+						}
 					} catch (NumberFormatException E) {
 						JOptionPane.showMessageDialog(panel,
 								"Please enter a telephone NUMBER",
 								"Number Error",
 						    	JOptionPane.ERROR_MESSAGE);
 					}
-					dataStructure.regNewClient(inputName, inputAddress, inputEmail, inputTelephoneAsInt);
 				}
 			}
 		});
@@ -154,12 +170,26 @@ public class clientCreateUser extends JFrame{
 		textFieldName.setColumns(10);
 		textFieldName.setBounds(141, 40, 96, 25);
 		panel.add(textFieldName);
+		
+		JLabel createClientPassword = new JLabel("Password:");
+		createClientPassword.setHorizontalTextPosition(SwingConstants.CENTER);
+		createClientPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		createClientPassword.setFont(new Font("Tahoma", Font.BOLD, 16));
+		createClientPassword.setBounds(35, 163, 96, 17);
+		panel.add(createClientPassword);
+		
+		textFieldPassword = new JTextField();
+		textFieldPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldPassword.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textFieldPassword.setColumns(10);
+		textFieldPassword.setBounds(141, 160, 96, 25);
+		panel.add(textFieldPassword);
 	}
 	
-	public static void clientCreateUser() {
-		clientCreateUser cltCrtUsr= new clientCreateUser();
-		cltCrtUsr.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		cltCrtUsr.setLocationRelativeTo(null);
-		cltCrtUsr.setVisible(true);
+	public static void companyCreateClient() {
+		companyCreateClient cmpCrtClt = new companyCreateClient();
+		cmpCrtClt.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		cmpCrtClt.setLocationRelativeTo(null);
+		cmpCrtClt.setVisible(true);
 	}
 }
