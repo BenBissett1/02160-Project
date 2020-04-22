@@ -6,6 +6,7 @@ Feature: Storing internal container status data to journey id
     Given journey id is 12234
     And journey id does exist is true
     And internal status parameter is "humidity"
+    And list is not empty
     And data to add is "[1,2,3]"
     And automaton displays message that data was successfully added
   	

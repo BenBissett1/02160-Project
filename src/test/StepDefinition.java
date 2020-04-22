@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
+import main.AdminReq;
 import main.Client;
 import main.Container;
 import main.Journey;
@@ -23,68 +23,71 @@ public class StepDefinition {
 	Client client = new Client();
 	dataStructure data = new dataStructure();
 	Journey journey = new Journey();
+	AdminReq adminreq = new AdminReq();
 	ResponseObject response;
-	//int newestJourneyAddition;
-	
-<<<<<<< HEAD
-	@Given("port of origin {string}")
-	public void port_of_origin(String location) {
-	    port.setLocationInitial(location);
-	}
-
-	@Given("destination {string}")
-	public void destination(String location) {
-	    port.setLocationFinal(location);
-	}
-
-	@Given("content {string}")
-	public void content(String content) {
-	    container.setContent(content);
-	}
-
-	@Given("company {string}")
-	public void company(String name) {
-		client.setName(name);
-	}
-	
-	@Given("^registration status is (true|false)$")
-	public void registration_status_is(boolean isRegistered) {
-		port.setRegistered(isRegistered);
-		container.setRegistered(isRegistered);
-		client.setRegistered(isRegistered);
-	}
-
-	@When("register")
-	public void register() {
-		response = data.register(client, port, container);
-		
-	}
-
-	@Then("store data to CompanyID")
-	public void store_data_to_CompanyID() {
-		//TODO: STORE THE FUCKING DATA
-	    data.storeCompanyData();
-	}
-
-	@Then("store data to CustomerID")
-	public void store_data_to_CustomerID() {
-		data.storeCustomerData();
-	}
-
-	@Then("automaton displays message that registration was successful")
-	public void automaton_displays_message_that_registration_was_successful() {
-	    assertEquals(response.getErrorMessage(), "Registration successful");
-	}
-	
-	@Then("automaton displays message that already registered")
-	public void automaton_displays_message_that_already_registered() {
-	    assertEquals(response.getErrorMessage(), "Already registered");
-	}
-	
-	@Then("automaton displays message that registration was unsuccessful")
-	public void automaton_displays_message_that_registration_was_unsuccessful() {
-		assertEquals(response.getErrorMessage(), "Registration unsuccessful");
-	}
+//	//int newestJourneyAddition;
+//	
+////<<<<<<< HEAD
+//	@Given("port of origin {string}")
+//	public void port_of_origin(String location) {
+//	    port.setLocationInitial(location);
+//	}
+//
+//	@Given("destination {string}")
+//	public void destination(String location) {
+//	    port.setLocationFinal(location);
+//	}
+//
+//	@Given("content {string}")
+//	public void content(String content) {
+//	    container.setContent(content);
+//	}
+//
+//	@Given("company {string}")
+//	public void company(String name) {
+//		client.setName(name);
+//	}
+//	
+//	@Given("^registration status is (true|false)$")
+//	public void registration_status_is(boolean isRegistered) {
+//		port.setRegistered(isRegistered);
+//		container.setRegistered(isRegistered);
+////		client.setRegistered(isRegistered); // OUTDATED
+//	}
+//
+//	@When("register")
+//	public void register() {
+//		response = data.register(client, port, container);
+//		
+//	}
+//
+//	@Then("store data to CompanyID")
+//	public void store_data_to_CompanyID() {
+//		//TODO: STORE THE FUCKING DATA
+////	    data.storeCompanyData(); // OUTDATED
+//	    throw new io.cucumber.java.PendingException();
+//	}
+//
+//	@Then("store data to CustomerID")
+//	public void store_data_to_CustomerID() {
+////		data.storeCustomerData(); // OUTDATED
+//		throw new io.cucumber.java.PendingException();
+//	}
+//
+//	@Then("automaton displays message that registration was successful")
+//	public void automaton_displays_message_that_registration_was_successful() {
+//	    assertEquals(response.getErrorMessage(), "Registration successful");
+//	}
+//	
+//	@Then("automaton displays message that already registered")
+//	public void automaton_displays_message_that_already_registered() {
+//	    assertEquals(response.getErrorMessage(), "Already registered");
+//	}
+//	
+//	@Then("automaton displays message that registration was unsuccessful")
+//	public void automaton_displays_message_that_registration_was_unsuccessful() {
+//		assertEquals(response.getErrorMessage(), "Registration unsuccessful");
+//	}
 	
 	
 	/////////////////////////////////
@@ -95,46 +98,36 @@ public class StepDefinition {
 	// Start
 	// admin.feature
 	
-	
-	
-	
 	@Given("journey id is {int}")
 	public void journey_id_is(Integer journeyID) {
-	    
+	    adminreq.setJourneyID(journeyID);
 	}
-
-	@Given("journey id does exist is (true|false)$")
-	public void journey_id_does_exist_is(boolean doesJourney) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
+	
 	@Given("internal status parameter is {string}")
-	public void internal_status_parameter_is(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void internal_status_parameter_is(String thisData) {
+	   adminreq.setThisData(thisData);
+	}
+	
+	@Given("journey id does exist is (true|false)$")
+	public void journey_id_does_exist_is() {
+	    adminreq.doesJourneyExist();
+	}
+	
+	@Given("list is not empty")
+	public void list_is_not_empty() {
+	    adminreq.listNotEmpty();
 	}
 
 	@Given("data to add is {string}")
-	public void data_to_add_is(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void data_to_add_is(List<String> data) {
+		adminreq.addData(data);
 	}
 
-	@Given("automaton displays message that data was successfully added")
-	public void automaton_displays_message_that_data_was_successfully_added() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
 	
-	
-	
-	
-	
-	////////////////////
-=======
-		////////////////////
->>>>>>> refs/heads/master
+//	//////////////////
+//=======
+//		////////////////////
+//>>>>>>> refs/heads/master
 	// Start ///////////
 	// Client.feature //
 	////////////////////
