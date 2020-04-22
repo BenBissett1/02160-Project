@@ -144,7 +144,7 @@ public class companyUpdateJourney extends JFrame {
 		JButton backButton = new JButton("Back");
 		backButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		backButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		backButton.setBounds(10, 287, 130, 25);
+		backButton.setBounds(10, 280, 130, 25);
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -158,7 +158,7 @@ public class companyUpdateJourney extends JFrame {
 		JButton confirmButton = new JButton("Confirm");
 		confirmButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		confirmButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		confirmButton.setBounds(160, 287, 130, 25);
+		confirmButton.setBounds(160, 280, 130, 25);
 		confirmButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -194,14 +194,11 @@ public class companyUpdateJourney extends JFrame {
 						dataStructure.saveC();
 						dataStructure.saveJ();
 						dispose();
-					} else {
+					} else if (dataStructure.clientExists(inputClientIDAsInt) == false || dataStructure.journeyExists(inputJourneyIDAsInt) == false) {
 						JOptionPane.showMessageDialog(panel,
 								"Invalid ClientID or JourneyID!",
 								"Error",
 								JOptionPane.ERROR_MESSAGE);
-						dataStructure.saveC();
-						dataStructure.saveJ();
-						dispose();
 					}
 				}
 			}

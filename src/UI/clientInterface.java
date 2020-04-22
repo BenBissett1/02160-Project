@@ -59,9 +59,9 @@ class clientInterface extends JFrame {
 		clientManageLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		clientManagePanel.add(clientManageLabel);
 		
-		JButton updateClientInfoButton = new JButton("Update Client Information");
+		JButton updateClientInfoButton = new JButton("Update Client Info");
 		updateClientInfoButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		updateClientInfoButton.setFont(new Font("Tahoma", Font.BOLD, 10));
+		updateClientInfoButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		updateClientInfoButton.setBounds(25, 70, 150, 25);
 		updateClientInfoButton.addActionListener(new ActionListener() {
 			@Override
@@ -101,7 +101,7 @@ class clientInterface extends JFrame {
 		
 		JButton regContainerJourneyButton = new JButton("Register a Container");
 		regContainerJourneyButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		regContainerJourneyButton.setFont(new Font("Tahoma", Font.BOLD, 10));
+		regContainerJourneyButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		regContainerJourneyButton.setBounds(25, 70, 150, 25);
 		regContainerJourneyButton.addActionListener(new ActionListener() {
 			@Override
