@@ -1,6 +1,8 @@
 package main;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class request {
 	int journeyID;
@@ -8,16 +10,8 @@ public class request {
 	List<List<String>> list = dataStructure.journeys.get(journeyID);
 	int reqIndex;
 
-	public String getThisData() {
-		return thisData;
-	}
-
 	public void setThisData(String thisData) {
 		this.thisData = thisData;
-	}
-
-	public int getJourneyID() {
-		return journeyID;
 	}
 
 	public void setJourneyID(int journeyID) {
@@ -66,3 +60,23 @@ public class request {
 	}
 
 }
+
+
+//class testrun {
+//	public static void main(String[] args) {
+//		request request = new request();
+//		
+//		request.setJourneyID(1234);
+//		request.setThisData("humidity");
+//		List<List<String>> fakelist= new List<List<String>>(); 
+//		
+//		dataStructure.journeys.put(request.journeyID,);
+//		
+//		request.doesJourneyExist();
+//		request.listNotEmpty();
+//		request.addData(data);
+//	}
+//}
+
+
+

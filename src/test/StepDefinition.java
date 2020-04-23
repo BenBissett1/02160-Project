@@ -113,8 +113,8 @@ public class StepDefinition {
 		request.doesJourneyExist();
 	}
 	
-	@Given("list is not empty")
-	public void list_is_not_empty() {
+	@Given("list is not empty is (true|false)$")
+	public void list_is_not_empty_is() {
 		request.listNotEmpty();
 	}
 
@@ -134,7 +134,7 @@ public class StepDefinition {
 	
 	@Given("retrieve data")
 	public void retrieve_data() {
-		
+		request.getData();
 	}
 	
 	////////////////////
