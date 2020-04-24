@@ -10,6 +10,11 @@ import java.util.List;
 import java.util.Map;
 
 public class dataStructure {
+	
+	boolean isCompleteDataSet;
+	Container container2 = new Container();
+	
+	
 	public static int generate(int max, int type) {
 		int newID = 0;
 		while(true) {
@@ -27,7 +32,7 @@ public class dataStructure {
 		}
 	}
 	
-	public static ResponseObject register(Client client, Port port, Container container) {
+	/*public static ResponseObject register(Client client, Port port, Container container) {
 		ResponseObject response;
 		if (!container.isRegistered()) {
 			
@@ -37,15 +42,15 @@ public class dataStructure {
 				response = new ResponseObject(220, "Registration unsuccessful");
 			} else {
 				container.setRegistered(true);
-				response = new ResponseObject(200, "Registration successful");
+				response = new ResponseObject(200, "Registration successful"); 
 			}
 		} else {
 			response = new ResponseObject(210, "Already registered");
 		}
 		return response;
-	}
+	}*/
 	
-	public ResponseObject position(Container container) {
+	public static ResponseObject position(Container container) {
 		ResponseObject response;
 		
 		if (container.getJourneyID() < 1000) {
@@ -81,7 +86,7 @@ public class dataStructure {
 	} 
 	public static List<Integer> searchJ(String keyword, int type, int cID) {
 		List<Integer> journeyIDs = new ArrayList<Integer>();
-//		System.out.println(journeys);
+		System.out.println(journeys);
 		for (int i = Integer.parseInt(cID+""+journeysSize); i<Integer.parseInt(cID+""+2*journeysSize); i++) {
 			if (journeys.get(i) == null || journeys.get(i).get(0).get(0).equals("")) {continue;}
 			if (keyword.equals(journeys.get(i).get(0).get(type))) {
@@ -115,10 +120,14 @@ public class dataStructure {
 		vars.add(""+ClientID);
 		List<List<String>> vars2 = new ArrayList<List<String>>();
 		vars2.add(vars);
-		int jID=Integer.parseInt(ClientID+""+generate(journeysSize, 2));
-		journeys.put(jID, vars2);
-		return jID;
-		
+		if (origin.equals("") | destination.equals("") | content.equals("") | clients.get(ClientID)==null ) {
+			return -1;
+		}
+		else {
+			int jID=Integer.parseInt(ClientID+""+generate(journeysSize, 2));
+			journeys.put(jID, vars2);
+			return jID;
+		}
 	}
 	public static void updateClient(int ID, String name, String password, String address, String email, String phone) {
 		ArrayList<String> vars = new ArrayList<String>();
@@ -182,21 +191,4 @@ public class dataStructure {
 	        fis.close();
 	    } catch(Exception e) {}
 	}
-	public static boolean clientExists(int cID) {
-		if (clients.get(cID)==null) {
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
-	public static boolean journeyExists(int jID) {
-		if (journeys.get(jID)==null) {
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
-	
 }

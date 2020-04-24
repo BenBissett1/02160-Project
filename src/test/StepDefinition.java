@@ -24,54 +24,7 @@ public class StepDefinition {
 	dataStructure data = new dataStructure();
 	Journey journey = new Journey();
 	ResponseObject response;
-	//int newestJourneyAddition;
 	
-		////////////////////
-	// Start ///////////
-	// Client.feature //
-	////////////////////
-	
-	//DOES A JOURNEY HAVE ITS OWN ID AS WELL AS A CONTAINER HAVE ITS OWN ID?
-	
-	/*
-	@Given("journey is {string}")
-	public void journey_is(String journey) {
-		port.setJourney(journey);
-	}
-
-	@Given("containerID is {string}")
-	public void containerid_is(int identity) {
-	    container.setIdentity(identity);
-	}
-	
-	@Given("^complete data set is (true|false)$")
-	public void complete_data_set_is(boolean isCompleteDataSet) {
-	    data.setCompleteDataSet(isCompleteDataSet);
-	}
-
-	@When("retrieve data")
-	public void retrieve_data() {
-	    //TODO: response or getContainerID directly?
-	}
-
-	@Then("visual output")
-	public void visual_output() {
-	    //TODO: Visual output
-	}
-	
-	@Then("display no data available invalid specificID")
-	public void display_no_data_available_invalid_specificID() {
-		assertEquals(response.getErrorMessage(), "Invalid container ID");
-	}
-	
-	
-	
-	////////////////////
-	// End /////////////
-	// Client.feature //
-	////////////////////
-	
-	*/
 	///////////////////////
 	// Start //////////////
 	// ClientReg.feature //
@@ -244,24 +197,16 @@ public class StepDefinition {
 	
 	@Then("output coordinates of container")
 	public void output_coordinates_of_container() {
-		//String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
-		//System.out.println(var);
 		assertEquals(response.getErrorMessage(), "Container enroute");
 	}
 	
 	@Then("output container arrived at destination")
 	public void output_container_arrived_at_destination() {
-		//String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
-		//System.out.println(var);
 		assertEquals(response.getErrorMessage(), "Container arrived");
 	}
 	
 	@Then("output containerID not found in database")
 	public void output_containerID_not_found_in_database() {
-		/*for (Entry<Integer, List<List<String>>> entry : data.journeys.entrySet()) {
-		System.out.println("Key: " + entry);
-		System.out.println("Not found");
-		}*/
 		assertEquals(response.getErrorMessage(), "Container not found");
 	}
 	
