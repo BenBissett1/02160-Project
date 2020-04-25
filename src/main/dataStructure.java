@@ -1,11 +1,18 @@
 package main;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -175,7 +182,7 @@ public class dataStructure {
 		clients.put(ID,c);	
 	}
 	public static void updateJourney(int ID, String origin, String destination, String status, String content, String cID, ArrayList<Float> t, ArrayList<Float> h, ArrayList<Float> a) {
-		Journey j = new Journey();
+		Journey j = journeys.get(ID);
 		j.origin=origin;
 		j.destination=destination;
 		j.status="Preparing for departure";
@@ -187,43 +194,24 @@ public class dataStructure {
 		journeys.put(ID, j);		
 	}
 	public static void save() {
-		try {
-	        File file=new File("clients");
-	        FileOutputStream fos=new FileOutputStream(file);
-	        ObjectOutputStream oos=new ObjectOutputStream(fos);
-	        oos.writeObject(clients);
-	        oos.flush();
-	        oos.close();
-	        fos.close();
-	    } catch(Exception e) {}
-		try {
-	        File file=new File("journeys");
-	        FileOutputStream fos=new FileOutputStream(file);
-	        ObjectOutputStream oos=new ObjectOutputStream(fos);
-	        oos.writeObject(journeys);
-	        oos.flush();
-	        oos.close();
-	        fos.close();
-	    } catch(Exception e) {}
+		String serialClients = "";
+		Iterator<Integer> itr = clients.keySet().iterator();
+		while(itr.hasNext()) {
+			int i = itr.next();
+			serialClients+="<"+clients.get(i).name+"|"+clients.get(i).password+"|"+clients.get(i).address+"|"+clients.get(i).email+"|"+clients.get(i).phone+">\n";
+		}
+		System.out.println("wtf:"+serialClients);
+		try {BufferedWriter out = new BufferedWriter(new FileWriter("clients.txt"));
+		out.write(serialClients);
+		out.close();
+		}
+		catch (Exception c) {}
 	}
 	public static void load() {
-		try {
-	        File toRead=new File("clients");
-	        FileInputStream fis=new FileInputStream(toRead);
-	        ObjectInputStream ois=new ObjectInputStream(fis);
-	        clients=(HashMap<Integer, Client>)ois.readObject();
-	        ois.close();
-	        fis.close();
-	    } catch(Exception e) {}
-		try {
-	        File toRead=new File("journeys");
-	        FileInputStream fis=new FileInputStream(toRead);
-	        ObjectInputStream ois=new ObjectInputStream(fis);
-	        journeys=(HashMap<Integer, Journey>)ois.readObject();
-	        ois.close();
-	        fis.close();
-	    } catch(Exception e) {}
-	}
+//		try {BufferedReader br = new BufferedReader(new FileReader("clients.txt"));
+//		String 
+//		}
+		}
 	public static boolean clientExists(int cID) {
 		if (clients.get(cID)==null) {
 			return false;
@@ -239,5 +227,12 @@ public class dataStructure {
 		else {
 			return true;
 		}
+	}
+	public static void main(String[] args) {
+		load();
+		System.out.println(clients.get(1692));
+		System.out.println(regNewClient("Ben","Ben","Ben","Ben","Ben"));
+		System.out.println(searchC("Ben",0));
+		save();
 	}
 }
