@@ -219,4 +219,20 @@ public class dataStructure {
 	        fis.close();
 	    } catch(Exception e) {}
 	}
+	public static boolean clientExists(int cID) {
+		if (clients.get(cID)==null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	public static boolean journeyExists(int jID) {
+		if (journeys.get(jID)==null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 }
