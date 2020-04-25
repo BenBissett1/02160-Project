@@ -1,17 +1,10 @@
 package main;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,7 +20,7 @@ public class dataStructure {
 	public static int generate(int max, int type) {
 		int newID = 0;
 		while(true) {
-			newID = (int) (max + 0 + Math.floor(Math.random() * (( max - 0 ) +1 )));
+			newID = (int) (8*max + 0 + Math.floor(Math.random() * (( max - 0 ) +1 )));
 			if (type == 1) {
 				if (clients.get(newID) == null) {
 					return newID;
