@@ -28,6 +28,7 @@ public class StepDefinition {
 //	//int newestJourneyAddition;
 //	
 ////<<<<<<< HEAD
+
 //	@Given("port of origin {string}")
 //	public void port_of_origin(String location) {
 //	    port.setLocationInitial(location);
@@ -129,10 +130,6 @@ public class StepDefinition {
 	}
 
 	
-//	//////////////////
-//=======
-//		////////////////////
-//>>>>>>> refs/heads/master
 	// Start ///////////
 	// Client.feature //
 	////////////////////
