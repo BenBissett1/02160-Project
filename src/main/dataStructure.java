@@ -204,17 +204,17 @@ public class dataStructure {
 		itr = journeys.keySet().iterator();
 		while(itr.hasNext()) {
 			int i = itr.next();
-			serialJourneys+=i+"|"+journeys.get(i).origin+"|"+journeys.get(i).destination+"|"+journeys.get(i).status+"|"+journeys.get(i).content+"|"+journeys.get(i).ClientID+">";
+			serialJourneys+=i+"|"+journeys.get(i).origin+"|"+journeys.get(i).destination+"|"+journeys.get(i).status+"|"+journeys.get(i).content+"|"+journeys.get(i).ClientID+"|>";
 			for (int u = 0; u<journeys.get(i).temperatures.size(); u++) {
-				serialJourneys+=journeys.get(i).temperatures.get(u)+"|";
+				serialJourneys+=journeys.get(i).temperatures.get(u)+";";
 			}
 			serialJourneys+=">";
 			for (int u = 0; u<journeys.get(i).humidity.size(); u++) {
-				serialJourneys+=journeys.get(i).humidity.get(u)+"|";
+				serialJourneys+=journeys.get(i).humidity.get(u)+";";
 			}
 			serialJourneys+=">";
 			for (int u = 0; u<journeys.get(i).atmPressure.size(); u++) {
-				serialJourneys+=journeys.get(i).atmPressure.get(u)+"|";
+				serialJourneys+=journeys.get(i).atmPressure.get(u)+";";
 			}
 			serialJourneys+=">\n";
 		}
@@ -238,35 +238,15 @@ public class dataStructure {
 					if (l.charAt(i) == '|' | l.charAt(i) =='>') {
 						if (u==5) {
 							c.phone=s;
-							s = "";
-							u++;
 							clients.put(cID,c);
 						}
-						if (u==4) {
-							c.email=s;
-							s = "";
-							u++;
-						}
-						if (u==3) {
-							c.address=s;
-							s = "";
-							u++;
-						}
-						if (u==2) {
-							c.password=s;
-							s = "";
-							u++;
-						}
-						if (u==1) {
-							c.name=s;
-							s = "";
-							u++;
-						}
-						if (u==0) {
-							cID = Integer.parseInt(s);
-							s = "";
-							u++;
-						}
+						if (u==4) {c.email=s;}
+						if (u==3) {c.address=s;}
+						if (u==2) {c.password=s;}
+						if (u==1) {c.name=s;}
+						if (u==0) {cID = Integer.parseInt(s);}
+						s = "";
+						u++;
 					} 
 					else {
 						s += l.charAt(i);
@@ -280,7 +260,6 @@ public class dataStructure {
 			InputStream scl = new FileInputStream("journeys.txt");
 			BufferedReader buf = new BufferedReader(new InputStreamReader(scl));
 			String l = buf.readLine();
-			System.out.println("YAY");
 			while(!l.equals("End")) {
 				int jID=0;
 				Journey j = new Journey();
@@ -289,24 +268,12 @@ public class dataStructure {
 				String s = "";
 				for (int i =0; i<l.length(); i++) {
 					if (l.charAt(i) == '|') {
-						if (u==5) {
-							j.ClientID=s;
-						}
-						if (u==4) {
-							j.content=s;
-						}
-						if (u==3) {
-							j.status=s;
-						}
-						if (u==2) {
-							j.destination=s;
-						}
-						if (u==1) {
-							j.origin=s;
-						} 
-						if (u==0) {
-							jID = Integer.parseInt(s);
-						}
+						if (u==5) {j.ClientID=s;}
+						if (u==4) {j.content=s;}
+						if (u==3) {j.status=s;}
+						if (u==2) {j.destination=s;}
+						if (u==1) {j.origin=s;} 
+						if (u==0) {jID = Integer.parseInt(s);}
 						u++;
 						s="";
 					}
@@ -315,10 +282,10 @@ public class dataStructure {
 							j.temperatures.add(Float.parseFloat(s));
 						}
 						if (y==2) {
-							j.temperatures.add(Float.parseFloat(s));
+							j.humidity.add(Float.parseFloat(s));
 						}
 						if (y==3) {
-							j.temperatures.add(Float.parseFloat(s));
+							j.atmPressure.add(Float.parseFloat(s));
 						}
 						s="";
 					}
@@ -329,7 +296,7 @@ public class dataStructure {
 						s="";
 						y++;
 					}
-					if (l.charAt(i) != '>' & l.charAt(i) != '|') {
+					if (l.charAt(i) != '>' & l.charAt(i) != '|' & l.charAt(i) != ';') {
 						s += l.charAt(i);
 					}
 				}
@@ -354,9 +321,11 @@ public class dataStructure {
 			return true;
 		}
 	}
-	public static void main(String[] args) {
-		int i = regNewClient("Ben","Ben","Ben","Ben","123");
-		regNewJourney("Ben","Not Ben","idk",i);
-		save();
-	}
+//	public static void main(String[] args) {
+//		load();
+//		System.out.println(journeys.get(1914101302).temperatures);
+////		int i = regNewClient("Ben","Ben","Ben","Ben","123");
+////		regNewJourney("Ben","Not Ben","idk",1914);
+//		save();
+//	}
 }
