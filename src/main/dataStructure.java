@@ -1,6 +1,7 @@
 package main;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
@@ -218,6 +219,7 @@ public class dataStructure {
 		catch (Exception c) {System.out.println("JOURNEY LIST SAVING FAILED");}
 	}
 	public static void load() {
+		if (new File("clients.txt").isFile()) {
 		try {
 			InputStream scl = new FileInputStream("clients.txt");
 			BufferedReader buf = new BufferedReader(new InputStreamReader(scl));
@@ -249,6 +251,8 @@ public class dataStructure {
 			}
 		}
 		catch (Exception c) {System.out.println("CLIENT LIST LOADING FAILED\n"+c);}
+		}
+		if (new File("journeys.txt").isFile()) {
 		try {
 			InputStream scl = new FileInputStream("journeys.txt");
 			BufferedReader buf = new BufferedReader(new InputStreamReader(scl));
@@ -297,6 +301,7 @@ public class dataStructure {
 			}
 		}
 		catch (Exception c) {System.out.println("JOURNEY LIST LOADING FAILED\n"+c);}
+		}
 	}
 	public static boolean clientExists(int cID) {
 		if (clients.get(cID)==null) {
@@ -315,10 +320,7 @@ public class dataStructure {
 		}
 	}
 //	public static void main(String[] args) {
-//		Integer.parseInt("2147483647");
-//		Integer.parseInt("2046100000");
 //		load();
-//		System.out.println(clients.get(8970).getPassword());
 ////		System.out.println(journeys.get(1914101302).temperatures);
 ////		int i = regNewClient("Ben","Ben","Ben","Ben","123");
 ////		regNewJourney("Ben","Not Ben","idk",1914);
