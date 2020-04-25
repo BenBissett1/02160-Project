@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
+import main.request;
 import main.Client;
 import main.Container;
 import main.Journey;
@@ -23,7 +23,131 @@ public class StepDefinition {
 	Client client = new Client();
 	dataStructure data = new dataStructure();
 	Journey journey = new Journey();
+	request request = new request();
 	ResponseObject response;
+//	//int newestJourneyAddition;
+//	
+////<<<<<<< HEAD
+//	@Given("port of origin {string}")
+//	public void port_of_origin(String location) {
+//	    port.setLocationInitial(location);
+//	}
+//
+//	@Given("destination {string}")
+//	public void destination(String location) {
+//	    port.setLocationFinal(location);
+//	}
+//
+//	@Given("content {string}")
+//	public void content(String content) {
+//	    container.setContent(content);
+//	}
+//
+//	@Given("company {string}")
+//	public void company(String name) {
+//		client.setName(name);
+//	}
+//	
+//	@Given("^registration status is (true|false)$")
+//	public void registration_status_is(boolean isRegistered) {
+//		port.setRegistered(isRegistered);
+//		container.setRegistered(isRegistered);
+////		client.setRegistered(isRegistered); // OUTDATED
+//	}
+//
+//	@When("register")
+//	public void register() {
+//		response = data.register(client, port, container);
+//		
+//	}
+//
+//	@Then("store data to CompanyID")
+//	public void store_data_to_CompanyID() {
+//		//TODO: STORE THE FUCKING DATA
+////	    data.storeCompanyData(); // OUTDATED
+//	    throw new io.cucumber.java.PendingException();
+//	}
+//
+//	@Then("store data to CustomerID")
+//	public void store_data_to_CustomerID() {
+////		data.storeCustomerData(); // OUTDATED
+//		throw new io.cucumber.java.PendingException();
+//	}
+//
+//	@Then("automaton displays message that registration was successful")
+//	public void automaton_displays_message_that_registration_was_successful() {
+//	    assertEquals(response.getErrorMessage(), "Registration successful");
+//	}
+//	
+//	@Then("automaton displays message that already registered")
+//	public void automaton_displays_message_that_already_registered() {
+//	    assertEquals(response.getErrorMessage(), "Already registered");
+//	}
+//	
+//	@Then("automaton displays message that registration was unsuccessful")
+//	public void automaton_displays_message_that_registration_was_unsuccessful() {
+//		assertEquals(response.getErrorMessage(), "Registration unsuccessful");
+//	}
+	
+	
+	/////////////////////////////////
+	// End //////////////////////////
+	// JourneyRegistration.feature //
+	/////////////////////////////////
+	
+	// Start
+	// admin.feature
+	
+	@Given("journey id is {int}")
+	public void journey_id_is(Integer journeyID) {
+	    request.setJourneyID(journeyID);
+	}
+	
+	@Given("internal status parameter is {string}")
+	public void internal_status_parameter_is(String thisData) {
+		request.setThisData(thisData);
+	}
+	
+	@Given("journey id does exist")
+	public void journey_id_does_exist() {
+		request.doesJourneyExist();
+	}
+	
+	@Given("list is not empty")
+	public void list_is_not_empty() {
+		request.listNotEmpty();
+	}
+
+	@Given("data to add is {string}")
+	public void data_to_add_is(List<String> data) {
+		request.addData(data);
+	}
+	
+	@Given("remove data {int}")
+	public void remove_data(Integer data) {
+		
+	}
+
+	
+//	//////////////////
+//=======
+//		////////////////////
+//>>>>>>> refs/heads/master
+	// Start ///////////
+	// Client.feature //
+	////////////////////
+	
+	@Given("retrieve data")
+	public void retrieve_data() {
+		request.getData();
+	}
+	
+	////////////////////
+	// End /////////////
+	// Client.feature //
+	////////////////////
+	
+	
 	
 	///////////////////////
 	// Start //////////////
@@ -197,16 +321,24 @@ public class StepDefinition {
 	
 	@Then("output coordinates of container")
 	public void output_coordinates_of_container() {
+		//String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
+		//System.out.println(var);
 		assertEquals(response.getErrorMessage(), "Container enroute");
 	}
 	
 	@Then("output container arrived at destination")
 	public void output_container_arrived_at_destination() {
+		//String var = data.journeys.get(container.getJourneyID()).get(0).get(2);
+		//System.out.println(var);
 		assertEquals(response.getErrorMessage(), "Container arrived");
 	}
 	
 	@Then("output containerID not found in database")
 	public void output_containerID_not_found_in_database() {
+		/*for (Entry<Integer, List<List<String>>> entry : data.journeys.entrySet()) {
+		System.out.println("Key: " + entry);
+		System.out.println("Not found");
+		}*/
 		assertEquals(response.getErrorMessage(), "Container not found");
 	}
 	
