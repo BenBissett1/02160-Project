@@ -46,7 +46,7 @@ public class request {
 		try {
 			list.get(index);
 			return true;
-		} catch(Exception e) {
+		} catch(Exception NullPointerException) {
 			return false;
 		}
 	}
@@ -57,6 +57,10 @@ public class request {
 	
 	public List<String> getData() {
 		return list.get(reqIndex);
+	}
+	
+	public void removeData(int removeThisData) {
+		list.get(reqIndex).remove(removeThisData);
 	}
 
 }

@@ -108,19 +108,24 @@ public class StepDefinition {
 		request.setThisData(thisData);
 	}
 	
-	@Given("journey id does exist is (true|false)$")
-	public void journey_id_does_exist_is() {
+	@Given("journey id does exist$")
+	public void journey_id_does_exist() {
 		request.doesJourneyExist();
 	}
 	
-	@Given("list is not empty is (true|false)$")
-	public void list_is_not_empty_is() {
+	@Given("list is not empty")
+	public void list_is_not_empty() {
 		request.listNotEmpty();
 	}
 
 	@Given("data to add is {string}")
 	public void data_to_add_is(List<String> data) {
 		request.addData(data);
+	}
+	
+	@Given("remove data {int}")
+	public void remove_data(Integer data) {
+		
 	}
 
 	
