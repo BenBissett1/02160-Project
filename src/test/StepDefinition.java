@@ -15,6 +15,7 @@ import main.Journey;
 import main.dataStructure;
 import main.Port;
 import main.ResponseObject;
+import main.request;
 
 public class StepDefinition {
 	
@@ -23,6 +24,7 @@ public class StepDefinition {
 	Client client = new Client();
 	dataStructure data = new dataStructure();
 	Journey journey = new Journey();
+	request request = new request();
 	ResponseObject response;
 	
 	///////////////////////
@@ -215,6 +217,55 @@ public class StepDefinition {
 	// ContainerPosition.feature //
 	///////////////////////////////
 	
+	
+	// Start
+	// admin.feature
+	
+	@Given("journey id is {int}")
+	public void journey_id_is(Integer journeyID) {
+	    request.setJourneyID(journeyID);
+	}
+	
+	@Given("internal status parameter is {string}")
+	public void internal_status_parameter_is(String thisData) {
+		request.setThisData(thisData);
+	}
+	
+	@Given("journey id does exist$")
+	public void journey_id_does_exist() {
+		request.doesJourneyExist();
+	}
+	
+	@Given("list is not empty")
+	public void list_is_not_empty() {
+		request.listNotEmpty();
+	}
+
+	@Given("data to add is {string}")
+	public void data_to_add_is(List<String> data) {
+		request.addData(data);
+	}
+	
+	@Given("remove data {int}")
+	public void remove_data(Integer data) {
+		
+	}
+
+	
+	//////////////////
+	// Start ///////////
+	// Client.feature //
+	////////////////////
+	
+	@Given("retrieve data")
+	public void retrieve_data() {
+		request.getData();
+	}
+	
+	////////////////////
+	// End /////////////
+	// Client.feature //
+	////////////////////
 	
 }
 
