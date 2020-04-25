@@ -126,7 +126,7 @@ public class StepDefinition {
 	
 	@Given("remove data {int}")
 	public void remove_data(Integer data) {
-		
+		request.removeData(data);
 	}
 
 	

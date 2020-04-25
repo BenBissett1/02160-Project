@@ -46,7 +46,7 @@ public class request {
 		try {
 			list.get(index);
 			return true;
-		} catch(Exception NullPointerException) {
+		} catch(Exception e) {
 			return false;
 		}
 	}
