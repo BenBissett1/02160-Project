@@ -1,9 +1,8 @@
 package main;
 
 import java.util.List;
-import java.util.Map;
 
-public class Client {
+public class Client extends dataStructure {
 	
 	int clientID;
 	String name;

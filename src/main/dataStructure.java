@@ -5,9 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class dataStructure {
 	
@@ -67,19 +65,31 @@ public class dataStructure {
 	
 	
 	
-	public static Map<Integer, List<String>> clients= new HashMap<Integer, List<String>>();
-	// Map structure [client id, [name, password, address, email, phone]]
-	//                              0      1         2       3      4
-	public static Map<Integer, List<List<String>>> journeys= new HashMap<Integer, List<List<String>>>();
-	// Map structure [Journey ID, [[origin, destination, status,  content, ClientID], [val1 list], [val2 list], [val3 list]]]
-	//                                00         01         02       03       04          10           20           30
+	public static ArrayList<Client> clients= new ArrayList<Client>();
+	public static ArrayList<Journey> journeys= new ArrayList<Journey>();
 	static int clientsSize = 1000;
 	static int journeysSize = 100000;
 	public static int searchC(String keyword, int type) {
 		for (int i =clientsSize; i<2*clientsSize; i++) {
-			if (clients.get(i) == null || clients.get(i).get(0).equals("")) {continue;}
-			if (keyword.equals(clients.get(i).get(type))) {
-				return i;
+			if (type == 0) {
+				if (clients.get(i) == null || clients.get(i).name.equals("")) {continue;}
+				if (keyword.equals(clients.get(i).name)) {
+					return i;}
+			}
+			if (type == 2) {
+				if (clients.get(i) == null || clients.get(i).address.equals("")) {continue;}
+				if (keyword.equals(clients.get(i).address)) {
+					return i;}
+			}
+			if (type == 3) {
+				if (clients.get(i) == null || clients.get(i).email.equals("")) {continue;}
+				if (keyword.equals(clients.get(i).email)) {
+					return i;}
+			}
+			if (type == 4) {
+				if (clients.get(i) == null || clients.get(i).phone.equals("")) {continue;}
+				if (keyword.equals(clients.get(i).phone)) {
+					return i;}
 			}
 		}
 		return -1;
@@ -88,68 +98,90 @@ public class dataStructure {
 		List<Integer> journeyIDs = new ArrayList<Integer>();
 		System.out.println(journeys);
 		for (int i = Integer.parseInt(cID+""+journeysSize); i<Integer.parseInt(cID+""+2*journeysSize); i++) {
-			if (journeys.get(i) == null || journeys.get(i).get(0).get(0).equals("")) {continue;}
-			if (keyword.equals(journeys.get(i).get(0).get(type))) {
-				journeyIDs.add(i);
+			if (type == 0) {
+				if (journeys.get(i) == null || journeys.get(i).origin.equals("")) {continue;}
+				if (keyword.equals(journeys.get(i).origin)) {
+					journeyIDs.add(i);
+				}
+			}
+			if (type == 1) {
+				if (journeys.get(i) == null || journeys.get(i).destination.equals("")) {continue;}
+				if (keyword.equals(journeys.get(i).destination)) {
+					journeyIDs.add(i);
+				}
+			}
+			if (type == 2) {
+				if (journeys.get(i) == null || journeys.get(i).status.equals("")) {continue;}
+				if (keyword.equals(journeys.get(i).status)) {
+					journeyIDs.add(i);
+				}
+			}
+			if (type == 3) {
+				if (journeys.get(i) == null || journeys.get(i).content.equals("")) {continue;}
+				if (keyword.equals(journeys.get(i).content)) {
+					journeyIDs.add(i);
+				}
+			}
+			if (type == 4) {
+				if (journeys.get(i) == null || journeys.get(i).ClientID.equals("")) {continue;}
+				if (keyword.equals(journeys.get(i).ClientID)) {
+					journeyIDs.add(i);
+				}
 			}
 		}
 		return journeyIDs;
 	}
 	public static int regNewClient(String name, String password, String address, String email, String phone) {
-		ArrayList<String> vars = new ArrayList<String>();
-		vars.add(name);
-		vars.add(password);
-		vars.add(address);
-		vars.add(email);
-		vars.add(phone);
+		Client c = new Client();
+		c.name=name;
+		c.password=password;
+		c.address=address;
+		c.email=email;
+		c.phone=phone;
 		if (searchC(name, 0) !=-1 | searchC(address, 2) !=-1 | searchC(email, 3) != -1 | searchC(phone, 4) != -1) {
 			return -1;
 		}
 		else {
 			int cID = generate(clientsSize, 1);
-			clients.put(cID, vars);
+			clients.set(cID, c);
 			return cID;
 		}
 	}
 	public static int regNewJourney(String origin, String destination, String content, int ClientID) {
-		ArrayList<String> vars = new ArrayList<String>();
-		vars.add(origin);
-		vars.add(destination);
-		vars.add("Preparing for departure");
-		vars.add(content);
-		vars.add(""+ClientID);
-		List<List<String>> vars2 = new ArrayList<List<String>>();
-		vars2.add(vars);
-		if (origin.equals("") | destination.equals("") | content.equals("") | clients.get(ClientID)==null ) {
+		Journey j = new Journey();
+		j.origin=origin;
+		j.destination=destination;
+		j.status="Preparing for departure";
+		j.content=content;
+		j.ClientID=""+ClientID;
+		if (clients.get(ClientID)==null) {
 			return -1;
 		}
 		else {
 			int jID=Integer.parseInt(ClientID+""+generate(journeysSize, 2));
-			journeys.put(jID, vars2);
+			journeys.set(jID, j);
 			return jID;
 		}
 	}
 	public static void updateClient(int ID, String name, String password, String address, String email, String phone) {
-		ArrayList<String> vars = new ArrayList<String>();
-		vars.add(name);
-		vars.add(password);
-		vars.add(address);
-		vars.add(email);
-		vars.add(phone);
-		clients.put(ID,vars);	
+		Client c = new Client();
+		c.name=name;
+		c.password=password;
+		c.address=address;
+		c.email=email;
+		c.phone=phone;
+		clients.set(ID,c);	
 	}
 	public static void updateJourney(int ID, String origin, String destination, String status, String content, String cID) {
-		ArrayList<String> vars = new ArrayList<String>();
-		vars.add(origin);
-		vars.add(destination);
-		vars.add(status);
-		vars.add(content);
-		vars.add(""+cID);
-		List<List<String>> vars2 = new ArrayList<List<String>>();
-		vars2.add(vars);
-		journeys.put(ID, vars2);		
+		Journey j = new Journey();
+		j.origin=origin;
+		j.destination=destination;
+		j.status="Preparing for departure";
+		j.content=content;
+		j.ClientID=""+cID;
+		journeys.set(ID, j);		
 	}
-	public static void saveC() {
+	public static void save() {
 		try {
 	        File file=new File("clients");
 	        FileOutputStream fos=new FileOutputStream(file);
@@ -159,18 +191,6 @@ public class dataStructure {
 	        oos.close();
 	        fos.close();
 	    } catch(Exception e) {}
-	}
-	public static void loadC() {
-		try {
-	        File toRead=new File("clients");
-	        FileInputStream fis=new FileInputStream(toRead);
-	        ObjectInputStream ois=new ObjectInputStream(fis);
-	        clients=(HashMap<Integer, List<String>>)ois.readObject();
-	        ois.close();
-	        fis.close();
-	    } catch(Exception e) {}
-	}
-	public static void saveJ() {
 		try {
 	        File file=new File("journeys");
 	        FileOutputStream fos=new FileOutputStream(file);
@@ -181,12 +201,20 @@ public class dataStructure {
 	        fos.close();
 	    } catch(Exception e) {}
 	}
-	public static void loadJ() {
+	public static void load() {
+		try {
+	        File toRead=new File("clients");
+	        FileInputStream fis=new FileInputStream(toRead);
+	        ObjectInputStream ois=new ObjectInputStream(fis);
+	        clients=(ArrayList<Client>)ois.readObject();
+	        ois.close();
+	        fis.close();
+	    } catch(Exception e) {}
 		try {
 	        File toRead=new File("journeys");
 	        FileInputStream fis=new FileInputStream(toRead);
 	        ObjectInputStream ois=new ObjectInputStream(fis);
-	        journeys=(HashMap<Integer, List<List<String>>>)ois.readObject();
+	        journeys=(ArrayList<Journey>)ois.readObject();
 	        ois.close();
 	        fis.close();
 	    } catch(Exception e) {}
