@@ -65,10 +65,10 @@ public class dataStructure {
 	
 	
 	
-	public static ArrayList<Client> clients= new ArrayList<Client>();
-	public static ArrayList<Journey> journeys= new ArrayList<Journey>();
 	static int clientsSize = 1000;
 	static int journeysSize = 100000;
+	public static ArrayList<Client> clients= new ArrayList<Client>(clientsSize);
+	public static ArrayList<Journey> journeys= new ArrayList<Journey>(journeysSize);
 	public static int searchC(String keyword, int type) {
 		for (int i =clientsSize; i<2*clientsSize; i++) {
 			if (type == 0) {

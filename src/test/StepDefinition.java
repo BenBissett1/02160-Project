@@ -53,15 +53,15 @@ public class StepDefinition {
 	}
 	@When("register client") 
 	public void regClient() {
-		client.setID(data.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone()));
+		client.setID(dataStructure.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone()));
 	}
 	@Then("display client info")
 	public void displayInfo() {
-		System.out.println(data.clients.get(client.getID()));
+		System.out.println(dataStructure.clients.get(client.getID()));
 	}
 	@Then("display all client info")
 	public void displayAllInfo() {
-		System.out.println(data.clients);
+		System.out.println(dataStructure.clients);
 	}
 	@Then("message already registered")
 	public void message_already_registered() {
@@ -71,7 +71,7 @@ public class StepDefinition {
 	}
 	@When("user closes program")
 	public void user_closes_program() {
-	    data.saveC();
+	    dataStructure.save();
 	}
 
 	@Then("message files saved")
@@ -80,17 +80,17 @@ public class StepDefinition {
 	}
 	@When("load file")
 	public void loadclients() {
-		data.loadC();
-		data.loadJ();
+		dataStructure.load();
+
 	
 	}
 	@When("search by name") 
 	public void searchName() {
-		client.setID(data.searchC(client.getName(), 0));
+		client.setID(dataStructure.searchC(client.getName(), 0));
 	}
 	@Then("update client")
 	public void update() {
-		data.updateClient(client.getID(), client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone());
+		dataStructure.updateClient(client.getID(), client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone());
 	}
 	
 	
@@ -135,30 +135,30 @@ public class StepDefinition {
 
 	@When("register journey")
 	public void register() {
-		journey.setJID(data.regNewJourney(journey.getOrigin(),journey.getDestination(),journey.getContent(),Integer.parseInt(journey.getClientID())));
+		journey.setJID(dataStructure.regNewJourney(journey.getOrigin(),journey.getDestination(),journey.getContent(),Integer.parseInt(journey.getClientID())));
 	}
 
 	@Then("display journey info")
 	public void displayJinfo() {
-		System.out.println(data.journeys.get(journey.getJID()));
+		System.out.println(dataStructure.journeys.get(journey.getJID()));
 
 	}
 	@Then("display all journey info")
 	public void displayAllJinfo() {
-		System.out.println(data.journeys);
+		System.out.println(dataStructure.journeys);
 
 	}
 	@When("search for clients journeys")
 	public void search_for_clients_journeys() {
-		System.out.println(data.searchJ(""+journey.getClientID(), 4, Integer.parseInt(journey.getClientID())));
+		System.out.println(dataStructure.searchJ(""+journey.getClientID(), 4, Integer.parseInt(journey.getClientID())));
 	}
 	@When("save journey info")
 	public void saveJ() {
-		data.saveJ();
+		data.save();
 	}
 	@Then("update journey")
 	public void updateJ() {
-		data.updateJourney(journey.getJID(), journey.getOrigin(), journey.getDestination(), journey.getStatus(),journey.getContent(), journey.getClientID());
+		dataStructure.updateJourney(journey.getJID(), journey.getOrigin(), journey.getDestination(), journey.getStatus(),journey.getContent(), journey.getClientID());
 	}
 	
 	
@@ -192,7 +192,7 @@ public class StepDefinition {
 	
 	@When("retrieving")
 	public void retrieving() {
-		response = data.position(container);
+		response = dataStructure.position(container);
 	}
 	
 	@Then("output coordinates of container")
