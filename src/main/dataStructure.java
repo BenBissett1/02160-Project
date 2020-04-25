@@ -174,13 +174,16 @@ public class dataStructure {
 		c.phone=phone;
 		clients.put(ID,c);	
 	}
-	public static void updateJourney(int ID, String origin, String destination, String status, String content, String cID) {
+	public static void updateJourney(int ID, String origin, String destination, String status, String content, String cID, ArrayList<Float> t, ArrayList<Float> h, ArrayList<Float> a) {
 		Journey j = new Journey();
 		j.origin=origin;
 		j.destination=destination;
 		j.status="Preparing for departure";
 		j.content=content;
 		j.ClientID=""+cID;
+		j.humidity=h;
+		j.temperatures=t;
+		j.atmPressure=a;
 		journeys.put(ID, j);		
 	}
 	public static void save() {
