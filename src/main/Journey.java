@@ -15,7 +15,7 @@ public class Journey extends dataStructure {
 	ArrayList<Float> atmPressure = new ArrayList<Float>();
 	public Float getLastTemp() {
 		if (temperatures.size()==0) {
-			return -1F;
+			return (float) (150 + Math.floor(Math.random() * (( 250 - 150 ) + 1 )))/10;
 		}
 		else {
 			return temperatures.get(temperatures.size()-1);		
@@ -23,7 +23,7 @@ public class Journey extends dataStructure {
 	}
 	public Float getLastHumidity() {
 		if (humidity.size()==0) {
-			return -1F;
+			return (float) (150 + Math.floor(Math.random() * (( 250 - 150 ) + 1 )))/10;
 		}
 		else {
 			return humidity.get(humidity.size()-1);	
@@ -31,7 +31,7 @@ public class Journey extends dataStructure {
 	}
 	public Float getLastAtmPressure() {
 		if (atmPressure.size()==0) {
-			return -1F;
+			return (float) (150 + Math.floor(Math.random() * (( 250 - 150 ) + 1 )))/10;
 		}
 		else {
 			return atmPressure.get(atmPressure.size()-1);
