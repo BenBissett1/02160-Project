@@ -5,7 +5,9 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class dataStructure {
 	
@@ -67,8 +69,8 @@ public class dataStructure {
 	
 	static int clientsSize = 1000;
 	static int journeysSize = 100000;
-	public static ArrayList<Client> clients= new ArrayList<Client>(clientsSize);
-	public static ArrayList<Journey> journeys= new ArrayList<Journey>(journeysSize);
+	public static Map<Integer, Client> clients= new HashMap<Integer, Client>();
+	public static Map<Integer, Journey> journeys= new HashMap<Integer, Journey>();
 	public static int searchC(String keyword, int type) {
 		for (int i =clientsSize; i<2*clientsSize; i++) {
 			if (type == 0) {
@@ -143,7 +145,7 @@ public class dataStructure {
 		}
 		else {
 			int cID = generate(clientsSize, 1);
-			clients.set(cID, c);
+			clients.put(cID, c);
 			return cID;
 		}
 	}
@@ -159,7 +161,7 @@ public class dataStructure {
 		}
 		else {
 			int jID=Integer.parseInt(ClientID+""+generate(journeysSize, 2));
-			journeys.set(jID, j);
+			journeys.put(jID, j);
 			return jID;
 		}
 	}
@@ -170,16 +172,19 @@ public class dataStructure {
 		c.address=address;
 		c.email=email;
 		c.phone=phone;
-		clients.set(ID,c);	
+		clients.put(ID,c);	
 	}
-	public static void updateJourney(int ID, String origin, String destination, String status, String content, String cID) {
+	public static void updateJourney(int ID, String origin, String destination, String status, String content, String cID, ArrayList<Float> t, ArrayList<Float> h, ArrayList<Float> a) {
 		Journey j = new Journey();
 		j.origin=origin;
 		j.destination=destination;
 		j.status="Preparing for departure";
 		j.content=content;
 		j.ClientID=""+cID;
-		journeys.set(ID, j);		
+		j.humidity=h;
+		j.temperatures=t;
+		j.atmPressure=a;
+		journeys.put(ID, j);		
 	}
 	public static void save() {
 		try {
@@ -206,7 +211,7 @@ public class dataStructure {
 	        File toRead=new File("clients");
 	        FileInputStream fis=new FileInputStream(toRead);
 	        ObjectInputStream ois=new ObjectInputStream(fis);
-	        clients=(ArrayList<Client>)ois.readObject();
+	        clients=(HashMap<Integer, Client>)ois.readObject();
 	        ois.close();
 	        fis.close();
 	    } catch(Exception e) {}
@@ -214,7 +219,7 @@ public class dataStructure {
 	        File toRead=new File("journeys");
 	        FileInputStream fis=new FileInputStream(toRead);
 	        ObjectInputStream ois=new ObjectInputStream(fis);
-	        journeys=(ArrayList<Journey>)ois.readObject();
+	        journeys=(HashMap<Integer, Journey>)ois.readObject();
 	        ois.close();
 	        fis.close();
 	    } catch(Exception e) {}
