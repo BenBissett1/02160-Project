@@ -24,17 +24,17 @@ public class request {
 	
 	public boolean listNotEmpty() {
 			
-		if (thisData.equals("humidity")) {
+		if (thisData.equals("humidity") && list.get(1) != null) {
 			reqIndex = 1;
-			catchOutofBounds(1);
+			//catchOutofBounds(1);
 			return true;
-		} else if (thisData.equals("pressure")) {
+		} else if (thisData.equals("pressure") && list.get(2) != null) {
 			reqIndex = 2;
-			catchOutofBounds(2);
+			//catchOutofBounds(2);
 			return true;
-		} else if (thisData.equals("temperature")) {
+		} else if (thisData.equals("temperature") && list.get(3) != null) {
 			reqIndex = 3;
-			catchOutofBounds(3);
+			//catchOutofBounds(3);
 			return true;
 		} else {
 			return false;
