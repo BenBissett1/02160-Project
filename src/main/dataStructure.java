@@ -20,7 +20,7 @@ public class dataStructure {
 	public static int generate(int max, int type) {
 		int newID = 0;
 		while(true) {
-			newID = (int) (8*max + 0 + Math.floor(Math.random() * (( max - 0 ) +1 )));
+			newID = (int) (max + 0 + Math.floor(Math.random() * (( max - 0 ) +1 )));
 			if (type == 1) {
 				if (clients.get(newID) == null) {
 					return newID;
@@ -315,8 +315,11 @@ public class dataStructure {
 		}
 	}
 //	public static void main(String[] args) {
+//		Integer.parseInt("2147483647");
+//		Integer.parseInt("2046100000");
 //		load();
-//		System.out.println(journeys.get(1914101302).temperatures);
+//		System.out.println(clients.get(8970).getPassword());
+////		System.out.println(journeys.get(1914101302).temperatures);
 ////		int i = regNewClient("Ben","Ben","Ben","Ben","123");
 ////		regNewJourney("Ben","Not Ben","idk",1914);
 //		save();
