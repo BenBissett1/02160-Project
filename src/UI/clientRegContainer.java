@@ -50,7 +50,7 @@ public class clientRegContainer extends JFrame {
 		clientRegContainerLabel.setBounds(5, 10, 300, 25);
 		panel.add(clientRegContainerLabel);
 		
-		String[] mapLocations = { "Copenhagen", "New York", "Toronto", "Edinburgh", "Busan", "Shenzhen", "Shanghai", "Tanjung Perak", "Dubai", "Los Angeles", "Valencia",
+		String[] mapLocations = { "Copenhagen", "New York", "Toronto", "Edinburgh", "Busan", "Shenzhen", "Shanghai", "Tanjung", "Dubai", "Los Angeles", "Valencia",
                 "Santos", "Tanger Med", "Salalah", "Cape Town", "Colombo", "Comodoro", "Christchurch", "Perth", "Mogadishu"};
 
 		JComboBox regContainerOriginComboBox = new JComboBox(mapLocations);

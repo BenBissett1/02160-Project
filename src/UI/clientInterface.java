@@ -28,6 +28,7 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.Rectangle;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
 class clientInterface extends JFrame {
@@ -81,9 +82,16 @@ class clientInterface extends JFrame {
 		clientManagePanel.add(updateClientInfoButton);
 		
 		JButton exitButton = new JButton("Exit");
-		exitButton.setBounds(260, 543, 80, 25);
+		exitButton.setBounds(226, 543, 150, 25);
 		exitButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		exitButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		exitButton.addActionListener(new ActionListener() {
+			  @Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.save();
+			    System.exit(0);
+			  }
+			});
 		clientManagePanel.add(exitButton);
 		
 		JLabel journeyManageLabel = new JLabel("Journey Management");
@@ -143,7 +151,7 @@ class clientInterface extends JFrame {
 			jDests = "None";
 		} else {
 			for(int i = 0; i<jID.size(); i++) {
-				jDests = jDests +  dataStructure.journeys.get(jID.get(i)).getDestination();
+				jDests = jDests +  dataStructure.journeys.get(jID.get(i)).getDestination() + "\n";
 			}
 		}
 		
@@ -154,7 +162,7 @@ class clientInterface extends JFrame {
 		journeyDestArea.setBackground(SystemColor.desktop);
 		journeyDestArea.setForeground(SystemColor.controlDkShadow);
 		journeyDestArea.setLineWrap(true);
-		journeyDestArea.setFont(new Font("Monospaced", Font.BOLD, 14));
+		journeyDestArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		journeyDestArea.setBounds(100, 50, 100, 285);
 		clientContainersInfoPanel.add(journeyDestArea);
 		
@@ -163,7 +171,7 @@ class clientInterface extends JFrame {
 			jTemp = "None";
 		} else {
 			for(int i = 0; i<jID.size(); i++) {
-				jTemp = jTemp +  dataStructure.journeys.get(jID.get(i)).getLastTemp();
+				jTemp = jTemp +  dataStructure.journeys.get(jID.get(i)).getLastTemp() + "\n";
 			}
 		}
 
@@ -215,7 +223,7 @@ class clientInterface extends JFrame {
 		pressureLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		pressureLabel.setForeground(SystemColor.controlShadow);
 		pressureLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		pressureLabel.setBounds(500, 0, 100, 50);
+		pressureLabel.setBounds(500, 0, 95, 50);
 		clientContainersInfoPanel.add(pressureLabel);
 		
 		JLabel humidityLabel = new JLabel("Air Humidity");
@@ -231,7 +239,7 @@ class clientInterface extends JFrame {
 			jStats = "None";
 		} else {
 			for(int i = 0; i<jID.size(); i++) {
-				jStats = jStats +  dataStructure.journeys.get(jID.get(i)).getStatus();
+				jStats = jStats +  dataStructure.journeys.get(jID.get(i)).getStatus() + "\n";
 			}
 		}
 		
@@ -248,10 +256,10 @@ class clientInterface extends JFrame {
 		
 		String jHum = "";
 		if(jID.size() == 0) {
-			jStats = "None";
+			jHum = "None";
 		} else {
 			for(int i = 0; i<jID.size(); i++) {
-				jHum = jHum +  dataStructure.journeys.get(jID.get(i)).getLastHumidity();
+				jHum = jHum +  dataStructure.journeys.get(jID.get(i)).getLastHumidity() + "\n";
 			}
 		}
 		
@@ -271,7 +279,7 @@ class clientInterface extends JFrame {
 			jPres = "None";
 		} else {
 			for(int i = 0; i<jID.size(); i++) {
-				jPres = jPres +  dataStructure.journeys.get(jID.get(i)).getLastAtmPressure();
+				jPres = jPres +  dataStructure.journeys.get(jID.get(i)).getLastAtmPressure() + "\n";
 			}
 		}
 		
@@ -285,6 +293,27 @@ class clientInterface extends JFrame {
 		pressureArea.setFont(new Font("Monospaced", Font.BOLD, 14));
 		pressureArea.setBounds(500, 50, 94, 285);
 		clientContainersInfoPanel.add(pressureArea);
+		
+		JButton refreshTableButton = new JButton("Refresh");
+		refreshTableButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		refreshTableButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		refreshTableButton.setBounds(226, 150, 150, 25);
+		refreshTableButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.save();
+				dataStructure.load();
+				clientInterface.clientInterface(genUser);
+				dispose();
+			}
+		});
+		clientManagePanel.add(refreshTableButton);
+		
+		JButton containerHistoryButton = new JButton("Container History");
+		containerHistoryButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		containerHistoryButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		containerHistoryButton.setBounds(426, 70, 150, 25);
+		clientManagePanel.add(containerHistoryButton);
 		
 		JPanel headerPanel = new JPanel();
 		headerPanel.setBackground(SystemColor.desktop);
