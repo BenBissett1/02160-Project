@@ -102,8 +102,7 @@ public class clientLogin extends JFrame{
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 			    System.exit(0);
 			  }
 			});
@@ -130,9 +129,8 @@ public class clientLogin extends JFrame{
 						    JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-						if (genPass.equals(dataStructure.clients.get(genUser).get(1))) {
-							dataStructure.saveC();
-							dataStructure.saveJ();
+						if (genPass.equals(dataStructure.clients.get(genUser).getPassword())) {
+							dataStructure.save();
 							clientInterface.clientInterface(genUser);
 							dispose();
 						} else {

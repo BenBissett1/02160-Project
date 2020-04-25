@@ -76,8 +76,7 @@ public class companyCreateClient extends JFrame{
 		clientCreateBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				dispose();				
 			}
 		});
@@ -113,8 +112,7 @@ public class companyCreateClient extends JFrame{
 										"Duplicate Error",
 										JOptionPane.ERROR_MESSAGE);
 							} else {
-								dataStructure.saveC();
-								dataStructure.saveJ();
+								dataStructure.save();
 								companyClientGen.companyClientGen(cID,inputPassword);
 								dispose();
 							}

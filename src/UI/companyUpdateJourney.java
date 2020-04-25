@@ -148,8 +148,7 @@ public class companyUpdateJourney extends JFrame {
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				dispose();				
 			}
 		});
@@ -191,8 +190,7 @@ public class companyUpdateJourney extends JFrame {
 								"Journey Updated!",
 								"Confirmation",
 								JOptionPane.INFORMATION_MESSAGE);
-						dataStructure.saveC();
-						dataStructure.saveJ();
+						dataStructure.save();
 						dispose();
 					} else if (dataStructure.clientExists(inputClientIDAsInt) == false || dataStructure.journeyExists(inputJourneyIDAsInt) == false) {
 						JOptionPane.showMessageDialog(panel,

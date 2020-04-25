@@ -100,8 +100,7 @@ public class companySearchClient extends JFrame {
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				dispose();				
 			}
 		});
@@ -149,8 +148,7 @@ public class companySearchClient extends JFrame {
 									"The ClientID is: " + Integer.toString(cID),
 									"Confirmation",
 									JOptionPane.INFORMATION_MESSAGE);
-							dataStructure.saveC();
-							dataStructure.saveJ();
+							dataStructure.save();
 							dispose();
 						}
 					}

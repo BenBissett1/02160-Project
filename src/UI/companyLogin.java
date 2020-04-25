@@ -85,8 +85,7 @@ public class companyLogin extends JFrame{
 				} else {
 					try {
 						if (genPass.equals("0000")) {
-							dataStructure.saveC();
-							dataStructure.saveJ();
+							dataStructure.save();
 							companyInterface.companyInterface();
 							dispose();
 						} else {
@@ -113,8 +112,7 @@ public class companyLogin extends JFrame{
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 			    System.exit(0);
 			  }
 			});
