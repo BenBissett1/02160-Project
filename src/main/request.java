@@ -23,6 +23,7 @@ public class request {
 	}
 	
 	public boolean listNotEmpty() {
+		// Maybe try some, if get.(index) == null then empty is true...
 			
 		if (thisData.equals("humidity")) {
 			reqIndex = 1;
