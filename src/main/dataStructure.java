@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintStream;
@@ -105,34 +107,33 @@ public class dataStructure {
 	} 
 	public static List<Integer> searchJ(String keyword, int type, int cID) {
 		List<Integer> journeyIDs = new ArrayList<Integer>();
-		System.out.println(journeys);
 		for (int i = Integer.parseInt(cID+""+journeysSize); i<Integer.parseInt(cID+""+2*journeysSize); i++) {
 			if (type == 0) {
-				if (journeys.get(i) == null || journeys.get(i).origin.equals("")) {continue;}
+				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).origin)) {
 					journeyIDs.add(i);
 				}
 			}
 			if (type == 1) {
-				if (journeys.get(i) == null || journeys.get(i).destination.equals("")) {continue;}
+				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).destination)) {
 					journeyIDs.add(i);
 				}
 			}
 			if (type == 2) {
-				if (journeys.get(i) == null || journeys.get(i).status.equals("")) {continue;}
+				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).status)) {
 					journeyIDs.add(i);
 				}
 			}
 			if (type == 3) {
-				if (journeys.get(i) == null || journeys.get(i).content.equals("")) {continue;}
+				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).content)) {
 					journeyIDs.add(i);
 				}
 			}
 			if (type == 4) {
-				if (journeys.get(i) == null || journeys.get(i).ClientID.equals("")) {continue;}
+				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).ClientID)) {
 					journeyIDs.add(i);
 				}
@@ -192,20 +193,151 @@ public class dataStructure {
 		Iterator<Integer> itr = clients.keySet().iterator();
 		while(itr.hasNext()) {
 			int i = itr.next();
-			serialClients+="<"+clients.get(i).name+"|"+clients.get(i).password+"|"+clients.get(i).address+"|"+clients.get(i).email+"|"+clients.get(i).phone+">\n";
+			serialClients+=i+"|"+clients.get(i).name+"|"+clients.get(i).password+"|"+clients.get(i).address+"|"+clients.get(i).email+"|"+clients.get(i).phone+">\n";
 		}
-		System.out.println("wtf:"+serialClients);
 		try {BufferedWriter out = new BufferedWriter(new FileWriter("clients.txt"));
-		out.write(serialClients);
+		out.write(serialClients+"End");
 		out.close();
 		}
-		catch (Exception c) {}
+		catch (Exception c) {System.out.println("CLIENT LIST SAVING FAILED");}
+		String serialJourneys = "";
+		itr = journeys.keySet().iterator();
+		while(itr.hasNext()) {
+			int i = itr.next();
+			serialJourneys+=i+"|"+journeys.get(i).origin+"|"+journeys.get(i).destination+"|"+journeys.get(i).status+"|"+journeys.get(i).content+"|"+journeys.get(i).ClientID+">";
+			for (int u = 0; u<journeys.get(i).temperatures.size(); u++) {
+				serialJourneys+=journeys.get(i).temperatures.get(u)+"|";
+			}
+			serialJourneys+=">";
+			for (int u = 0; u<journeys.get(i).humidity.size(); u++) {
+				serialJourneys+=journeys.get(i).humidity.get(u)+"|";
+			}
+			serialJourneys+=">";
+			for (int u = 0; u<journeys.get(i).atmPressure.size(); u++) {
+				serialJourneys+=journeys.get(i).atmPressure.get(u)+"|";
+			}
+			serialJourneys+=">\n";
+		}
+		try {BufferedWriter out = new BufferedWriter(new FileWriter("journeys.txt"));
+		out.write(serialJourneys+"End");
+		out.close();
+		}
+		catch (Exception c) {System.out.println("JOURNEY LIST SAVING FAILED");}
 	}
 	public static void load() {
-//		try {BufferedReader br = new BufferedReader(new FileReader("clients.txt"));
-//		String 
-//		}
+		try {
+			InputStream scl = new FileInputStream("clients.txt");
+			BufferedReader buf = new BufferedReader(new InputStreamReader(scl));
+			String l = buf.readLine();
+			while(!l.equals("End")) {
+				int cID = 0;
+				Client c = new Client();
+				int u = 0;
+				String s = "";
+				for (int i =0; i<l.length(); i++) {
+					if (l.charAt(i) == '|' | l.charAt(i) =='>') {
+						if (u==5) {
+							c.phone=s;
+							s = "";
+							u++;
+							clients.put(cID,c);
+						}
+						if (u==4) {
+							c.email=s;
+							s = "";
+							u++;
+						}
+						if (u==3) {
+							c.address=s;
+							s = "";
+							u++;
+						}
+						if (u==2) {
+							c.password=s;
+							s = "";
+							u++;
+						}
+						if (u==1) {
+							c.name=s;
+							s = "";
+							u++;
+						}
+						if (u==0) {
+							cID = Integer.parseInt(s);
+							s = "";
+							u++;
+						}
+					} 
+					else {
+						s += l.charAt(i);
+					}
+				}
+				l = buf.readLine();
+			}
 		}
+		catch (Exception c) {System.out.println("CLIENT LIST LOADING FAILED\n"+c);}
+		try {
+			InputStream scl = new FileInputStream("journeys.txt");
+			BufferedReader buf = new BufferedReader(new InputStreamReader(scl));
+			String l = buf.readLine();
+			System.out.println("YAY");
+			while(!l.equals("End")) {
+				int jID=0;
+				Journey j = new Journey();
+				int u = 0;
+				int y = 0;
+				String s = "";
+				for (int i =0; i<l.length(); i++) {
+					if (l.charAt(i) == '|') {
+						if (u==5) {
+							j.ClientID=s;
+						}
+						if (u==4) {
+							j.content=s;
+						}
+						if (u==3) {
+							j.status=s;
+						}
+						if (u==2) {
+							j.destination=s;
+						}
+						if (u==1) {
+							j.origin=s;
+						} 
+						if (u==0) {
+							jID = Integer.parseInt(s);
+						}
+						u++;
+						s="";
+					}
+					if (l.charAt(i) == ';') {
+						if (y==1) {
+							j.temperatures.add(Float.parseFloat(s));
+						}
+						if (y==2) {
+							j.temperatures.add(Float.parseFloat(s));
+						}
+						if (y==3) {
+							j.temperatures.add(Float.parseFloat(s));
+						}
+						s="";
+					}
+					if (l.charAt(i) == '>') {
+						if (y==3) {
+							journeys.put(jID, j);
+						}
+						s="";
+						y++;
+					}
+					if (l.charAt(i) != '>' & l.charAt(i) != '|') {
+						s += l.charAt(i);
+					}
+				}
+				l = buf.readLine();
+			}
+		}
+		catch (Exception c) {System.out.println("JOURNEY LIST LOADING FAILED\n"+c);}
+	}
 	public static boolean clientExists(int cID) {
 		if (clients.get(cID)==null) {
 			return false;
@@ -223,10 +355,8 @@ public class dataStructure {
 		}
 	}
 	public static void main(String[] args) {
-		load();
-		System.out.println(clients.get(1692));
-		System.out.println(regNewClient("Ben","Ben","Ben","Ben","Ben"));
-		System.out.println(searchC("Ben",0));
+		int i = regNewClient("Ben","Ben","Ben","Ben","123");
+		regNewJourney("Ben","Not Ben","idk",i);
 		save();
 	}
 }
