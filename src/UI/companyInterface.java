@@ -66,8 +66,7 @@ class companyInterface extends JFrame {
 		regNewClientButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				companyCreateClient.companyCreateClient();		
 			}
 		});
@@ -80,8 +79,7 @@ class companyInterface extends JFrame {
 		searchClientButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				companySearchClient.companySearchClient();		
 			}
 		});
@@ -107,8 +105,7 @@ class companyInterface extends JFrame {
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 			    System.exit(0);
 			  }
 			});
@@ -121,8 +118,7 @@ class companyInterface extends JFrame {
 		updateJourneyButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				companyUpdateJourney.companyUpdateJourney();		
 			}
 		});
@@ -135,8 +131,7 @@ class companyInterface extends JFrame {
 		searchJourneyButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				companySearchJourney.companySearchJourney();		
 			}
 		});

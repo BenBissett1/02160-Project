@@ -66,8 +66,7 @@ class clientInterface extends JFrame {
 		updateClientInfoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				clientUpdateInfo.clientUpdateInfo(genUser);
 			}
 		});
@@ -85,8 +84,7 @@ class clientInterface extends JFrame {
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 			    System.exit(0);
 			  }
 			});
@@ -106,8 +104,7 @@ class clientInterface extends JFrame {
 		regContainerJourneyButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				clientRegContainer.clientRegContainer(genUser);
 			}
 		});

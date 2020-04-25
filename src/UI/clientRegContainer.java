@@ -58,8 +58,7 @@ public class clientRegContainer extends JFrame {
 		clientCreateBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				dispose();				
 			}
 		});
@@ -86,8 +85,7 @@ public class clientRegContainer extends JFrame {
 							"Your Journey ID is: " + Integer.toString(jID),
 							"Confirmation",
 							JOptionPane.INFORMATION_MESSAGE);
-					dataStructure.saveC();
-					dataStructure.saveJ();
+					dataStructure.save();
 					dispose();
 				}
 			}

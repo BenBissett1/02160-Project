@@ -129,8 +129,7 @@ public class clientUpdateInfo extends JFrame {
 		clientCreateBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				dispose();				
 			}
 		});
@@ -168,8 +167,7 @@ public class clientUpdateInfo extends JFrame {
 							"Information Updated!",
 							"Confirmation",
 							JOptionPane.INFORMATION_MESSAGE);
-					dataStructure.saveC();
-					dataStructure.saveJ();
+					dataStructure.save();
 					dispose();
 				}
 			}

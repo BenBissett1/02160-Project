@@ -6,8 +6,7 @@ import main.dataStructure;
 public class mainInterface extends JFrame{	
 	
 	public static void main(String[] args) {
-		dataStructure.loadC();
-		dataStructure.loadJ();
+		dataStructure.load();
 		initInterface.initInterface();
 	}
 }
