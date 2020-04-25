@@ -143,7 +143,7 @@ class clientInterface extends JFrame {
 			jDests = "None";
 		} else {
 			for(int i = 0; i<jID.size(); i++) {
-				jDests = jDests +  journeys.get(jID.get(i)).destination;
+				jDests = jDests +  dataStructure.journeys.get(jID.get(i)).getDestination();
 			}
 		}
 		
@@ -163,7 +163,7 @@ class clientInterface extends JFrame {
 			jTemp = "None";
 		} else {
 			for(int i = 0; i<jID.size(); i++) {
-				jTemp = jTemp +  journeys.get(jID.get(i)).temperature;
+				jTemp = jTemp +  dataStructure.journeys.get(jID.get(i)).getLastTemp();
 			}
 		}
 
@@ -231,7 +231,7 @@ class clientInterface extends JFrame {
 			jStats = "None";
 		} else {
 			for(int i = 0; i<jID.size(); i++) {
-				jStats = jStats +  journeys.get(jID.get(i)).status;
+				jStats = jStats +  dataStructure.journeys.get(jID.get(i)).getStatus();
 			}
 		}
 		
@@ -251,7 +251,7 @@ class clientInterface extends JFrame {
 			jStats = "None";
 		} else {
 			for(int i = 0; i<jID.size(); i++) {
-				jHum = jHum +  journeys.get(jID.get(i)).humidity;
+				jHum = jHum +  dataStructure.journeys.get(jID.get(i)).getLastHumidity();
 			}
 		}
 		
@@ -271,7 +271,7 @@ class clientInterface extends JFrame {
 			jPres = "None";
 		} else {
 			for(int i = 0; i<jID.size(); i++) {
-				jPres = jPres +  journeys.get(jID.get(i)).pressure;
+				jPres = jPres +  dataStructure.journeys.get(jID.get(i)).getLastAtmPressure();
 			}
 		}
 		

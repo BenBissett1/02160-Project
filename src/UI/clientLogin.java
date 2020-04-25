@@ -129,7 +129,7 @@ public class clientLogin extends JFrame{
 						    JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-						if (genPass.equals(dataStructure.clients.get(genUser).get(1))) {
+						if (genPass.equals(dataStructure.clients.get(genUser).getPassword())) {
 							dataStructure.save();
 							clientInterface.clientInterface(genUser);
 							dispose();
