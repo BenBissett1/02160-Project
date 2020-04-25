@@ -138,7 +138,7 @@ public class dataStructure {
 		vars.add(""+cID);
 		List<List<String>> vars2 = new ArrayList<List<String>>();
 		vars2.add(vars);
-		journeys.put(ID, vars2);		
+		journeys.put(ID, vars2);
 	}
 	public static void save() {
 		try {
