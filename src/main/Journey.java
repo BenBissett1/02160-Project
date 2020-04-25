@@ -14,13 +14,28 @@ public class Journey extends dataStructure {
 	ArrayList<Float> humidity = new ArrayList<Float>();
 	ArrayList<Float> atmPressure = new ArrayList<Float>();
 	public Float getLastTemp() {
-		return temperatures.get(temperatures.size()-1);		
+		if (temperatures.size()==0) {
+			return -1F;
+		}
+		else {
+			return temperatures.get(temperatures.size()-1);		
+		}
 	}
 	public Float getLastHumidity() {
-		return humidity.get(humidity.size()-1);	
+		if (humidity.size()==0) {
+			return -1F;
+		}
+		else {
+			return humidity.get(humidity.size()-1);	
+		}
 	}
 	public Float getLastAtmPressure() {
-		return atmPressure.get(atmPressure.size()-1);		
+		if (atmPressure.size()==0) {
+			return -1F;
+		}
+		else {
+			return atmPressure.get(atmPressure.size()-1);
+		}
 	}
 	public int getJID() {
 		return journeyID;
