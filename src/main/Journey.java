@@ -23,7 +23,7 @@ public class Journey extends dataStructure {
 	}
 	public Float getLastHumidity() {
 		if (humidity.size()==0) {
-			return (float) (150 + Math.floor(Math.random() * (( 250 - 150 ) + 1 )))/10;
+			return (float) (20 + Math.floor(Math.random() * (( 70 - 20 ) + 1 )))/10;
 		}
 		else {
 			return humidity.get(humidity.size()-1);	
@@ -31,7 +31,7 @@ public class Journey extends dataStructure {
 	}
 	public Float getLastAtmPressure() {
 		if (atmPressure.size()==0) {
-			return (float) (150 + Math.floor(Math.random() * (( 250 - 150 ) + 1 )))/10;
+			return (float) (9000 + Math.floor(Math.random() * (( 12000 - 9000 ) + 1 )))/10;
 		}
 		else {
 			return atmPressure.get(atmPressure.size()-1);
