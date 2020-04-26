@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,7 +8,7 @@ import java.util.Map;
 public class request {
 	int journeyID;
 	String thisData;
-	List<List<String>> list = dataStructure.journeys.get(journeyID);
+	Journey journey;
 	int reqIndex;
 
 	public void setThisData(String thisData) {
@@ -19,49 +20,46 @@ public class request {
 	}
 	
 	public boolean doesJourneyExist() {
-		return dataStructure.journeys.containsKey(journeyID);
-	}
-	
-	public boolean listNotEmpty() {
-			
-		if (thisData.equals("humidity")) {
-			reqIndex = 1;
-			catchOutofBounds(1);
-			return true;
-		} else if (thisData.equals("pressure")) {
-			reqIndex = 2;
-			catchOutofBounds(2);
-			return true;
-		} else if (thisData.equals("temperature")) {
-			reqIndex = 3;
-			catchOutofBounds(3);
+		if (dataStructure.journeys.containsKey(journeyID)) {
+			journey = dataStructure.journeys.get(journeyID);
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	public void updateContainerStatus(int journeyID,float temp, float hum, float pres) {
+		this.journeyID = journeyID;
+		doesJourneyExist();
+		
+		journey.temperatures.add(temp);
+		journey.humidity.add(hum);
+		journey.atmPressure.add(pres);
 		
 	}
 	
-	public boolean catchOutofBounds(int index) {		
-		try {
-			list.get(index);
-			return true;
-		} catch(Exception e) {
-			return false;
-		}
+	public ArrayList<Float> getHum() {
+		return journey.humidity;
 	}
 
-	public void addData(List<String> data) {
-		list.get(reqIndex).addAll(data);
+	public ArrayList<Float> getPres() {
+		return journey.atmPressure;
 	}
 	
-	public List<String> getData() {
-		return list.get(reqIndex);
+	public ArrayList<Float> getTemp() {
+		return journey.temperatures;
 	}
 	
-	public void removeData(int removeThisData) {
-		list.get(reqIndex).remove(removeThisData);
+	public void removeDataTemp(int index) {
+		journey.temperatures.remove(index);
 	}
 
+	public void removeDataHum(int index) {
+		journey.humidity.remove(index);
+	}
+	
+	public void removeDataPres(int index) {
+		journey.atmPressure.remove(index);
+	}
 }
 
