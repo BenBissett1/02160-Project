@@ -66,8 +66,7 @@ class companyInterface extends JFrame {
 		regNewClientButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				companyCreateClient.companyCreateClient();		
 			}
 		});
@@ -80,8 +79,7 @@ class companyInterface extends JFrame {
 		searchClientButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				companySearchClient.companySearchClient();		
 			}
 		});
@@ -107,8 +105,7 @@ class companyInterface extends JFrame {
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 			    System.exit(0);
 			  }
 			});
@@ -121,8 +118,7 @@ class companyInterface extends JFrame {
 		updateJourneyButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				companyUpdateJourney.companyUpdateJourney();		
 			}
 		});
@@ -135,8 +131,7 @@ class companyInterface extends JFrame {
 		searchJourneyButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				companySearchJourney.companySearchJourney();		
 			}
 		});
@@ -154,6 +149,19 @@ class companyInterface extends JFrame {
 		containerStatusLabel.setForeground(SystemColor.controlShadow);
 		containerStatusLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		containerStatusPanel.add(containerStatusLabel);
+		
+		JButton updateContainerStatusButton = new JButton("Update Status");
+		updateContainerStatusButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		updateContainerStatusButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		updateContainerStatusButton.setBounds(25, 70, 150, 25);
+		updateContainerStatusButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.save();
+				companyUpdateStatus.companyUpdateStatus();		
+			}
+		});		
+		containerStatusPanel.add(updateContainerStatusButton);
 		
 		JPanel headerPanel = new JPanel();
 		headerPanel.setForeground(SystemColor.desktop);

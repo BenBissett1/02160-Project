@@ -1,6 +1,8 @@
 package main;
 
-public class Journey {
+import java.util.ArrayList;
+
+public class Journey extends dataStructure {
 
 	int journeyID;
 	String origin;
@@ -8,6 +10,33 @@ public class Journey {
 	String status;
 	String content;
 	String ClientID;
+	ArrayList<Float> temperatures = new ArrayList<Float>();
+	ArrayList<Float> humidity = new ArrayList<Float>();
+	ArrayList<Float> atmPressure = new ArrayList<Float>();
+	public Float getLastTemp() {
+		if (temperatures.size()==0) {
+			return -1F;
+		}
+		else {
+			return temperatures.get(temperatures.size()-1);		
+		}
+	}
+	public Float getLastHumidity() {
+		if (humidity.size()==0) {
+			return -1F;
+		}
+		else {
+			return humidity.get(humidity.size()-1);	
+		}
+	}
+	public Float getLastAtmPressure() {
+		if (atmPressure.size()==0) {
+			return -1F;
+		}
+		else {
+			return atmPressure.get(atmPressure.size()-1);
+		}
+	}
 	public int getJID() {
 		return journeyID;
 	}

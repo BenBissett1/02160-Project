@@ -86,8 +86,7 @@ public class initInterface extends JFrame {
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 			    System.exit(0);
 			  }
 			});
@@ -107,14 +106,12 @@ public class initInterface extends JFrame {
 						    JOptionPane.ERROR_MESSAGE);
 				} 
 				else if (companyButton.isSelected() == true){
-					dataStructure.saveC();
-					dataStructure.saveJ();
+					dataStructure.save();
 					companyLogin.companyLogin();
 					dispose();
 				}
 				else if (clientButton.isSelected() == true) {
-					dataStructure.saveC();
-					dataStructure.saveJ();
+					dataStructure.save();
 					clientLogin.clientLogin();
 					dispose();
 				}

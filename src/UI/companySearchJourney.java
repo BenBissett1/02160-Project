@@ -101,8 +101,7 @@ public class companySearchJourney extends JFrame{
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.saveC();
-				dataStructure.saveJ();
+				dataStructure.save();
 				dispose();				
 			}
 		});
@@ -164,8 +163,7 @@ public class companySearchJourney extends JFrame{
 									"The JourneyID(s) are: " + jIDs,
 									"Confirmation",
 									JOptionPane.INFORMATION_MESSAGE);
-							dataStructure.saveC();
-							dataStructure.saveJ();
+							dataStructure.save();
 							dispose();
 						}
 					}
