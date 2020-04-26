@@ -1,3 +1,4 @@
+
 package UI;
 
 import java.awt.BorderLayout;
@@ -99,7 +100,7 @@ class companyInterface extends JFrame {
 		journeyManagePanel.add(journeyManageLabel);
 		
 		JButton exitButton = new JButton("Exit");
-		exitButton.setBounds(25, 530, 150, 25);
+		exitButton.setBounds(60, 530, 80, 25);
 		exitButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		exitButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, Color.BLACK, null, null, null));
 		exitButton.addActionListener(new ActionListener() {
