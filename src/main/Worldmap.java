@@ -30,39 +30,28 @@ public class Worldmap {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                try {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                }
 
                 JFrame frame = new JFrame("Worldmap of journeys");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setLayout(new BorderLayout());
-                frame.add(new TestPane());
+                frame.add(new Painter());
                 frame.pack();
+                frame.setSize(1073, 561);
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }
         });
     }
 
-    public class TestPane extends JPanel {
+    public class Painter extends JPanel {
 
         private BufferedImage Worldmap;
 
-        //private Rectangle myOffice = new Rectangle(150, 50, 32, 27);
-
-        public TestPane() {
+        public Painter() {
             try {
                 Worldmap = ImageIO.read(new File("C:/Users/bruger/git/02160-Project/Images/WorldMapSimpleSmall.jpg"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        }
-
-        @Override
-        public Dimension getPreferredSize() {
-            return Worldmap == null ? new Dimension(200, 200) : new Dimension(Worldmap.getWidth(), Worldmap.getHeight());
         }
 
         @Override
@@ -79,9 +68,6 @@ public class Worldmap {
                 
                 //g2d.setColor(Color.MAGENTA);
                 //g2d.fillRoundRect(620, 330, 20, 20, 10, 10);
-                
-                
-                
                 
                 int[] Copenhagen = {530, 148};
                 int[] NewYork = {275, 210};
@@ -133,9 +119,6 @@ public class Worldmap {
                 g2d.fillRoundRect((int) random, (int) ycoord, 15, 15, 10, 10);
                 g2d.setColor(Color.WHITE);
                 g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 7, 7, 10, 10);
-                
-                
-                
 
             }
 
