@@ -236,16 +236,6 @@ public class StepDefinition {
 		request.doesJourneyExist();
 	}
 	
-	@Given("list is not empty")
-	public void list_is_not_empty() {
-		request.listNotEmpty();
-	}
-
-	@Given("data to add is {string}")
-	public void data_to_add_is(List<String> data) {
-		request.addData(data);
-	}
-	
 	@Given("remove data {int}")
 	public void remove_data(Integer data) {
 		
