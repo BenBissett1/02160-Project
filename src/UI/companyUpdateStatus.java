@@ -21,6 +21,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import main.dataStructure;
+import main.request;
 
 public class companyUpdateStatus extends JFrame{
 	private JTextField temperatureTextField;
@@ -118,7 +119,8 @@ public class companyUpdateStatus extends JFrame{
 								"Number Error",
 						    	JOptionPane.ERROR_MESSAGE);
 					}
-					dataStructure.updateContainerStatus(inputJourneyIDAsInt,inputTempAsFloat, inputHumidityAsFloat, inputPressureAsFloat);
+					request myObject = new request();
+					myObject.updateContainerStatus(inputJourneyIDAsInt,inputTempAsFloat, inputHumidityAsFloat, inputPressureAsFloat);
 					JOptionPane.showMessageDialog(panel,
 							"Information Updated!",
 							"Confirmation",
