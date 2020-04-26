@@ -1,11 +1,14 @@
 package main;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -98,34 +101,33 @@ public class dataStructure {
 	} 
 	public static List<Integer> searchJ(String keyword, int type, int cID) {
 		List<Integer> journeyIDs = new ArrayList<Integer>();
-		System.out.println(journeys);
 		for (int i = Integer.parseInt(cID+""+journeysSize); i<Integer.parseInt(cID+""+2*journeysSize); i++) {
 			if (type == 0) {
-				if (journeys.get(i) == null || journeys.get(i).origin.equals("")) {continue;}
+				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).origin)) {
 					journeyIDs.add(i);
 				}
 			}
 			if (type == 1) {
-				if (journeys.get(i) == null || journeys.get(i).destination.equals("")) {continue;}
+				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).destination)) {
 					journeyIDs.add(i);
 				}
 			}
 			if (type == 2) {
-				if (journeys.get(i) == null || journeys.get(i).status.equals("")) {continue;}
+				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).status)) {
 					journeyIDs.add(i);
 				}
 			}
 			if (type == 3) {
-				if (journeys.get(i) == null || journeys.get(i).content.equals("")) {continue;}
+				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).content)) {
 					journeyIDs.add(i);
 				}
 			}
 			if (type == 4) {
-				if (journeys.get(i) == null || journeys.get(i).ClientID.equals("")) {continue;}
+				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).ClientID)) {
 					journeyIDs.add(i);
 				}
@@ -153,7 +155,7 @@ public class dataStructure {
 		Journey j = new Journey();
 		j.origin=origin;
 		j.destination=destination;
-		j.status="Preparing for departure";
+		j.status="At origin";
 		j.content=content;
 		j.ClientID=""+ClientID;
 		if (clients.get(ClientID)==null) {
@@ -174,55 +176,132 @@ public class dataStructure {
 		c.phone=phone;
 		clients.put(ID,c);	
 	}
-	public static void updateJourney(int ID, String origin, String destination, String status, String content, String cID, ArrayList<Float> t, ArrayList<Float> h, ArrayList<Float> a) {
-		Journey j = new Journey();
-		j.origin=origin;
+	public static void updateJourney(int ID, String destination, String status) {
+		Journey j = journeys.get(ID);
 		j.destination=destination;
-		j.status="Preparing for departure";
-		j.content=content;
-		j.ClientID=""+cID;
-		j.humidity=h;
-		j.temperatures=t;
-		j.atmPressure=a;
+		j.status=status;
 		journeys.put(ID, j);		
 	}
 	public static void save() {
-		try {
-	        File file=new File("clients");
-	        FileOutputStream fos=new FileOutputStream(file);
-	        ObjectOutputStream oos=new ObjectOutputStream(fos);
-	        oos.writeObject(clients);
-	        oos.flush();
-	        oos.close();
-	        fos.close();
-	    } catch(Exception e) {}
-		try {
-	        File file=new File("journeys");
-	        FileOutputStream fos=new FileOutputStream(file);
-	        ObjectOutputStream oos=new ObjectOutputStream(fos);
-	        oos.writeObject(journeys);
-	        oos.flush();
-	        oos.close();
-	        fos.close();
-	    } catch(Exception e) {}
+		String serialClients = "";
+		Iterator<Integer> itr = clients.keySet().iterator();
+		while(itr.hasNext()) {
+			int i = itr.next();
+			serialClients+=i+"|"+clients.get(i).name+"|"+clients.get(i).password+"|"+clients.get(i).address+"|"+clients.get(i).email+"|"+clients.get(i).phone+">\n";
+		}
+		try {BufferedWriter out = new BufferedWriter(new FileWriter("clients.txt"));
+		out.write(serialClients+"End");
+		out.close();
+		}
+		catch (Exception c) {System.out.println("CLIENT LIST SAVING FAILED");}
+		String serialJourneys = "";
+		itr = journeys.keySet().iterator();
+		while(itr.hasNext()) {
+			int i = itr.next();
+			serialJourneys+=i+"|"+journeys.get(i).origin+"|"+journeys.get(i).destination+"|"+journeys.get(i).status+"|"+journeys.get(i).content+"|"+journeys.get(i).ClientID+"|>";
+			for (int u = 0; u<journeys.get(i).temperatures.size(); u++) {
+				serialJourneys+=journeys.get(i).temperatures.get(u)+";";
+			}
+			serialJourneys+=">";
+			for (int u = 0; u<journeys.get(i).humidity.size(); u++) {
+				serialJourneys+=journeys.get(i).humidity.get(u)+";";
+			}
+			serialJourneys+=">";
+			for (int u = 0; u<journeys.get(i).atmPressure.size(); u++) {
+				serialJourneys+=journeys.get(i).atmPressure.get(u)+";";
+			}
+			serialJourneys+=">\n";
+		}
+		try {BufferedWriter out = new BufferedWriter(new FileWriter("journeys.txt"));
+		out.write(serialJourneys+"End");
+		out.close();
+		}
+		catch (Exception c) {System.out.println("JOURNEY LIST SAVING FAILED");}
 	}
 	public static void load() {
+		if (new File("clients.txt").isFile()) {
 		try {
-	        File toRead=new File("clients");
-	        FileInputStream fis=new FileInputStream(toRead);
-	        ObjectInputStream ois=new ObjectInputStream(fis);
-	        clients=(HashMap<Integer, Client>)ois.readObject();
-	        ois.close();
-	        fis.close();
-	    } catch(Exception e) {}
+			InputStream scl = new FileInputStream("clients.txt");
+			BufferedReader buf = new BufferedReader(new InputStreamReader(scl));
+			String l = buf.readLine();
+			while(!l.equals("End")) {
+				int cID = 0;
+				Client c = new Client();
+				int u = 0;
+				String s = "";
+				for (int i =0; i<l.length(); i++) {
+					if (l.charAt(i) == '|' | l.charAt(i) =='>') {
+						if (u==5) {
+							c.phone=s;
+							clients.put(cID,c);
+						}
+						if (u==4) {c.email=s;}
+						if (u==3) {c.address=s;}
+						if (u==2) {c.password=s;}
+						if (u==1) {c.name=s;}
+						if (u==0) {cID = Integer.parseInt(s);}
+						s = "";
+						u++;
+					} 
+					else {
+						s += l.charAt(i);
+					}
+				}
+				l = buf.readLine();
+			}
+		}
+		catch (Exception c) {System.out.println("CLIENT LIST LOADING FAILED\n"+c);}
+		}
+		if (new File("journeys.txt").isFile()) {
 		try {
-	        File toRead=new File("journeys");
-	        FileInputStream fis=new FileInputStream(toRead);
-	        ObjectInputStream ois=new ObjectInputStream(fis);
-	        journeys=(HashMap<Integer, Journey>)ois.readObject();
-	        ois.close();
-	        fis.close();
-	    } catch(Exception e) {}
+			InputStream scl = new FileInputStream("journeys.txt");
+			BufferedReader buf = new BufferedReader(new InputStreamReader(scl));
+			String l = buf.readLine();
+			while(!l.equals("End")) {
+				int jID=0;
+				Journey j = new Journey();
+				int u = 0;
+				int y = 0;
+				String s = "";
+				for (int i =0; i<l.length(); i++) {
+					if (l.charAt(i) == '|') {
+						if (u==5) {j.ClientID=s;}
+						if (u==4) {j.content=s;}
+						if (u==3) {j.status=s;}
+						if (u==2) {j.destination=s;}
+						if (u==1) {j.origin=s;} 
+						if (u==0) {jID = Integer.parseInt(s);}
+						u++;
+						s="";
+					}
+					if (l.charAt(i) == ';') {
+						if (y==1) {
+							j.temperatures.add(Float.parseFloat(s));
+						}
+						if (y==2) {
+							j.humidity.add(Float.parseFloat(s));
+						}
+						if (y==3) {
+							j.atmPressure.add(Float.parseFloat(s));
+						}
+						s="";
+					}
+					if (l.charAt(i) == '>') {
+						if (y==3) {
+							journeys.put(jID, j);
+						}
+						s="";
+						y++;
+					}
+					if (l.charAt(i) != '>' & l.charAt(i) != '|' & l.charAt(i) != ';') {
+						s += l.charAt(i);
+					}
+				}
+				l = buf.readLine();
+			}
+		}
+		catch (Exception c) {System.out.println("JOURNEY LIST LOADING FAILED\n"+c);}
+		}
 	}
 	public static boolean clientExists(int cID) {
 		if (clients.get(cID)==null) {
@@ -240,4 +319,11 @@ public class dataStructure {
 			return true;
 		}
 	}
+//	public static void main(String[] args) {
+//		load();
+////		System.out.println(journeys.get(1914101302).temperatures);
+////		int i = regNewClient("Ben","Ben","Ben","Ben","123");
+////		regNewJourney("Ben","Not Ben","idk",1914);
+//		save();
+//	}
 }

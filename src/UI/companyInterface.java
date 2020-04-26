@@ -150,6 +150,19 @@ class companyInterface extends JFrame {
 		containerStatusLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		containerStatusPanel.add(containerStatusLabel);
 		
+		JButton updateContainerStatusButton = new JButton("Update Status");
+		updateContainerStatusButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		updateContainerStatusButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		updateContainerStatusButton.setBounds(25, 70, 150, 25);
+		updateContainerStatusButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.save();
+				companyUpdateStatus.companyUpdateStatus();		
+			}
+		});		
+		containerStatusPanel.add(updateContainerStatusButton);
+		
 		JPanel headerPanel = new JPanel();
 		headerPanel.setForeground(SystemColor.desktop);
 		headerPanel.setBackground(SystemColor.desktop);
