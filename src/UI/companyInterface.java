@@ -8,6 +8,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.SystemColor;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -50,7 +51,7 @@ class companyInterface extends JFrame {
 		JPanel clientManagePanel = new JPanel();
 		clientManagePanel.setBorder(null);
 		clientManagePanel.setBackground(Color.BLACK);
-		clientManagePanel.setBounds(0, 50, 200, 620);
+		clientManagePanel.setBounds(0, 50, 600, 620);
 		panel.add(clientManagePanel);
 		clientManagePanel.setLayout(null);
 		
@@ -86,83 +87,48 @@ class companyInterface extends JFrame {
 		});
 		clientManagePanel.add(searchClientButton);
 		
-		JPanel journeyManagePanel = new JPanel();
-		journeyManagePanel.setBorder(null);
-		journeyManagePanel.setBackground(Color.BLACK);
-		journeyManagePanel.setBounds(200, 50, 200, 620);
-		panel.add(journeyManagePanel);
-		journeyManagePanel.setLayout(null);
-		
 		JLabel journeyManageLabel = new JLabel("Journey Management");
-		journeyManageLabel.setBounds(10, 25, 175, 20);
 		journeyManageLabel.setForeground(SystemColor.controlShadow);
 		journeyManageLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		journeyManagePanel.add(journeyManageLabel);
+		journeyManageLabel.setBounds(212, 25, 175, 20);
+		clientManagePanel.add(journeyManageLabel);
 		
 		JButton exitButton = new JButton("Exit");
-		exitButton.setBounds(60, 530, 80, 25);
 		exitButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		exitButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, Color.BLACK, null, null, null));
-		exitButton.addActionListener(new ActionListener() {
-			  @Override
-			public void actionPerformed(ActionEvent e) {
-				dataStructure.save();
-			    System.exit(0);
-			  }
-			});
-		journeyManagePanel.add(exitButton);
+		exitButton.setBounds(226, 555, 150, 25);
+		clientManagePanel.add(exitButton);
 		
 		JButton updateJourneyButton = new JButton("Update a Journey");
-		updateJourneyButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 		updateJourneyButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-		updateJourneyButton.setBounds(25, 70, 150, 25);
-		updateJourneyButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dataStructure.save();
-				companyUpdateJourney.companyUpdateJourney();		
-			}
-		});
-		journeyManagePanel.add(updateJourneyButton);
+		updateJourneyButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		updateJourneyButton.setBounds(226, 70, 150, 25);
+		clientManagePanel.add(updateJourneyButton);
 		
 		JButton searchJourneyButton = new JButton("Search for a Journey");
-		searchJourneyButton.setBounds(25, 120, 150, 25);
 		searchJourneyButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		searchJourneyButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		searchJourneyButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dataStructure.save();
-				companySearchJourney.companySearchJourney();		
-			}
-		});
-		journeyManagePanel.add(searchJourneyButton);
-		
-		JPanel containerStatusPanel = new JPanel();
-		containerStatusPanel.setBorder(null);
-		containerStatusPanel.setBackground(Color.BLACK);
-		containerStatusPanel.setBounds(400, 50, 200, 620);
-		panel.add(containerStatusPanel);
-		containerStatusPanel.setLayout(null);
+		searchJourneyButton.setBounds(226, 120, 150, 25);
+		clientManagePanel.add(searchJourneyButton);
 		
 		JLabel containerStatusLabel = new JLabel("Container Status");
-		containerStatusLabel.setBounds(30, 25, 134, 20);
 		containerStatusLabel.setForeground(SystemColor.controlShadow);
 		containerStatusLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		containerStatusPanel.add(containerStatusLabel);
+		containerStatusLabel.setBounds(425, 25, 134, 20);
+		clientManagePanel.add(containerStatusLabel);
 		
 		JButton updateContainerStatusButton = new JButton("Update Status");
 		updateContainerStatusButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		updateContainerStatusButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		updateContainerStatusButton.setBounds(25, 70, 150, 25);
-		updateContainerStatusButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dataStructure.save();
-				companyUpdateStatus.companyUpdateStatus();		
-			}
-		});		
-		containerStatusPanel.add(updateContainerStatusButton);
+		updateContainerStatusButton.setBounds(426, 70, 150, 25);
+		clientManagePanel.add(updateContainerStatusButton);
+		
+		JPanel worldMapPanel = new JPanel();
+		worldMapPanel.setBackground(SystemColor.desktop);
+		worldMapPanel.setBounds(0, 185, 595, 335);
+		JLabel imgLabel = new JLabel(new ImageIcon("C:/Users/320/git/02160-Project/Images/grayscale-vector-worldmap.jpg"));
+		worldMapPanel.add(imgLabel);
+		clientManagePanel.add(worldMapPanel);
 		
 		JPanel headerPanel = new JPanel();
 		headerPanel.setForeground(SystemColor.desktop);
