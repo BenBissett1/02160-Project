@@ -25,6 +25,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
+import io.cucumber.core.internal.gherkin.StringUtils;
 import main.Journey;
 import main.dataStructure;
 import main.request;
@@ -32,7 +33,7 @@ import main.request;
 public class clientContainerHistory extends JFrame{
 	public clientContainerHistory(int genUser) {
 		super("Client Container History");
-		setSize(new Dimension(313, 280));
+		setSize(new Dimension(320,280));
 		setLocationByPlatform(true);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		setAlwaysOnTop(true);
@@ -51,8 +52,15 @@ public class clientContainerHistory extends JFrame{
 		JLabel clientRegContainerLabel = new JLabel("Fill in the below fields:");
 		clientRegContainerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		clientRegContainerLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		clientRegContainerLabel.setBounds(5, 10, 300, 25);
+		clientRegContainerLabel.setBounds(5, 15, 300, 25);
 		panel.add(clientRegContainerLabel);
+		
+		String[] statusList = {"Temperature", "Humidity", "Pressure"};
+		
+		JComboBox containerHistoryStatusComboBox = new JComboBox(statusList);
+		containerHistoryStatusComboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
+		containerHistoryStatusComboBox.setBounds(160, 125, 95, 25);
+		panel.add(containerHistoryStatusComboBox);
 		
 		List<Integer> journeyID = dataStructure.searchJ(Integer.toString(genUser),4,genUser);
 		String[] jIDs = new String[journeyID.size()];
@@ -69,7 +77,7 @@ public class clientContainerHistory extends JFrame{
 		
 		JComboBox containerHistoryJourneysComboBox = new JComboBox(jIDs);
 		containerHistoryJourneysComboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
-		containerHistoryJourneysComboBox.setBounds(160, 65, 95, 25);
+		containerHistoryJourneysComboBox.setBounds(160, 80, 95, 25);
 		panel.add(containerHistoryJourneysComboBox);
 		
 		JButton clientCreateBack = new JButton("Back");
@@ -96,21 +104,44 @@ public class clientContainerHistory extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String inputJourney = (String) containerHistoryJourneysComboBox.getSelectedItem();
-				if (inputJourney.isEmpty()) {
+				String inputStatus = (String) containerHistoryStatusComboBox.getSelectedItem();
+				if (inputJourney.isEmpty() || inputStatus.isEmpty()) {
 					JOptionPane.showMessageDialog(panel,
-							"Please Choose a Journey",
-							"Empty Field",
+							"Please choose one of each",
+							"Empty Field(s)",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
-					ArrayList<Float> jID = J.temperatures;
-					String listString = jID.stream().map(Object::toString)
-	                        .collect(Collectors.joining(", "));
-					JOptionPane.showMessageDialog(panel,
-							"Your Journey ID is: " + listString,
-							"Confirmation",
-							JOptionPane.INFORMATION_MESSAGE);
-					dataStructure.save();
-					dispose();
+					if(inputStatus.equals("Temperature")) {
+						List<Float> jTemp = J.getTemp();
+						String listString = jTemp.stream().map(Object::toString)
+								.collect(Collectors.joining(", "));
+						JOptionPane.showMessageDialog(panel,
+								"The history of the temperature is: " + listString,
+								"Confirmation",
+								JOptionPane.INFORMATION_MESSAGE);
+						dataStructure.save();
+						dispose();
+					} else if (inputStatus.equals("Humidity")){
+						List<Float> jHum = J.getHum();
+						String listString = jHum.stream().map(Object::toString)
+								.collect(Collectors.joining(", "));
+						JOptionPane.showMessageDialog(panel,
+								"The history of the humidity is: " + listString,
+								"Confirmation",
+								JOptionPane.INFORMATION_MESSAGE);
+						dataStructure.save();
+						dispose();
+					} else if (inputStatus.equals("Pressure")) {
+						List<Float> jPres = J.getPres();
+						String listString = jPres.stream().map(Object::toString)
+								.collect(Collectors.joining(", "));
+						JOptionPane.showMessageDialog(panel,
+								"The history of the pressure is: " + listString,
+								"Confirmation",
+								JOptionPane.INFORMATION_MESSAGE);
+						dataStructure.save();
+						dispose();
+					}
 				}
 			}
 		});
@@ -120,8 +151,15 @@ public class clientContainerHistory extends JFrame{
 		containerHistoryJourneyIDLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		containerHistoryJourneyIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		containerHistoryJourneyIDLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		containerHistoryJourneyIDLabel.setBounds(55, 65, 95, 20);
+		containerHistoryJourneyIDLabel.setBounds(55, 80, 95, 25);
 		panel.add(containerHistoryJourneyIDLabel);
+		
+		JLabel containerHistoryStatusLabel = new JLabel("Status:");
+		containerHistoryStatusLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		containerHistoryStatusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		containerHistoryStatusLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		containerHistoryStatusLabel.setBounds(55, 125, 95, 25);
+		panel.add(containerHistoryStatusLabel);
 		
 	}
 
