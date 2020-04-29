@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Journey extends dataStructure {
 
@@ -13,6 +14,15 @@ public class Journey extends dataStructure {
 	ArrayList<Float> temperatures = new ArrayList<Float>();
 	ArrayList<Float> humidity = new ArrayList<Float>();
 	ArrayList<Float> atmPressure = new ArrayList<Float>();
+	public List<Float> getTemp() {
+		return temperatures;
+	}
+	public List<Float> getHum() {
+		return humidity;
+	}
+	public List<Float> getPres() {
+		return atmPressure;
+	}
 	public Float getLastTemp() {
 		if (temperatures.size()==0) {
 			return (float) (150 + Math.floor(Math.random() * (( 250 - 150 ) + 1 )))/10;
