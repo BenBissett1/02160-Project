@@ -47,7 +47,7 @@ public class Journey extends dataStructure {
 			return atmPressure.get(0);
 		}
 		else {
-			return atmPressure.get(atmPressure.size()-1); 
+			return atmPressure.get(atmPressure.size()-1);
 		}
 	}
 	public int getJID() {
