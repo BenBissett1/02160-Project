@@ -78,23 +78,19 @@ public class dataStructure {
 		for (int i =clientsSize; i<2*clientsSize; i++) {
 			if (type == 0) {
 				if (clients.get(i) == null || clients.get(i).name.equals("")) {continue;}
-				if (keyword.equals(clients.get(i).name)) {
-					return i;}
+				if (keyword.equals(clients.get(i).name)) {return i;}
 			}
 			if (type == 2) {
 				if (clients.get(i) == null || clients.get(i).address.equals("")) {continue;}
-				if (keyword.equals(clients.get(i).address)) {
-					return i;}
+				if (keyword.equals(clients.get(i).address)) {return i;}
 			}
 			if (type == 3) {
 				if (clients.get(i) == null || clients.get(i).email.equals("")) {continue;}
-				if (keyword.equals(clients.get(i).email)) {
-					return i;}
+				if (keyword.equals(clients.get(i).email)) {return i;}
 			}
 			if (type == 4) {
 				if (clients.get(i) == null || clients.get(i).phone.equals("")) {continue;}
-				if (keyword.equals(clients.get(i).phone)) {
-					return i;}
+				if (keyword.equals(clients.get(i).phone)) {return i;}
 			}
 		}
 		return -1;
