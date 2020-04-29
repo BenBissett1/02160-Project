@@ -151,6 +151,19 @@ class clientInterface extends JFrame {
 		});
 		clientManagePanel.add(containerHistoryButton);
 		
+		JButton moreJourneyInformationButton = new JButton("More Journey Info");
+		moreJourneyInformationButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		moreJourneyInformationButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		moreJourneyInformationButton.setBounds(226, 110, 150, 25);
+		moreJourneyInformationButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.save();
+				clientMoreInformation.clientMoreInformation(genUser);
+			}
+		});
+		clientManagePanel.add(moreJourneyInformationButton);
+		
 		JLabel containerStatusLabel = new JLabel("Container Status");
 		containerStatusLabel.setBounds(428, 25, 134, 20);
 		containerStatusLabel.setForeground(SystemColor.controlShadow);
