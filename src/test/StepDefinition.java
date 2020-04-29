@@ -59,11 +59,19 @@ public class StepDefinition {
 	}
 	@Then("display client info")
 	public void displayInfo() {
-		System.out.println(dataStructure.clients.get(client.getID()));
+		System.out.println(client.getID());
+	}
+	@Then("save client info")
+	public void saveCInfo() {
+		dataStructure.saveC();
+	}
+	@When("load clients")
+	public void loadCInfo() {
+		dataStructure.loadC();
 	}
 	@Then("display all client info")
 	public void displayAllInfo() {
-		System.out.println(dataStructure.clients);
+		System.out.println(dataStructure.allClients());
 	}
 	@Then("message already registered")
 	public void message_already_registered() {
@@ -71,20 +79,9 @@ public class StepDefinition {
 			System.out.println("already registered");
 		};
 	}
-	@When("user closes program")
-	public void user_closes_program() {
-	    dataStructure.save();
-	}
-
-	@Then("message files saved")
-	public void message_files_saved() {
-	    System.out.println("Saved file");;
-	}
-	@When("load file")
+	@When("load journeys")
 	public void loadclients() {
-		dataStructure.load();
-
-	
+		dataStructure.loadJ();
 	}
 	@When("search by name") 
 	public void searchName() {
@@ -93,6 +90,11 @@ public class StepDefinition {
 	@Then("update client")
 	public void update() {
 		dataStructure.updateClient(client.getID(), client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone());
+	}
+	@Then("check client")
+	public void clientcheck() {
+		System.out.println(dataStructure.clientExists(client.getID()));
+
 	}
 	
 	
@@ -127,7 +129,7 @@ public class StepDefinition {
 	
 	@Given("client {string}")
 	public void client(String name) {
-		journey.setClientID(name);
+		journey.setClientID(""+client.getID());
 	}
 	@Given("status {string}")
 	public void status(String x) {
@@ -138,16 +140,38 @@ public class StepDefinition {
 	@When("register journey")
 	public void register() {
 		journey.setJID(dataStructure.regNewJourney(journey.getOrigin(),journey.getDestination(),journey.getContent(),Integer.parseInt(journey.getClientID())));
+//		journey.setStatus(dataStructure.journeys.get(journey.getJID()).getStatus());
 	}
 
 	@Then("display journey info")
 	public void displayJinfo() {
-		System.out.println(dataStructure.journeys.get(journey.getJID()));
+		System.out.println(journey.getJID());
 
+	}
+	@Then("search by origin")
+	public void origin() {
+		System.out.println(dataStructure.searchJ(journey.getOrigin(), 0, Integer.parseInt(journey.getClientID())));
+	}
+	@Then("search by destination")
+	public void destination() {
+		System.out.println(dataStructure.searchJ(journey.getDestination(), 1, Integer.parseInt(journey.getClientID())));
+	}
+	@Then("search by status")
+	public void status() {
+		System.out.println(dataStructure.searchJ(journey.getStatus(), 2, Integer.parseInt(journey.getClientID())));
+	}
+	@Then("search by content")
+	public void content() {
+		System.out.println(dataStructure.searchJ(journey.getContent(), 3, Integer.parseInt(journey.getClientID())));
 	}
 	@Then("display all journey info")
 	public void displayAllJinfo() {
-		System.out.println(dataStructure.journeys);
+		System.out.println(dataStructure.allJourneys());
+
+	}
+	@Then("check journey")
+	public void journeycheck() {
+		System.out.println(dataStructure.journeyExists(journey.getJID()));
 
 	}
 	@When("search for clients journeys")
@@ -156,11 +180,15 @@ public class StepDefinition {
 	}
 	@When("save journey info")
 	public void saveJ() {
-		data.save();
+		dataStructure.saveJ();
 	}
 	@Then("update journey")
 	public void updateJ() {
-		dataStructure.updateJourney(journey.getJID(), journey.getOrigin(), journey.getDestination(), journey.getStatus(),journey.getContent(), journey.getClientID());
+		dataStructure.updateJourney(journey.getJID(), journey.getDestination(), journey.getStatus());
+	}
+	@Given("client")
+	public void setClientinJ() {
+		journey.setClientID(""+client.getID());;
 	}
 	
 	
@@ -249,7 +277,7 @@ public class StepDefinition {
 	
 	@Given("retrieve data")
 	public void retrieve_data() {
-		request.getData();
+//		request.getData();
 	}
 	
 	////////////////////

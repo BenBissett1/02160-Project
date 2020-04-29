@@ -10,7 +10,7 @@ Feature: Registering a client
     And phone is "123456"
     When register client
     Then display client info
- 
+    Then check client
 
   @tag2
   Scenario: Already registered
@@ -31,19 +31,19 @@ Feature: Registering a client
    And phone is "123466"
    When register client
    Then display client info
-   When user closes program
-	 Then message files saved
+   And save client info
 	 Given name is "John&co2"
 	 When search by name
 	 Then display client info
 	 
 	@tag4
 	Scenario: Loading
-    When load file
+    When load clients
     Then display all client info
     
   @tag5
   Scenario: updating client info
+  	When load clients
   	Given name is "John&co2"
   	When search by name
   	Given password is "Snow123"
