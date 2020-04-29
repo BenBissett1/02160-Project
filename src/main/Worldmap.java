@@ -49,7 +49,7 @@ public class Worldmap {
 
         public Painter() {
             try {
-                Worldmap = ImageIO.read(new File("C:/Users/bruger/git/02160-Project/Images/WorldMapSimpleSmall.jpg"));
+                Worldmap = ImageIO.read(new File("C:/Users/320/git/02160-Project/Images/WorldMapSimpleSmall.jpg"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
