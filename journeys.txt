@@ -1,3 +1,0 @@
-1995108074|Edinburgh|Busan|At origin|Ost|1995|>22.2;>36.8;>951.2;>
-1499105013|Copenhagen|Christchurch|At origin|Cheese|1499|>24.4;25.5;>40.1;4.0;>1162.7;4.0;>
-End
