@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Journey extends dataStructure {
 
@@ -13,9 +14,19 @@ public class Journey extends dataStructure {
 	ArrayList<Float> temperatures = new ArrayList<Float>();
 	ArrayList<Float> humidity = new ArrayList<Float>();
 	ArrayList<Float> atmPressure = new ArrayList<Float>();
+	public List<Float> getTemp() {
+		return temperatures;
+	}
+	public List<Float> getHum() {
+		return humidity;
+	}
+	public List<Float> getPres() {
+		return atmPressure;
+	}
 	public Float getLastTemp() {
 		if (temperatures.size()==0) {
-			return (float) (150 + Math.floor(Math.random() * (( 250 - 150 ) + 1 )))/10;
+			temperatures.add(0, (float) (150 + Math.floor(Math.random() * (( 250 - 150 ) + 1 )))/10);
+			return temperatures.get(0);
 		}
 		else {
 			return temperatures.get(temperatures.size()-1);		
@@ -23,7 +34,8 @@ public class Journey extends dataStructure {
 	}
 	public Float getLastHumidity() {
 		if (humidity.size()==0) {
-			return (float) (350 + Math.floor(Math.random() * (( 550 - 350 ) + 1 )))/10;
+			humidity.add(0, (float) (350 + Math.floor(Math.random() * (( 550 - 350 ) + 1 )))/10);
+			return humidity.get(0);
 		}
 		else {
 			return humidity.get(humidity.size()-1);	
@@ -31,7 +43,8 @@ public class Journey extends dataStructure {
 	}
 	public Float getLastAtmPressure() {
 		if (atmPressure.size()==0) {
-			return (float) (9000 + Math.floor(Math.random() * (( 12000 - 9000 ) + 1 )))/10;
+			atmPressure.add(0, (float) (9000 + Math.floor(Math.random() * (( 12000 - 9000 ) + 1 )))/10);
+			return atmPressure.get(0);
 		}
 		else {
 			return atmPressure.get(atmPressure.size()-1);

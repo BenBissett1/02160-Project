@@ -1,12 +1,18 @@
+
 package UI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.SystemColor;
+
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -15,16 +21,24 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import main.dataStructure;
+import main.Worldmap.Painter;
 
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.stream.Collectors;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 class companyInterface extends JFrame {
 	private ButtonGroup group;
 	private JPanel panel;
 	private JTextField txtinit;
+    private BufferedImage Worldmap;
 	
 	public companyInterface() {
 		super("Company Interface");
@@ -46,18 +60,41 @@ class companyInterface extends JFrame {
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		JPanel headerPanel = new JPanel();
+		headerPanel.setForeground(SystemColor.desktop);
+		headerPanel.setBackground(SystemColor.desktop);
+		headerPanel.setBounds(0, 0, 600, 50);
+		panel.add(headerPanel);
+		
+		JLabel companyHeaderLabel = new JLabel("Company Interface");
+		companyHeaderLabel.setForeground(SystemColor.controlShadow);
+		companyHeaderLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		headerPanel.add(companyHeaderLabel);
+		
 		JPanel clientManagePanel = new JPanel();
 		clientManagePanel.setBorder(null);
 		clientManagePanel.setBackground(Color.BLACK);
-		clientManagePanel.setBounds(0, 50, 200, 620);
+		clientManagePanel.setBounds(0, 50, 600, 620);
 		panel.add(clientManagePanel);
 		clientManagePanel.setLayout(null);
+		
+		JLabel containerStatusLabel = new JLabel("Container Status");
+		containerStatusLabel.setForeground(SystemColor.controlShadow);
+		containerStatusLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		containerStatusLabel.setBounds(425, 25, 134, 20);
+		clientManagePanel.add(containerStatusLabel);
 		
 		JLabel clientManageLabel = new JLabel("Client Management");
 		clientManageLabel.setBounds(21, 25, 157, 20);
 		clientManageLabel.setForeground(SystemColor.controlShadow);
 		clientManageLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		clientManagePanel.add(clientManageLabel);
+		
+		JLabel journeyManageLabel = new JLabel("Journey Management");
+		journeyManageLabel.setForeground(SystemColor.controlShadow);
+		journeyManageLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		journeyManageLabel.setBounds(212, 25, 175, 20);
+		clientManagePanel.add(journeyManageLabel);
 		
 		JButton regNewClientButton = new JButton("Register a New Client");
 		regNewClientButton.setBounds(25, 70, 150, 25);
@@ -85,23 +122,29 @@ class companyInterface extends JFrame {
 		});
 		clientManagePanel.add(searchClientButton);
 		
-		JPanel journeyManagePanel = new JPanel();
-		journeyManagePanel.setBorder(null);
-		journeyManagePanel.setBackground(Color.BLACK);
-		journeyManagePanel.setBounds(200, 50, 200, 620);
-		panel.add(journeyManagePanel);
-		journeyManagePanel.setLayout(null);
-		
-		JLabel journeyManageLabel = new JLabel("Journey Management");
-		journeyManageLabel.setBounds(10, 25, 175, 20);
-		journeyManageLabel.setForeground(SystemColor.controlShadow);
-		journeyManageLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		journeyManagePanel.add(journeyManageLabel);
+		JButton seeAllCurrentButton = new JButton("View All Ongoing");
+		seeAllCurrentButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		seeAllCurrentButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		seeAllCurrentButton.setBounds(425, 120, 150, 25);
+		seeAllCurrentButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String clients = (dataStructure.allClients()).stream().map(Object::toString)
+						.collect(Collectors.joining(", "));
+				String journeys = (dataStructure.allJourneys()).stream().map(Object::toString)
+						.collect(Collectors.joining(", "));
+				JOptionPane.showMessageDialog(panel,
+						"\n" + "Clients: " + clients + "\n" + "Journeys: " + journeys,
+						"All Ongoing Clients and Journeys",
+						JOptionPane.INFORMATION_MESSAGE);
+				}
+		});
+		clientManagePanel.add(seeAllCurrentButton);
 		
 		JButton exitButton = new JButton("Exit");
-		exitButton.setBounds(60, 530, 80, 25);
 		exitButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		exitButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, Color.BLACK, null, null, null));
+		exitButton.setBounds(226, 540, 150, 25);
 		exitButton.addActionListener(new ActionListener() {
 			  @Override
 			public void actionPerformed(ActionEvent e) {
@@ -109,71 +152,59 @@ class companyInterface extends JFrame {
 			    System.exit(0);
 			  }
 			});
-		journeyManagePanel.add(exitButton);
+		clientManagePanel.add(exitButton);
 		
 		JButton updateJourneyButton = new JButton("Update a Journey");
-		updateJourneyButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 		updateJourneyButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-		updateJourneyButton.setBounds(25, 70, 150, 25);
+		updateJourneyButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		updateJourneyButton.setBounds(226, 70, 150, 25);
 		updateJourneyButton.addActionListener(new ActionListener() {
-			@Override
+			  @Override
 			public void actionPerformed(ActionEvent e) {
 				dataStructure.save();
-				companyUpdateJourney.companyUpdateJourney();		
-			}
-		});
-		journeyManagePanel.add(updateJourneyButton);
+			    companyUpdateJourney.companyUpdateJourney();
+			  }
+			});
+		clientManagePanel.add(updateJourneyButton);
 		
 		JButton searchJourneyButton = new JButton("Search for a Journey");
-		searchJourneyButton.setBounds(25, 120, 150, 25);
 		searchJourneyButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		searchJourneyButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		searchJourneyButton.setBounds(226, 120, 150, 25);
 		searchJourneyButton.addActionListener(new ActionListener() {
-			@Override
+			  @Override
 			public void actionPerformed(ActionEvent e) {
 				dataStructure.save();
-				companySearchJourney.companySearchJourney();		
-			}
-		});
-		journeyManagePanel.add(searchJourneyButton);
-		
-		JPanel containerStatusPanel = new JPanel();
-		containerStatusPanel.setBorder(null);
-		containerStatusPanel.setBackground(Color.BLACK);
-		containerStatusPanel.setBounds(400, 50, 200, 620);
-		panel.add(containerStatusPanel);
-		containerStatusPanel.setLayout(null);
-		
-		JLabel containerStatusLabel = new JLabel("Container Status");
-		containerStatusLabel.setBounds(30, 25, 134, 20);
-		containerStatusLabel.setForeground(SystemColor.controlShadow);
-		containerStatusLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		containerStatusPanel.add(containerStatusLabel);
+			    companySearchJourney.companySearchJourney();
+			  }
+			});
+		clientManagePanel.add(searchJourneyButton);
 		
 		JButton updateContainerStatusButton = new JButton("Update Status");
 		updateContainerStatusButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		updateContainerStatusButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		updateContainerStatusButton.setBounds(25, 70, 150, 25);
+		updateContainerStatusButton.setBounds(426, 70, 150, 25);
 		updateContainerStatusButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dataStructure.save();
 				companyUpdateStatus.companyUpdateStatus();		
 			}
-		});		
-		containerStatusPanel.add(updateContainerStatusButton);
+		});
+		clientManagePanel.add(updateContainerStatusButton);
 		
-		JPanel headerPanel = new JPanel();
-		headerPanel.setForeground(SystemColor.desktop);
-		headerPanel.setBackground(SystemColor.desktop);
-		headerPanel.setBounds(0, 0, 600, 50);
-		panel.add(headerPanel);
-		
-		JLabel companyHeaderLabel = new JLabel("Company Interface");
-		companyHeaderLabel.setForeground(SystemColor.controlShadow);
-		companyHeaderLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		headerPanel.add(companyHeaderLabel);
-		
+		JPanel worldMapPanel = new JPanel();
+		worldMapPanel.setBackground(SystemColor.desktop);
+		worldMapPanel.setBounds(0, 185, 595, 335);
+		BufferedImage myPicture = null;
+		try {
+			myPicture = ImageIO.read(new File("C:/Users/320/git/02160-Project/Images/grayscale-vector-worldmap.jpg"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+		worldMapPanel.add(picLabel);
+		clientManagePanel.add(worldMapPanel);
 	}
 
 	public static void companyInterface() {
@@ -184,3 +215,4 @@ class companyInterface extends JFrame {
 		cmpInterface.setVisible(true);
 	}
 }
+

@@ -74,27 +74,35 @@ public class dataStructure {
 	static int journeysSize = 100000;
 	public static Map<Integer, Client> clients= new HashMap<Integer, Client>();
 	public static Map<Integer, Journey> journeys= new HashMap<Integer, Journey>();
+	public static List<Integer> allClients() {
+		List<Integer> allCs = new ArrayList<Integer>();
+		for (int i =clientsSize; i<2*clientsSize; i++) {
+			if (clients.get(i) != null) {allCs.add(i);}
+		}
+		return allCs;
+	}
+	public static List<Integer> allJourneys() {
+		List<Integer> allJs = new ArrayList<Integer>();
+		List<Integer> allCs = allClients();
+		for (int i =0; i<allCs.size(); i++) {
+			allJs.addAll(searchJ(""+allCs.get(i),4,allCs.get(i)));
+		}
+		return allJs;
+	}
 	public static int searchC(String keyword, int type) {
 		for (int i =clientsSize; i<2*clientsSize; i++) {
+			if (clients.get(i) == null) {continue;}
 			if (type == 0) {
-				if (clients.get(i) == null || clients.get(i).name.equals("")) {continue;}
-				if (keyword.equals(clients.get(i).name)) {
-					return i;}
+				if (keyword.equals(clients.get(i).name)) {return i;}
 			}
 			if (type == 2) {
-				if (clients.get(i) == null || clients.get(i).address.equals("")) {continue;}
-				if (keyword.equals(clients.get(i).address)) {
-					return i;}
+				if (keyword.equals(clients.get(i).address)) {return i;}
 			}
 			if (type == 3) {
-				if (clients.get(i) == null || clients.get(i).email.equals("")) {continue;}
-				if (keyword.equals(clients.get(i).email)) {
-					return i;}
+				if (keyword.equals(clients.get(i).email)) {return i;}
 			}
 			if (type == 4) {
-				if (clients.get(i) == null || clients.get(i).phone.equals("")) {continue;}
-				if (keyword.equals(clients.get(i).phone)) {
-					return i;}
+				if (keyword.equals(clients.get(i).phone)) {return i;}
 			}
 		}
 		return -1;
@@ -102,32 +110,28 @@ public class dataStructure {
 	public static List<Integer> searchJ(String keyword, int type, int cID) {
 		List<Integer> journeyIDs = new ArrayList<Integer>();
 		for (int i = Integer.parseInt(cID+""+journeysSize); i<Integer.parseInt(cID+""+2*journeysSize); i++) {
+			if (journeys.get(i) == null) {continue;}
 			if (type == 0) {
-				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).origin)) {
 					journeyIDs.add(i);
 				}
 			}
 			if (type == 1) {
-				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).destination)) {
 					journeyIDs.add(i);
 				}
 			}
 			if (type == 2) {
-				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).status)) {
 					journeyIDs.add(i);
 				}
 			}
 			if (type == 3) {
-				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).content)) {
 					journeyIDs.add(i);
 				}
 			}
 			if (type == 4) {
-				if (journeys.get(i) == null) {continue;}
 				if (keyword.equals(journeys.get(i).ClientID)) {
 					journeyIDs.add(i);
 				}
@@ -182,7 +186,7 @@ public class dataStructure {
 		j.status=status;
 		journeys.put(ID, j);		
 	}
-	public static void save() {
+	public static void saveC() {
 		String serialClients = "";
 		Iterator<Integer> itr = clients.keySet().iterator();
 		while(itr.hasNext()) {
@@ -194,8 +198,10 @@ public class dataStructure {
 		out.close();
 		}
 		catch (Exception c) {System.out.println("CLIENT LIST SAVING FAILED");}
+	}
+	public static void saveJ() {
 		String serialJourneys = "";
-		itr = journeys.keySet().iterator();
+		Iterator<Integer> itr = journeys.keySet().iterator();
 		while(itr.hasNext()) {
 			int i = itr.next();
 			serialJourneys+=i+"|"+journeys.get(i).origin+"|"+journeys.get(i).destination+"|"+journeys.get(i).status+"|"+journeys.get(i).content+"|"+journeys.get(i).ClientID+"|>";
@@ -218,91 +224,101 @@ public class dataStructure {
 		}
 		catch (Exception c) {System.out.println("JOURNEY LIST SAVING FAILED");}
 	}
-	public static void load() {
-		if (new File("clients.txt").isFile()) {
-		try {
-			InputStream scl = new FileInputStream("clients.txt");
-			BufferedReader buf = new BufferedReader(new InputStreamReader(scl));
-			String l = buf.readLine();
-			while(!l.equals("End")) {
-				int cID = 0;
-				Client c = new Client();
-				int u = 0;
-				String s = "";
-				for (int i =0; i<l.length(); i++) {
-					if (l.charAt(i) == '|' | l.charAt(i) =='>') {
-						if (u==5) {
-							c.phone=s;
-							clients.put(cID,c);
-						}
-						if (u==4) {c.email=s;}
-						if (u==3) {c.address=s;}
-						if (u==2) {c.password=s;}
-						if (u==1) {c.name=s;}
-						if (u==0) {cID = Integer.parseInt(s);}
-						s = "";
-						u++;
-					} 
-					else {
-						s += l.charAt(i);
-					}
-				}
-				l = buf.readLine();
-			}
-		}
-		catch (Exception c) {System.out.println("CLIENT LIST LOADING FAILED\n"+c);}
-		}
-		if (new File("journeys.txt").isFile()) {
-		try {
-			InputStream scl = new FileInputStream("journeys.txt");
-			BufferedReader buf = new BufferedReader(new InputStreamReader(scl));
-			String l = buf.readLine();
-			while(!l.equals("End")) {
-				int jID=0;
-				Journey j = new Journey();
-				int u = 0;
-				int y = 0;
-				String s = "";
-				for (int i =0; i<l.length(); i++) {
-					if (l.charAt(i) == '|') {
-						if (u==5) {j.ClientID=s;}
-						if (u==4) {j.content=s;}
-						if (u==3) {j.status=s;}
-						if (u==2) {j.destination=s;}
-						if (u==1) {j.origin=s;} 
-						if (u==0) {jID = Integer.parseInt(s);}
-						u++;
-						s="";
-					}
-					if (l.charAt(i) == ';') {
-						if (y==1) {
-							j.temperatures.add(Float.parseFloat(s));
-						}
-						if (y==2) {
-							j.humidity.add(Float.parseFloat(s));
-						}
-						if (y==3) {
-							j.atmPressure.add(Float.parseFloat(s));
-						}
-						s="";
-					}
-					if (l.charAt(i) == '>') {
-						if (y==3) {
-							journeys.put(jID, j);
-						}
-						s="";
-						y++;
-					}
-					if (l.charAt(i) != '>' & l.charAt(i) != '|' & l.charAt(i) != ';') {
-						s += l.charAt(i);
-					}
-				}
-				l = buf.readLine();
-			}
-		}
-		catch (Exception c) {System.out.println("JOURNEY LIST LOADING FAILED\n"+c);}
-		}
+	public static void save() {
+		saveC();
+		saveJ();
 	}
+	public static void loadC() {
+		if (new File("clients.txt").isFile()) {
+			try {
+				InputStream scl = new FileInputStream("clients.txt");
+				BufferedReader buf = new BufferedReader(new InputStreamReader(scl));
+				String l = buf.readLine();
+				while(!l.equals("End")) {
+					int cID = 0;
+					Client c = new Client();
+					int u = 0;
+					String s = "";
+					for (int i =0; i<l.length(); i++) {
+						if (l.charAt(i) == '|' | l.charAt(i) =='>') {
+							if (u==5) {
+								c.phone=s;
+								clients.put(cID,c);
+							}
+							if (u==4) {c.email=s;}
+							if (u==3) {c.address=s;}
+							if (u==2) {c.password=s;}
+							if (u==1) {c.name=s;}
+							if (u==0) {cID = Integer.parseInt(s);}
+							s = "";
+							u++;
+						} 
+						else {
+							s += l.charAt(i);
+						}
+					}
+					l = buf.readLine();
+				}
+			}
+			catch (Exception c) {System.out.println("CLIENT LIST LOADING FAILED\n"+c);}
+			}
+	}
+	public static void loadJ() {
+		if (new File("journeys.txt").isFile()) {
+			try {
+				InputStream scl = new FileInputStream("journeys.txt");
+				BufferedReader buf = new BufferedReader(new InputStreamReader(scl));
+				String l = buf.readLine();
+				while(!l.equals("End")) {
+					int jID=0;
+					Journey j = new Journey();
+					int u = 0;
+					int y = 0;
+					String s = "";
+					for (int i =0; i<l.length(); i++) {
+						if (l.charAt(i) == '|') {
+							if (u==5) {j.ClientID=s;}
+							if (u==4) {j.content=s;}
+							if (u==3) {j.status=s;}
+							if (u==2) {j.destination=s;}
+							if (u==1) {j.origin=s;} 
+							if (u==0) {jID = Integer.parseInt(s);}
+							u++;
+							s="";
+						}
+						if (l.charAt(i) == ';') {
+							if (y==1) {
+								j.temperatures.add(Float.parseFloat(s));
+							}
+							if (y==2) {
+								j.humidity.add(Float.parseFloat(s));
+							}
+							if (y==3) {
+								j.atmPressure.add(Float.parseFloat(s));
+							}
+							s="";
+						}
+						if (l.charAt(i) == '>') {
+							if (y==3) {
+								journeys.put(jID, j);
+							}
+							s="";
+							y++;
+						}
+						if (l.charAt(i) != '>' & l.charAt(i) != '|' & l.charAt(i) != ';') {
+							s += l.charAt(i);
+						}
+					}
+					l = buf.readLine();
+				}
+			}
+			catch (Exception c) {System.out.println("JOURNEY LIST LOADING FAILED\n"+c);}
+			}
+	}
+	public static void load() {
+		loadC();
+		loadJ();
+		}
 	public static boolean clientExists(int cID) {
 		if (clients.get(cID)==null) {
 			return false;
@@ -321,9 +337,10 @@ public class dataStructure {
 	}
 //	public static void main(String[] args) {
 //		load();
+//		System.out.println(allClients());
+//		System.out.println(allJourneys());
 ////		System.out.println(journeys.get(1914101302).temperatures);
-////		int i = regNewClient("Ben","Ben","Ben","Ben","123");
-////		regNewJourney("Ben","Not Ben","idk",1914);
+//		regNewJourney("Ben","Not Ben","idk",1949);
 //		save();
 //	}
 }

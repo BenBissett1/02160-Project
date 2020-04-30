@@ -25,15 +25,6 @@ import main.dataStructure;
 
 import javax.swing.border.BevelBorder;
 
-
-
-
-///////TODO Status dropdown menu
-
-
-
-
-
 public class companyUpdateJourney extends JFrame {
 	private JTextField journeyIDField;
 	private JTextField destinationField;
