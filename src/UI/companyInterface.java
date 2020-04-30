@@ -29,8 +29,10 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 class companyInterface extends JFrame {
 	private ButtonGroup group;
@@ -120,6 +122,25 @@ class companyInterface extends JFrame {
 		});
 		clientManagePanel.add(searchClientButton);
 		
+		JButton seeAllCurrentButton = new JButton("View All Ongoing");
+		seeAllCurrentButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		seeAllCurrentButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		seeAllCurrentButton.setBounds(425, 120, 150, 25);
+		seeAllCurrentButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String clients = (dataStructure.allClients()).stream().map(Object::toString)
+						.collect(Collectors.joining(", "));
+				String journeys = (dataStructure.allJourneys()).stream().map(Object::toString)
+						.collect(Collectors.joining(", "));
+				JOptionPane.showMessageDialog(panel,
+						"\n" + "Clients: " + clients + "\n" + "Journeys: " + journeys,
+						"All Ongoing Clients and Journeys",
+						JOptionPane.INFORMATION_MESSAGE);
+				}
+		});
+		clientManagePanel.add(seeAllCurrentButton);
+		
 		JButton exitButton = new JButton("Exit");
 		exitButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		exitButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, Color.BLACK, null, null, null));
@@ -142,7 +163,6 @@ class companyInterface extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dataStructure.save();
 			    companyUpdateJourney.companyUpdateJourney();
-			    dispose();
 			  }
 			});
 		clientManagePanel.add(updateJourneyButton);
@@ -156,7 +176,6 @@ class companyInterface extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dataStructure.save();
 			    companySearchJourney.companySearchJourney();
-			    dispose();
 			  }
 			});
 		clientManagePanel.add(searchJourneyButton);

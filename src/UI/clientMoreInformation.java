@@ -8,10 +8,8 @@ import java.awt.GridLayout;
 import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,20 +17,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
-import io.cucumber.core.internal.gherkin.StringUtils;
 import main.Journey;
 import main.dataStructure;
-import main.request;
 
-public class clientContainerHistory extends JFrame{
-	public clientContainerHistory(int genUser) {
-		super("Client Container History");
+public class clientMoreInformation extends JFrame{
+	public clientMoreInformation(int genUser) {
+		super("More Journey Information");
 		setSize(new Dimension(320,280));
 		setLocationByPlatform(true);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -49,18 +44,11 @@ public class clientContainerHistory extends JFrame{
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel clientRegContainerLabel = new JLabel("Fill in the below fields:");
-		clientRegContainerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		clientRegContainerLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		clientRegContainerLabel.setBounds(5, 15, 300, 25);
-		panel.add(clientRegContainerLabel);
-		
-		String[] statusList = {"Temperature", "Humidity", "Pressure"};
-		
-		JComboBox containerHistoryStatusComboBox = new JComboBox(statusList);
-		containerHistoryStatusComboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
-		containerHistoryStatusComboBox.setBounds(160, 125, 95, 25);
-		panel.add(containerHistoryStatusComboBox);
+		JLabel clientTitleLabel = new JLabel("Please Choose a JourneyID");
+		clientTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		clientTitleLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		clientTitleLabel.setBounds(5, 15, 300, 25);
+		panel.add(clientTitleLabel);
 		
 		List<Integer> journeyID = dataStructure.searchJ(Integer.toString(genUser),4,genUser);
 		String[] jIDs = new String[journeyID.size()];
@@ -77,7 +65,7 @@ public class clientContainerHistory extends JFrame{
 		
 		JComboBox containerHistoryJourneysComboBox = new JComboBox(jIDs);
 		containerHistoryJourneysComboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
-		containerHistoryJourneysComboBox.setBounds(160, 80, 95, 25);
+		containerHistoryJourneysComboBox.setBounds(160, 100, 95, 25);
 		panel.add(containerHistoryJourneysComboBox);
 		
 		JButton clientCreateBack = new JButton("Back");
@@ -101,45 +89,23 @@ public class clientContainerHistory extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String inputJourney = (String) containerHistoryJourneysComboBox.getSelectedItem();
-				String inputStatus = (String) containerHistoryStatusComboBox.getSelectedItem();
 				Journey J = dataStructure.journeys.get(Integer.parseInt(inputJourney));
-				if (inputJourney.isEmpty() || inputStatus.isEmpty()) {
+				if (inputJourney.isEmpty()) {
 					JOptionPane.showMessageDialog(panel,
-							"Please choose one of each",
+							"Please choose a Journey",
 							"Empty Field(s)",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
-					if(inputStatus.equals("Temperature")) {
-						List<Float> jTemp = J.getTemp();
-						String listString = jTemp.stream().map(Object::toString)
-								.collect(Collectors.joining(", "));
-						JOptionPane.showMessageDialog(panel,
-								"The history of the temperature is: " + listString,
-								"Confirmation",
-								JOptionPane.INFORMATION_MESSAGE);
-						dataStructure.save();
-						dispose();
-					} else if (inputStatus.equals("Humidity")){
-						List<Float> jHum = J.getHum();
-						String listString = jHum.stream().map(Object::toString)
-								.collect(Collectors.joining(", "));
-						JOptionPane.showMessageDialog(panel,
-								"The history of the humidity is: " + listString,
-								"Confirmation",
-								JOptionPane.INFORMATION_MESSAGE);
-						dataStructure.save();
-						dispose();
-					} else if (inputStatus.equals("Pressure")) {
-						List<Float> jPres = J.getPres();
-						String listString = jPres.stream().map(Object::toString)
-								.collect(Collectors.joining(", "));
-						JOptionPane.showMessageDialog(panel,
-								"The history of the pressure is: " + listString,
-								"Confirmation",
-								JOptionPane.INFORMATION_MESSAGE);
-						dataStructure.save();
-						dispose();
-					}
+					String info = "";
+					info = "\n" + "Origin: " +  J.getOrigin() + "\n" + "Destination: " + J.getDestination() + "\n" + "Status: " + J.getStatus() 
+						   + "\n" + "Contents: " + J.getContent() + "\n" + "Current Temperature: " + J.getLastTemp() + "\n" + "Current Humidity: "
+						   + J.getLastHumidity() + "\n" + "Current Pressure: " + J.getLastAtmPressure();
+					JOptionPane.showMessageDialog(panel,
+							"All available information is as follows: " + info,
+							"Confirmation",
+							JOptionPane.INFORMATION_MESSAGE);
+					dataStructure.save();
+					dispose();
 				}
 			}
 		});
@@ -149,22 +115,15 @@ public class clientContainerHistory extends JFrame{
 		containerHistoryJourneyIDLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		containerHistoryJourneyIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		containerHistoryJourneyIDLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		containerHistoryJourneyIDLabel.setBounds(55, 80, 95, 25);
+		containerHistoryJourneyIDLabel.setBounds(55, 100, 95, 25);
 		panel.add(containerHistoryJourneyIDLabel);
-		
-		JLabel containerHistoryStatusLabel = new JLabel("Status:");
-		containerHistoryStatusLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		containerHistoryStatusLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		containerHistoryStatusLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		containerHistoryStatusLabel.setBounds(55, 125, 95, 25);
-		panel.add(containerHistoryStatusLabel);
 		
 	}
 
-	public static void clientContainerHistory(int genUser) {
-		clientContainerHistory cltCntHst= new clientContainerHistory(genUser);
-		cltCntHst.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		cltCntHst.setLocationRelativeTo(null);
-		cltCntHst.setVisible(true);
+	public static void clientMoreInformation(int genUser) {
+		clientMoreInformation cltMreIfo = new clientMoreInformation(genUser);
+		cltMreIfo.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		cltMreIfo.setLocationRelativeTo(null);
+		cltMreIfo.setVisible(true);
 	}
 }
