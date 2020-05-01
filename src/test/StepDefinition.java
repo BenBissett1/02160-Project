@@ -13,13 +13,13 @@ import main.Client;
 import main.Container;
 import main.Journey;
 import main.dataStructure;
-import main.Port;
+//import main.Port;
 import main.ResponseObject;
 import main.request;
 
 public class StepDefinition {
 	
-	Port port = new Port();
+	//Port port = new Port();
 	Container container = new Container();
 	Client client = new Client();
 	dataStructure data = new dataStructure();
