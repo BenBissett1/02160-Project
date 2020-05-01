@@ -30,35 +30,36 @@ public class request {
 	
 	public void updateContainerStatus(int journeyID,float temp, float hum, float pres) {
 		this.journeyID = journeyID;
-		if (doesJourneyExist()) {
-			journey.temperatures.add(temp);
-			journey.humidity.add(hum);
-			journey.atmPressure.add(pres);
-		}
+		doesJourneyExist();
+		
+		journey.temperatures.add(temp);
+		journey.humidity.add(hum);
+		journey.atmPressure.add(pres);
+		
+	}
+	
+	public ArrayList<Float> getHum() {
+		return journey.humidity;
 	}
 
-	public ArrayList<Float> getHum(int journeyID) {
-		this.journeyID = journeyID;
-		if (doesJourneyExist()) {
-			return journey.humidity;
-		}
-		return null;
+	public ArrayList<Float> getPres() {
+		return journey.atmPressure;
 	}
 	
-	public ArrayList<Float> getPres(int journeyID) {
-		this.journeyID = journeyID;
-		if (doesJourneyExist()) {
-			return journey.atmPressure;
-		}
-		return null;
+	public ArrayList<Float> getTemp() {
+		return journey.temperatures;
 	}
 	
-	public ArrayList<Float> getTemp(int journeyID) {
-		this.journeyID = journeyID;
-		if (doesJourneyExist()) {
-			return journey.temperatures;
-		}
-		return null;
+	public void removeDataTemp(int index) {
+		journey.temperatures.remove(index);
+	}
+
+	public void removeDataHum(int index) {
+		journey.humidity.remove(index);
+	}
+	
+	public void removeDataPres(int index) {
+		journey.atmPressure.remove(index);
 	}
 }
 

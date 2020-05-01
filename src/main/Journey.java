@@ -25,7 +25,7 @@ public class Journey extends dataStructure {
 	}
 	public Float getLastTemp() {
 		if (temperatures.size()==0) {
-			temperatures.add(0, (float) (150 + Math.floor(Math.random() * (( 250 - 150 ) + 1 )))/10);
+			temperatures.add((float) (150 + Math.floor(Math.random() * (( 250 - 150 ) + 1 )))/10);
 			return temperatures.get(0);
 		}
 		else {
@@ -34,7 +34,7 @@ public class Journey extends dataStructure {
 	}
 	public Float getLastHumidity() {
 		if (humidity.size()==0) {
-			humidity.add(0, (float) (350 + Math.floor(Math.random() * (( 550 - 350 ) + 1 )))/10);
+			humidity.add((float) (350 + Math.floor(Math.random() * (( 550 - 350 ) + 1 )))/10);
 			return humidity.get(0);
 		}
 		else {
@@ -43,7 +43,7 @@ public class Journey extends dataStructure {
 	}
 	public Float getLastAtmPressure() {
 		if (atmPressure.size()==0) {
-			atmPressure.add(0, (float) (9000 + Math.floor(Math.random() * (( 12000 - 9000 ) + 1 )))/10);
+			atmPressure.add((float) (9000 + Math.floor(Math.random() * (( 12000 - 9000 ) + 1 )))/10);
 			return atmPressure.get(0);
 		}
 		else {

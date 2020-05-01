@@ -2,28 +2,28 @@
 Feature: client retrieve data
 
   @tag1
-  Scenario: get humidity
+  Scenario: retrieve data
    Given journey id is 12234
     And journey id does exist
     And internal status parameter is "humidity"
     And list is not empty
     And retrieve data
  
-  Scenario: get temperature
+  Scenario: retrieve data
    Given journey id is 12234
     And journey id does exist
     And internal status parameter is "temperature"
     And list is not empty
     And retrieve data
    
-  Scenario: get pressure
+  Scenario: retrieve data
    Given journey id is 12234
     And journey id does exist
     And internal status parameter is "pressure"
     And list is not empty
     And retrieve data
     
-   Scenario: get invalid
+   Scenario: retrieve data
    Given journey id is 12234
     And journey id does exist
     And internal status parameter is "random"
