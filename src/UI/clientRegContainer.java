@@ -86,10 +86,10 @@ public class clientRegContainer extends JFrame {
 				String inputOrigin = (String) regContainerOriginComboBox.getSelectedItem();
 				String inputDestination = (String) regContainerDestinationComboBox.getSelectedItem();
 				String inputContents = regContainerContentsField.getText();
-				if (inputOrigin.isEmpty() || inputDestination.isEmpty() || inputContents.isEmpty()) {
+				if (inputOrigin.isEmpty() || inputDestination.isEmpty() || inputContents.isEmpty() || inputOrigin.equals(inputDestination)) {
 					JOptionPane.showMessageDialog(panel,
-							"All fields must be completed",
-							"Empty Field(s)",
+							"All fields must be completed properly",
+							"Error",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
 					int jID = dataStructure.regNewJourney(inputOrigin,inputDestination,inputContents,genUser);

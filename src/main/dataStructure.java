@@ -159,7 +159,7 @@ public class dataStructure {
 		Journey j = new Journey();
 		j.origin=origin;
 		j.destination=destination;
-		j.status="At origin";
+		j.status="Origin";
 		j.content=content;
 		j.ClientID=""+ClientID;
 		if (clients.get(ClientID)==null) {

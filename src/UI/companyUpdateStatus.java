@@ -31,7 +31,7 @@ public class companyUpdateStatus extends JFrame{
 	public companyUpdateStatus() {
 		super("Company Update Container Status");
 		setTitle("Update Container Status");
-		setSize(new Dimension(313, 280));
+		setSize(new Dimension(320, 280));
 		setLocationByPlatform(true);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		setAlwaysOnTop(true);

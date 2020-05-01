@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -17,10 +18,12 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.border.SoftBevelBorder;
 
 import main.Client;
 import main.Container;
+import main.Journey;
 import main.dataStructure;
 
 import javax.swing.border.BevelBorder;
@@ -61,12 +64,26 @@ public class companyUpdateJourney extends JFrame {
 		companyUpdateJourneyID.setBounds(55, 75, 95, 20);
 		panel.add(companyUpdateJourneyID);
 		
-		journeyIDField = new JTextField();
-		journeyIDField.setHorizontalAlignment(SwingConstants.CENTER);
-		journeyIDField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		journeyIDField.setColumns(10);
-		journeyIDField.setBounds(160, 75, 95, 25);
-		panel.add(journeyIDField);
+		List<Integer> journeyID = dataStructure.allJourneys();
+		String[] jIDs = new String[journeyID.size()];
+		if(journeyID.size() == 0) {
+			JOptionPane.showMessageDialog(panel,
+					"There are no JourneyIDs",
+					"Journey Error",
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+			for(int i = 0; i<journeyID.size(); i++) {
+				jIDs[i] =  Integer.toString(journeyID.get(i));
+			}
+		}
+		
+		JComboBox journeysComboBox = new JComboBox(jIDs);
+		journeysComboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
+		journeysComboBox.setBounds(160, 75, 95, 25);
+		panel.add(journeysComboBox);
+		
+		String[] mapLocations = { "Copenhagen", "New York", "Toronto", "Edinburgh", "Busan", "Shenzhen", "Shanghai", "Tanjung", "Dubai", "Los Angeles", "Valencia",
+                "Santos", "Tanger Med", "Salalah", "Cape Town", "Colombo", "Comodoro", "Christchurch", "Perth", "Mogadishu"};
 		
 		JLabel companyUpdateDestination = new JLabel("Destination:");
 		companyUpdateDestination.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -75,12 +92,12 @@ public class companyUpdateJourney extends JFrame {
 		companyUpdateDestination.setBounds(55, 115, 100, 20);
 		panel.add(companyUpdateDestination);
 		
-		destinationField = new JTextField();
-		destinationField.setHorizontalAlignment(SwingConstants.CENTER);
-		destinationField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		destinationField.setColumns(10);
-		destinationField.setBounds(160, 115, 95, 25);
-		panel.add(destinationField);
+		JComboBox regContainerDestinationComboBox = new JComboBox(mapLocations);
+		regContainerDestinationComboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
+		regContainerDestinationComboBox.setBounds(160, 115, 95, 25);
+		panel.add(regContainerDestinationComboBox);
+		
+		String[] statuses = { "Origin", "Embarked", "Destination"};
 		
 		JLabel companyUpdateStatus = new JLabel("Status:");
 		companyUpdateStatus.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -89,12 +106,10 @@ public class companyUpdateJourney extends JFrame {
 		companyUpdateStatus.setBounds(55, 155, 95, 20);
 		panel.add(companyUpdateStatus);
 		
-		statusField = new JTextField();
-		statusField.setHorizontalAlignment(SwingConstants.CENTER);
-		statusField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		statusField.setColumns(10);
-		statusField.setBounds(160, 155, 95, 25);
-		panel.add(statusField);
+		JComboBox statusComboBox = new JComboBox(statuses);
+		statusComboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
+		statusComboBox.setBounds(160,155,95,25);;
+		panel.add(statusComboBox);
 		
 		JButton backButton = new JButton("Back");
 		backButton.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -116,13 +131,14 @@ public class companyUpdateJourney extends JFrame {
 		confirmButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String inputJourneyID = journeyIDField.getText();
-				String inputDestination = destinationField.getText();
-				String inputStatus = statusField.getText();
-				if (inputJourneyID.isEmpty() || inputDestination.isEmpty() || inputStatus.isEmpty()) {
+				String inputJourneyID = (String) journeysComboBox.getSelectedItem();
+				Journey J = dataStructure.journeys.get(Integer.parseInt(inputJourneyID));
+				String inputDestination = (String) regContainerDestinationComboBox.getSelectedItem();
+				String inputStatus = (String) statusComboBox.getSelectedItem();
+				if (inputJourneyID.isEmpty() || inputDestination.isEmpty() || inputStatus.isEmpty() || inputDestination.equals(J.getOrigin())) {
 					JOptionPane.showMessageDialog(panel,
-							"All fields must be completed",
-							"Empty Field(s)",
+							"Destination cannot be the same as the origin",
+							"Destination Error",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
 					int inputJourneyIDAsInt = 0;

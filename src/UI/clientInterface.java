@@ -87,6 +87,16 @@ class clientInterface extends JFrame {
 		journeyManageLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		clientManagePanel.add(journeyManageLabel);
 		
+		List<Integer> jID = dataStructure.searchJ(Integer.toString(genUser),4,genUser);
+		String jIDs = "";
+		if(jID.size() == 0) {
+			jIDs = "None";
+		} else {
+			for(int i = 0; i<jID.size(); i++) {
+				jIDs = jIDs +  Integer.toString(jID.get(i)) + " ";
+			}
+		}
+		
 		JButton updateClientInfoButton = new JButton("Update Client Info");
 		updateClientInfoButton.setBounds(25, 70, 150, 25);
 		updateClientInfoButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -148,8 +158,15 @@ class clientInterface extends JFrame {
 		containerHistoryButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.save();
-				clientContainerHistory.clientContainerHistory(genUser);
+				if(jID.size() == 0) {
+					JOptionPane.showMessageDialog(panel,
+							"There are no JourneyIDs",
+							"Journey Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					dataStructure.save();
+					clientContainerHistory.clientContainerHistory(genUser);
+				}
 			}
 		});
 		clientManagePanel.add(containerHistoryButton);
@@ -161,8 +178,15 @@ class clientInterface extends JFrame {
 		moreJourneyInformationButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.save();
-				clientMoreInformation.clientMoreInformation(genUser);
+				if(jID.size() == 0) {
+					JOptionPane.showMessageDialog(panel,
+							"There are no JourneyIDs",
+							"Journey Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					dataStructure.save();
+					clientMoreInformation.clientMoreInformation(genUser);
+				}
 			}
 		});
 		clientManagePanel.add(moreJourneyInformationButton);
@@ -186,6 +210,19 @@ class clientInterface extends JFrame {
 		});
 		clientManagePanel.add(seeClientInfoButton);
 		
+		JButton seeContainerMapButton = new JButton("See Container Map");
+		seeContainerMapButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		seeContainerMapButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		seeContainerMapButton.setBounds(426, 110, 150, 25);
+		seeContainerMapButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.save();
+				clientContainerMap.clientContainerMap(genUser);
+			}
+		});
+		clientManagePanel.add(seeContainerMapButton);
+		
 		JLabel containerStatusLabel = new JLabel("Container Status");
 		containerStatusLabel.setBounds(428, 25, 134, 20);
 		containerStatusLabel.setForeground(SystemColor.controlShadow);
@@ -203,7 +240,7 @@ class clientInterface extends JFrame {
 		journeyIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		journeyIDLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		journeyIDLabel.setForeground(SystemColor.controlShadow);
-		journeyIDLabel.setBounds(0, 0, 100, 50);
+		journeyIDLabel.setBounds(0, 0, 95, 50);
 		clientContainersInfoPanel.add(journeyIDLabel);
 		
 		JLabel destinationLabel = new JLabel("Destination");
@@ -211,7 +248,7 @@ class clientInterface extends JFrame {
 		destinationLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		destinationLabel.setForeground(SystemColor.controlShadow);
 		destinationLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		destinationLabel.setBounds(100, 0, 110, 50);
+		destinationLabel.setBounds(95, 0, 110, 50);
 		clientContainersInfoPanel.add(destinationLabel);
 		
 		JLabel statusLabel = new JLabel("Status");
@@ -219,7 +256,7 @@ class clientInterface extends JFrame {
 		statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		statusLabel.setForeground(SystemColor.controlShadow);
 		statusLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		statusLabel.setBounds(210, 0, 100, 50);
+		statusLabel.setBounds(205, 0, 120, 50);
 		clientContainersInfoPanel.add(statusLabel);
 		
 		JLabel temperatureLabel = new JLabel("Temp. (\u00B0C)");
@@ -227,7 +264,7 @@ class clientInterface extends JFrame {
 		temperatureLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		temperatureLabel.setForeground(SystemColor.controlShadow);
 		temperatureLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		temperatureLabel.setBounds(310, 0, 95, 50);
+		temperatureLabel.setBounds(320, 0, 90, 50);
 		clientContainersInfoPanel.add(temperatureLabel);
 		
 		JLabel pressureLabel = new JLabel("Pressure (Pa)");
@@ -235,7 +272,7 @@ class clientInterface extends JFrame {
 		pressureLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		pressureLabel.setForeground(SystemColor.controlShadow);
 		pressureLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		pressureLabel.setBounds(500, 0, 95, 50);
+		pressureLabel.setBounds(505, 0, 90, 50);
 		clientContainersInfoPanel.add(pressureLabel);
 		
 		JLabel humidityLabel = new JLabel("Humidity (g/m3)");
@@ -243,18 +280,8 @@ class clientInterface extends JFrame {
 		humidityLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		humidityLabel.setForeground(SystemColor.controlShadow);
 		humidityLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		humidityLabel.setBounds(400, 0, 101, 50);
+		humidityLabel.setBounds(407, 0, 101, 50);
 		clientContainersInfoPanel.add(humidityLabel);
-		
-		List<Integer> jID = dataStructure.searchJ(Integer.toString(genUser),4,genUser);
-		String jIDs = "";
-		if(jID.size() == 0) {
-			jIDs = "None";
-		} else {
-			for(int i = 0; i<jID.size(); i++) {
-				jIDs = jIDs +  Integer.toString(jID.get(i)) + " ";
-			}
-		}
 		
 		JTextArea journeyIDTextArea = new JTextArea(jIDs);
 		journeyIDTextArea.setEditable(false);
@@ -264,7 +291,7 @@ class clientInterface extends JFrame {
 		journeyIDTextArea.setBackground(SystemColor.desktop);
 		journeyIDTextArea.setFont(new Font("Monospaced", Font.BOLD, 14));
 		journeyIDTextArea.setLineWrap(true);
-		journeyIDTextArea.setBounds(0, 50, 100, 285);
+		journeyIDTextArea.setBounds(0, 50, 95, 285);
 		clientContainersInfoPanel.add(journeyIDTextArea);
 		
 		String jDests = "";
@@ -283,7 +310,7 @@ class clientInterface extends JFrame {
 		journeyDestArea.setBackground(SystemColor.desktop);
 		journeyDestArea.setForeground(SystemColor.controlDkShadow);
 		journeyDestArea.setFont(new Font("Monospaced", Font.BOLD, 14));
-		journeyDestArea.setBounds(100, 50, 110, 285);
+		journeyDestArea.setBounds(95, 50, 110, 285);
 		clientContainersInfoPanel.add(journeyDestArea);
 		
 		String jTemp = "";
@@ -303,7 +330,7 @@ class clientInterface extends JFrame {
 		temperatureArea.setForeground(SystemColor.controlDkShadow);
 		temperatureArea.setLineWrap(true);
 		temperatureArea.setFont(new Font("Monospaced", Font.BOLD, 14));
-		temperatureArea.setBounds(310, 50, 95, 285);
+		temperatureArea.setBounds(325, 50, 90, 285);
 		clientContainersInfoPanel.add(temperatureArea);
 		
 		String jStats = "";
@@ -323,7 +350,7 @@ class clientInterface extends JFrame {
 		statusArea.setBackground(SystemColor.desktop);
 		statusArea.setLineWrap(true);
 		statusArea.setFont(new Font("Monospaced", Font.BOLD, 14));
-		statusArea.setBounds(210, 50, 100, 285);
+		statusArea.setBounds(205, 50, 120, 285);
 		clientContainersInfoPanel.add(statusArea);
 		
 		String jHum = "";
@@ -343,7 +370,7 @@ class clientInterface extends JFrame {
 		humidityArea.setBackground(SystemColor.desktop);
 		humidityArea.setLineWrap(true);
 		humidityArea.setFont(new Font("Monospaced", Font.BOLD, 14));
-		humidityArea.setBounds(405, 50, 95, 285);
+		humidityArea.setBounds(415, 50, 90, 285);
 		clientContainersInfoPanel.add(humidityArea);
 		
 		String jPres = "";
@@ -363,8 +390,9 @@ class clientInterface extends JFrame {
 		pressureArea.setForeground(SystemColor.controlDkShadow);
 		pressureArea.setLineWrap(true);
 		pressureArea.setFont(new Font("Monospaced", Font.BOLD, 14));
-		pressureArea.setBounds(500, 50, 94, 285);
+		pressureArea.setBounds(505, 50, 90, 285);
 		clientContainersInfoPanel.add(pressureArea);
+		
 		
 	}
 
