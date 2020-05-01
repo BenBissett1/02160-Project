@@ -9,6 +9,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
@@ -18,6 +19,8 @@ import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
+import main.Client;
+import main.Journey;
 import main.dataStructure;
 
 import javax.swing.JLabel;
@@ -164,6 +167,28 @@ class clientInterface extends JFrame {
 		});
 		clientManagePanel.add(moreJourneyInformationButton);
 		
+<<<<<<< HEAD
+=======
+		Client C = dataStructure.clients.get(genUser);
+		
+		JButton seeClientInfoButton = new JButton("See Client Info");
+		seeClientInfoButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		seeClientInfoButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		seeClientInfoButton.setBounds(25, 110, 150, 25);
+		seeClientInfoButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String clientInfo = "ClientID: " + Integer.toString(genUser) + "\n" + "Name: " + C.getName() + "\n" + "Password: " + C.getPassword() 
+									+ "\n" + "Address: " + C.getAddress() + "\n" + "Email: " + C.getEmail() + "\n" + "Phone: " + C.getPhone();
+				JOptionPane.showMessageDialog(panel,
+						"\n" + clientInfo,
+						"All of your information",
+						JOptionPane.INFORMATION_MESSAGE);
+				}
+		});
+		clientManagePanel.add(seeClientInfoButton);
+		
+>>>>>>> branch 'master' of https://github.com/BenBissett1/02160-Project
 		JLabel containerStatusLabel = new JLabel("Container Status");
 		containerStatusLabel.setBounds(428, 25, 134, 20);
 		containerStatusLabel.setForeground(SystemColor.controlShadow);
