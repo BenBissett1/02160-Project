@@ -154,7 +154,6 @@ class clientInterface extends JFrame {
 		});
 		clientManagePanel.add(containerHistoryButton);
 		
-<<<<<<< HEAD
 		JButton moreJourneyInformationButton = new JButton("More Journey Info");
 		moreJourneyInformationButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		moreJourneyInformationButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -187,8 +186,6 @@ class clientInterface extends JFrame {
 		});
 		clientManagePanel.add(seeClientInfoButton);
 		
-=======
->>>>>>> branch 'master' of https://github.com/BenBissett1/02160-Project.git
 		JLabel containerStatusLabel = new JLabel("Container Status");
 		containerStatusLabel.setBounds(428, 25, 134, 20);
 		containerStatusLabel.setForeground(SystemColor.controlShadow);
