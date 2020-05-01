@@ -62,7 +62,7 @@ public class Painter extends JPanel {
             int[] Perth = {460, 247};
             int[] Mogadishu = {359, 182};
             
-            int[][] allLocations = {Copenhagen, NewYork, Toronto, Edinburgh, Busan, Shenzhen, Shanghai, TanjungPerak, Dubai, LosAngeles, Valencia, Santos, TangerMed, Salalah, CapeTown, Colombo, Comodoro, Christchurch, Perth, Mogadishu};
+            //int[][] allLocations = {Copenhagen, NewYork, Toronto, Edinburgh, Busan, Shenzhen, Shanghai, TanjungPerak, Dubai, LosAngeles, Valencia, Santos, TangerMed, Salalah, CapeTown, Colombo, Comodoro, Christchurch, Perth, Mogadishu};
             	
             int[] location_initial2;
             int[] location_final2;
@@ -237,7 +237,7 @@ public class Painter extends JPanel {
                 			else continue;
                 			
                 			
-                			g2d.setColor(Color.BLACK);
+                			g2d.setColor(Color.blue);
                             Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
                             g2d.setStroke(dashed);
                             g2d.drawLine(location_initial2[0] + 7, location_initial2[1] + 7, location_final2[0] + 7, location_final2[1] + 7); //+ 7 is half of the rectangle size in order to center it)
