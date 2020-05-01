@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.SoftBevelBorder;
 
+import main.Client;
 import main.dataStructure;
 
 import javax.swing.border.BevelBorder;
@@ -47,7 +48,8 @@ public class clientUpdateInfo extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel clientUpdateInfoLabel = new JLabel("Please enter new information below:");
+		JLabel clientUpdateInfoLabel = new JLabel("Please complete at least one:");
+		clientUpdateInfoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		clientUpdateInfoLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		clientUpdateInfoLabel.setBounds(5, 10, 300, 25);
 		panel.add(clientUpdateInfoLabel);
@@ -135,6 +137,8 @@ public class clientUpdateInfo extends JFrame {
 		});
 		panel.add(clientCreateBack);
 		
+		Client C = dataStructure.clients.get(genUser);
+		
 		JButton clientUpdateInfoButton = new JButton("Confirm");
 		clientUpdateInfoButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		clientUpdateInfoButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -147,28 +151,39 @@ public class clientUpdateInfo extends JFrame {
 				String inputEmail = updateEmailField.getText();
 				String inputTelephone = updateTelephoneField.getText();
 				String inputPassword = updatePasswordField.getText();
-				if (inputName.isEmpty() || inputAddress.isEmpty() || inputEmail.isEmpty() || inputTelephone.isEmpty() || inputPassword.isEmpty() ) {
+				if (inputName.isEmpty() && inputAddress.isEmpty() && inputEmail.isEmpty() && inputTelephone.isEmpty() && inputPassword.isEmpty() ) {
 					JOptionPane.showMessageDialog(panel,
-							"All fields must be completed",
-							"Empty Field(s)",
+							"At least one field must be completed",
+							"Empty Field",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
+					if (inputName.isEmpty()) {
+						inputName = C.getName();
+					} if (inputAddress.isEmpty()) {
+						inputAddress = C.getAddress();
+					} if (inputEmail.isEmpty()) {
+						inputEmail = C.getEmail();
+					} if (inputTelephone.isEmpty()) {
+						inputTelephone = C.getPhone();
+					} if (inputPassword.isEmpty()) {
+						inputPassword = C.getPassword();
+					}
 					int inputTelephoneAsInt = 0;
 					try {
 						inputTelephoneAsInt = Integer.parseInt(inputTelephone);
+						dataStructure.updateClient(genUser,inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
+						JOptionPane.showMessageDialog(panel,
+								"Information Updated!",
+								"Confirmation",
+								JOptionPane.INFORMATION_MESSAGE);
+						dataStructure.save();
+						dispose();
 					} catch (NumberFormatException E) {
 						JOptionPane.showMessageDialog(panel,
 								"Please enter a telephone NUMBER",
 								"Number Error",
 						    	JOptionPane.ERROR_MESSAGE);
 					}
-					dataStructure.updateClient(genUser,inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
-					JOptionPane.showMessageDialog(panel,
-							"Information Updated!",
-							"Confirmation",
-							JOptionPane.INFORMATION_MESSAGE);
-					dataStructure.save();
-					dispose();
 				}
 			}
 		});
