@@ -169,7 +169,6 @@ class companyInterface extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dataStructure.save();
 			    companyUpdateJourney.companyUpdateJourney();
-			    dispose();
 			  }
 			});
 		clientManagePanel.add(updateJourneyButton);
@@ -183,7 +182,6 @@ class companyInterface extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dataStructure.save();
 			    companySearchJourney.companySearchJourney();
-			    dispose();
 			  }
 			});
 		clientManagePanel.add(searchJourneyButton);
@@ -201,7 +199,7 @@ class companyInterface extends JFrame {
 		});
 		clientManagePanel.add(updateContainerStatusButton);
 		
-		Painter paintedPanel = new Painter();
+		Painter paintedPanel = new Painter(0);
 		paintedPanel.setOpaque(true);
 		paintedPanel.setBounds(0, 175, 595, 335);
 		clientManagePanel.add(paintedPanel);
@@ -225,14 +223,14 @@ class companyInterface extends JFrame {
 class Painter extends JPanel {
 
     private BufferedImage Worldmap;
+    private int genUser;
 
-    public Painter() {
+    public Painter(int genUser) {
         try {
-            Worldmap = ImageIO.read(new File("C:/Users/320/git/02160-Project/Images/grayscale-vector-worldmap.jpg"));
+            Worldmap = ImageIO.read(new File("Images/grayscale-vector-worldmap.jpg"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
     }
 
     @Override
@@ -270,23 +268,19 @@ class Painter extends JPanel {
             int[] Mogadishu = {359, 182};
             
             int[][] allLocations = {Copenhagen, NewYork, Toronto, Edinburgh, Busan, Shenzhen, Shanghai, TanjungPerak, Dubai, LosAngeles, Valencia, Santos, TangerMed, Salalah, CapeTown, Colombo, Comodoro, Christchurch, Perth, Mogadishu};
-            
-            dataStructure data = new dataStructure();
-            Client client = new Client();
+            	
             int[] location_initial2;
             int[] location_final2;
             
-            
-            
-            if (client.getID() == -1) {
+            if (dataStructure.clients.isEmpty() || genUser == 0) {
             	//Do the company side of things
             	
-            	Iterator<Integer> itr = data.journeys.keySet().iterator();
+            	Iterator<Integer> itr = dataStructure.journeys.keySet().iterator();
         		while(itr.hasNext()) {
         			int i = itr.next();
-        			String location_i = data.journeys.get(i).getOrigin();
-        			String location_f = data.journeys.get(i).getDestination();
-        			String status = data.journeys.get(i).getStatus();
+        			String location_i = dataStructure.journeys.get(i).getOrigin();
+        			String location_f = dataStructure.journeys.get(i).getDestination();
+        			String status = dataStructure.journeys.get(i).getStatus();
         			
         			if (location_i.equals("Copenhagen")) location_initial2 = Copenhagen;
         			else if (location_i.equals("New York")) location_initial2 = NewYork;
@@ -354,13 +348,13 @@ class Painter extends JPanel {
                     Random r = new Random();
                     
                     
-                    if (status == "at origin") {
+                    if (status.equals("At origin")) {
                     	g2d.setColor(Color.BLACK);
                         g2d.fillRoundRect(location_initial2[0], location_initial2[1], 15, 15, 10, 10);
                         g2d.setColor(Color.WHITE);
                         g2d.fillRoundRect(location_initial2[0] + 4, location_initial2[1] + 4, 7, 7, 10, 10);
                     }
-                    else if (status == "at destination") {
+                    else if (status.equals("At destination")) {
                     	g2d.setColor(Color.BLACK);
                         g2d.fillRoundRect(location_final2[0], location_final2[1], 15, 15, 10, 10);
                         g2d.setColor(Color.WHITE);
@@ -389,18 +383,19 @@ class Painter extends JPanel {
             	
             } else {
             	//Do the client side of things
+            	Client C = dataStructure.clients.get(genUser);
             	
-            	List<Integer> in = data.searchJ("" + client.getID(), 4, client.getID());
+            	List<Integer> in = dataStructure.searchJ("" + C.getID(), 4, C.getID());
             	for (int i = 0; i < in.size(); i++) {
             		
-            		Iterator<Integer> itr = data.journeys.keySet().iterator();
+            		Iterator<Integer> itr = dataStructure.journeys.keySet().iterator();
             		while(itr.hasNext()) {
             			int j = itr.next();
             			
             			if (in.get(i) == j) {
-            				String location_i = data.journeys.get(j).getOrigin();
-                			String location_f = data.journeys.get(j).getDestination();
-                			String status = data.journeys.get(j).getStatus();
+            				String location_i = dataStructure.journeys.get(j).getOrigin();
+                			String location_f = dataStructure.journeys.get(j).getDestination();
+                			String status = dataStructure.journeys.get(j).getStatus();
                 			
                 			if (location_i.equals("Copenhagen")) location_initial2 = Copenhagen;
                 			else if (location_i.equals("New York")) location_initial2 = NewYork;
@@ -511,45 +506,45 @@ class Painter extends JPanel {
             
             
             
-            for(int i = 0; i < allLocations.length - 1; i = i + 2) {
-            	int[] location_initial = allLocations[i];
-            	int[] location_final = allLocations[i+1];
-            	
-            	g2d.setColor(Color.BLACK);
-                Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
-                g2d.setStroke(dashed);
-                g2d.drawLine(location_initial[0] + 7, location_initial[1] + 7, location_final[0] + 7, location_final[1] + 7); //+ 7 is half of the rectangle size in order to center it)
-
-                g2d.setColor(Color.BLACK);
-                g2d.fillRoundRect(location_initial[0], location_initial[1], 15, 15, 10, 10);
-                g2d.setColor(Color.RED);
-                g2d.fillRoundRect(location_initial[0] + 4, location_initial[1] + 4, 7, 7, 10, 10);
-                g2d.setColor(Color.BLACK);
-                g2d.fillRoundRect(location_final[0], location_final[1], 15, 15, 10, 10);
-                g2d.setColor(Color.GREEN);
-                g2d.fillRoundRect(location_final[0] + 4, location_final[1] + 4, 7, 7, 10, 10);
-                
-                double slope = ((double) location_final[1] - (double) location_initial[1]) / ((double) location_final[0] - (double) location_initial[0]);
-                double b = ((double) location_initial[1] - (slope * (double) location_initial[0]));
-                
-                
-                Random r = new Random();
-                if (location_initial[0] < location_final[0]) {
-                	double random = r.nextInt(location_final[0] - location_initial[0]) + location_initial[0];
-                    double ycoord = random * slope + b;
-                    g2d.setColor(Color.BLACK);
-                    g2d.fillRoundRect((int) random, (int) ycoord, 15, 15, 10, 10);
-                    g2d.setColor(Color.WHITE);
-                    g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 7, 7, 10, 10);
-                } else {
-                	double random = r.nextInt(location_initial[0] - location_final[0]) + location_final[0];
-                    double ycoord = random * slope + b;
-                    g2d.setColor(Color.BLACK);
-                    g2d.fillRoundRect((int) random, (int) ycoord, 15, 15, 10, 10);
-                    g2d.setColor(Color.WHITE);
-                    g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 7, 7, 10, 10);
-                }
-            }
+//            for(int i = 0; i < allLocations.length - 1; i = i + 2) {
+//            	int[] location_initial = allLocations[i];
+//            	int[] location_final = allLocations[i+1];
+//            	
+//            	g2d.setColor(Color.BLACK);
+//                Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
+//                g2d.setStroke(dashed);
+//                g2d.drawLine(location_initial[0] + 7, location_initial[1] + 7, location_final[0] + 7, location_final[1] + 7); //+ 7 is half of the rectangle size in order to center it)
+//
+//                g2d.setColor(Color.BLACK);
+//                g2d.fillRoundRect(location_initial[0], location_initial[1], 15, 15, 10, 10);
+//                g2d.setColor(Color.RED);
+//                g2d.fillRoundRect(location_initial[0] + 4, location_initial[1] + 4, 7, 7, 10, 10);
+//                g2d.setColor(Color.BLACK);
+//                g2d.fillRoundRect(location_final[0], location_final[1], 15, 15, 10, 10);
+//                g2d.setColor(Color.GREEN);
+//                g2d.fillRoundRect(location_final[0] + 4, location_final[1] + 4, 7, 7, 10, 10);
+//                
+//                double slope = ((double) location_final[1] - (double) location_initial[1]) / ((double) location_final[0] - (double) location_initial[0]);
+//                double b = ((double) location_initial[1] - (slope * (double) location_initial[0]));
+//                
+//                
+//                Random r = new Random();
+//                if (location_initial[0] < location_final[0]) {
+//                	double random = r.nextInt(location_final[0] - location_initial[0]) + location_initial[0];
+//                    double ycoord = random * slope + b;
+//                    g2d.setColor(Color.BLACK);
+//                    g2d.fillRoundRect((int) random, (int) ycoord, 15, 15, 10, 10);
+//                    g2d.setColor(Color.WHITE);
+//                    g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 7, 7, 10, 10);
+//                } else {
+//                	double random = r.nextInt(location_initial[0] - location_final[0]) + location_final[0];
+//                    double ycoord = random * slope + b;
+//                    g2d.setColor(Color.BLACK);
+//                    g2d.fillRoundRect((int) random, (int) ycoord, 15, 15, 10, 10);
+//                    g2d.setColor(Color.WHITE);
+//                    g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 7, 7, 10, 10);
+//                }
+//            }
             }
         }
     }
