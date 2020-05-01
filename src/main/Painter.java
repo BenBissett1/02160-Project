@@ -237,7 +237,7 @@ public class Painter extends JPanel {
                 			else continue;
                 			
                 			
-                			g2d.setColor(Color.blue);
+                			g2d.setColor(Color.BLACK);
                             Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
                             g2d.setStroke(dashed);
                             g2d.drawLine(location_initial2[0] + 7, location_initial2[1] + 7, location_final2[0] + 7, location_final2[1] + 7); //+ 7 is half of the rectangle size in order to center it)
