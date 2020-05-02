@@ -9,8 +9,6 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,12 +24,8 @@ import main.dataStructure;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import java.awt.Rectangle;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
 class clientInterface extends JFrame {
@@ -63,18 +57,78 @@ class clientInterface extends JFrame {
 		headerPanel.setBackground(Color.BLACK);
 		headerPanel.setBounds(0, 0, 600, 50);
 		panel.add(headerPanel);
-		
-		JLabel clientHeaderLabel = new JLabel("Client Interface: " + Integer.toString(genUser));
-		clientHeaderLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		clientHeaderLabel.setForeground(SystemColor.controlShadow);
-		headerPanel.add(clientHeaderLabel);
-		
+				
 		JPanel clientManagePanel = new JPanel();
 		clientManagePanel.setBackground(Color.BLACK);
 		clientManagePanel.setBounds(0, 50, 600, 620);
 		panel.add(clientManagePanel);
 		clientManagePanel.setLayout(null);
+				
+		JPanel clientContainersInfoPanel = new JPanel();
+		clientContainersInfoPanel.setBackground(Color.BLACK);
+		clientContainersInfoPanel.setBounds(0, 185, 595, 335);
+		clientManagePanel.add(clientContainersInfoPanel);
+		clientContainersInfoPanel.setLayout(null);
 		
+		JLabel containerStatusLabel = new JLabel("Container Status");
+		containerStatusLabel.setBounds(428, 25, 134, 20);
+		containerStatusLabel.setForeground(SystemColor.controlShadow);
+		containerStatusLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		clientManagePanel.add(containerStatusLabel);
+		
+		JLabel journeyIDLabel = new JLabel("Journey ID");
+		journeyIDLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		journeyIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		journeyIDLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		journeyIDLabel.setForeground(SystemColor.controlShadow);
+		journeyIDLabel.setBounds(0, 0, 95, 50);
+		clientContainersInfoPanel.add(journeyIDLabel);
+		
+		JLabel destinationLabel = new JLabel("Destination");
+		destinationLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		destinationLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		destinationLabel.setForeground(SystemColor.controlShadow);
+		destinationLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		destinationLabel.setBounds(95, 0, 110, 50);
+		clientContainersInfoPanel.add(destinationLabel);
+		
+		JLabel statusLabel = new JLabel("Status");
+		statusLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		statusLabel.setForeground(SystemColor.controlShadow);
+		statusLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		statusLabel.setBounds(205, 0, 120, 50);
+		clientContainersInfoPanel.add(statusLabel);
+		
+		JLabel temperatureLabel = new JLabel("Temp. (\u00B0C)");
+		temperatureLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		temperatureLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		temperatureLabel.setForeground(SystemColor.controlShadow);
+		temperatureLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		temperatureLabel.setBounds(320, 0, 90, 50);
+		clientContainersInfoPanel.add(temperatureLabel);
+		
+		JLabel pressureLabel = new JLabel("Pressure (Pa)");
+		pressureLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		pressureLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		pressureLabel.setForeground(SystemColor.controlShadow);
+		pressureLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		pressureLabel.setBounds(505, 0, 90, 50);
+		clientContainersInfoPanel.add(pressureLabel);
+		
+		JLabel humidityLabel = new JLabel("Humidity (g/m3)");
+		humidityLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		humidityLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		humidityLabel.setForeground(SystemColor.controlShadow);
+		humidityLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		humidityLabel.setBounds(407, 0, 101, 50);
+		clientContainersInfoPanel.add(humidityLabel);
+		
+		JLabel clientHeaderLabel = new JLabel("Client Interface: " + Integer.toString(genUser));
+		clientHeaderLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		clientHeaderLabel.setForeground(SystemColor.controlShadow);
+		headerPanel.add(clientHeaderLabel);
+
 		JLabel clientManageLabel = new JLabel("Client Management");
 		clientManageLabel.setBounds(21, 25, 157, 20);
 		clientManageLabel.setForeground(SystemColor.controlShadow);
@@ -96,6 +150,116 @@ class clientInterface extends JFrame {
 				jIDs = jIDs +  Integer.toString(jID.get(i)) + " ";
 			}
 		}
+		
+		JTextArea journeyIDTextArea = new JTextArea(jIDs);
+		journeyIDTextArea.setEditable(false);
+		journeyIDTextArea.setWrapStyleWord(true);
+		journeyIDTextArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
+		journeyIDTextArea.setForeground(SystemColor.controlDkShadow);
+		journeyIDTextArea.setBackground(Color.BLACK);
+		journeyIDTextArea.setFont(new Font("Monospaced", Font.BOLD, 14));
+		journeyIDTextArea.setLineWrap(true);
+		journeyIDTextArea.setBounds(0, 50, 95, 285);
+		clientContainersInfoPanel.add(journeyIDTextArea);
+		
+		String jDests = "";
+		if(jID.size() == 0) {
+			jDests = "None";
+		} else {
+			for(int i = 0; i<jID.size(); i++) {
+				jDests = jDests +  dataStructure.journeys.get(jID.get(i)).getDestination() + "\n";
+			}
+		}
+		
+		JTextArea journeyDestArea = new JTextArea(jDests);
+		journeyDestArea.setEditable(false);
+		journeyDestArea.setWrapStyleWord(true);
+		journeyDestArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
+		journeyDestArea.setBackground(Color.BLACK);
+		journeyDestArea.setForeground(SystemColor.controlDkShadow);
+		journeyDestArea.setFont(new Font("Monospaced", Font.BOLD, 14));
+		journeyDestArea.setBounds(95, 50, 110, 285);
+		clientContainersInfoPanel.add(journeyDestArea);
+		
+		String jTemp = "";
+		if(jID.size() == 0) {
+			jTemp = "None";
+		} else {
+			for(int i = 0; i<jID.size(); i++) {
+				jTemp = jTemp +  dataStructure.journeys.get(jID.get(i)).getLastTemp() + "\n";
+			}
+		}
+
+		JTextArea temperatureArea = new JTextArea(jTemp);
+		temperatureArea.setEditable(false);
+		temperatureArea.setWrapStyleWord(true);
+		temperatureArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
+		temperatureArea.setBackground(Color.BLACK);
+		temperatureArea.setForeground(SystemColor.controlDkShadow);
+		temperatureArea.setLineWrap(true);
+		temperatureArea.setFont(new Font("Monospaced", Font.BOLD, 14));
+		temperatureArea.setBounds(325, 50, 90, 285);
+		clientContainersInfoPanel.add(temperatureArea);
+		
+		String jStats = "";
+		if(jID.size() == 0) {
+			jStats = "None";
+		} else {
+			for(int i = 0; i<jID.size(); i++) {
+				jStats = jStats +  dataStructure.journeys.get(jID.get(i)).getStatus() + "\n";
+			}
+		}
+		
+		JTextArea statusArea = new JTextArea(jStats);
+		statusArea.setEditable(false);
+		statusArea.setWrapStyleWord(true);
+		statusArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
+		statusArea.setForeground(SystemColor.controlDkShadow);
+		statusArea.setBackground(Color.BLACK);
+		statusArea.setLineWrap(true);
+		statusArea.setFont(new Font("Monospaced", Font.BOLD, 14));
+		statusArea.setBounds(205, 50, 120, 285);
+		clientContainersInfoPanel.add(statusArea);
+		
+		String jHum = "";
+		if(jID.size() == 0) {
+			jHum = "None";
+		} else {
+			for(int i = 0; i<jID.size(); i++) {
+				jHum = jHum +  dataStructure.journeys.get(jID.get(i)).getLastHumidity() + "\n";
+			}
+		}
+		
+		JTextArea humidityArea = new JTextArea(jHum);
+		humidityArea.setEditable(false);
+		humidityArea.setWrapStyleWord(true);
+		humidityArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
+		humidityArea.setForeground(SystemColor.controlDkShadow);
+		humidityArea.setBackground(Color.BLACK);
+		humidityArea.setLineWrap(true);
+		humidityArea.setFont(new Font("Monospaced", Font.BOLD, 14));
+		humidityArea.setBounds(415, 50, 90, 285);
+		clientContainersInfoPanel.add(humidityArea);
+		
+		String jPres = "";
+		if(jID.size() == 0) {
+			jPres = "None";
+		} else {
+			for(int i = 0; i<jID.size(); i++) {
+				jPres = jPres +  dataStructure.journeys.get(jID.get(i)).getLastAtmPressure() + "\n";
+			}
+		}
+		
+		JTextArea pressureArea = new JTextArea(jPres);
+		pressureArea.setEditable(false);
+		pressureArea.setWrapStyleWord(true);
+		pressureArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
+		pressureArea.setBackground(Color.BLACK);
+		pressureArea.setForeground(SystemColor.controlDkShadow);
+		pressureArea.setLineWrap(true);
+		pressureArea.setFont(new Font("Monospaced", Font.BOLD, 14));
+		pressureArea.setBounds(505, 50, 90, 285);
+		clientContainersInfoPanel.add(pressureArea);
 		
 		JButton updateClientInfoButton = new JButton("Update Client Info");
 		updateClientInfoButton.setBounds(25, 70, 150, 25);
@@ -235,178 +399,7 @@ class clientInterface extends JFrame {
 				dispose();
 			}
 		});
-		clientManagePanel.add(returnLoginButton);
-		
-		JLabel containerStatusLabel = new JLabel("Container Status");
-		containerStatusLabel.setBounds(428, 25, 134, 20);
-		containerStatusLabel.setForeground(SystemColor.controlShadow);
-		containerStatusLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		clientManagePanel.add(containerStatusLabel);
-		
-		JPanel clientContainersInfoPanel = new JPanel();
-		clientContainersInfoPanel.setBackground(Color.BLACK);
-		clientContainersInfoPanel.setBounds(0, 185, 595, 335);
-		clientManagePanel.add(clientContainersInfoPanel);
-		clientContainersInfoPanel.setLayout(null);
-		
-		JLabel journeyIDLabel = new JLabel("Journey ID");
-		journeyIDLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		journeyIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		journeyIDLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		journeyIDLabel.setForeground(SystemColor.controlShadow);
-		journeyIDLabel.setBounds(0, 0, 95, 50);
-		clientContainersInfoPanel.add(journeyIDLabel);
-		
-		JLabel destinationLabel = new JLabel("Destination");
-		destinationLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		destinationLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		destinationLabel.setForeground(SystemColor.controlShadow);
-		destinationLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		destinationLabel.setBounds(95, 0, 110, 50);
-		clientContainersInfoPanel.add(destinationLabel);
-		
-		JLabel statusLabel = new JLabel("Status");
-		statusLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		statusLabel.setForeground(SystemColor.controlShadow);
-		statusLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		statusLabel.setBounds(205, 0, 120, 50);
-		clientContainersInfoPanel.add(statusLabel);
-		
-		JLabel temperatureLabel = new JLabel("Temp. (\u00B0C)");
-		temperatureLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		temperatureLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		temperatureLabel.setForeground(SystemColor.controlShadow);
-		temperatureLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		temperatureLabel.setBounds(320, 0, 90, 50);
-		clientContainersInfoPanel.add(temperatureLabel);
-		
-		JLabel pressureLabel = new JLabel("Pressure (Pa)");
-		pressureLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		pressureLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		pressureLabel.setForeground(SystemColor.controlShadow);
-		pressureLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		pressureLabel.setBounds(505, 0, 90, 50);
-		clientContainersInfoPanel.add(pressureLabel);
-		
-		JLabel humidityLabel = new JLabel("Humidity (g/m3)");
-		humidityLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		humidityLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		humidityLabel.setForeground(SystemColor.controlShadow);
-		humidityLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		humidityLabel.setBounds(407, 0, 101, 50);
-		clientContainersInfoPanel.add(humidityLabel);
-		
-		JTextArea journeyIDTextArea = new JTextArea(jIDs);
-		journeyIDTextArea.setEditable(false);
-		journeyIDTextArea.setWrapStyleWord(true);
-		journeyIDTextArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
-		journeyIDTextArea.setForeground(SystemColor.controlDkShadow);
-		journeyIDTextArea.setBackground(Color.BLACK);
-		journeyIDTextArea.setFont(new Font("Monospaced", Font.BOLD, 14));
-		journeyIDTextArea.setLineWrap(true);
-		journeyIDTextArea.setBounds(0, 50, 95, 285);
-		clientContainersInfoPanel.add(journeyIDTextArea);
-		
-		String jDests = "";
-		if(jID.size() == 0) {
-			jDests = "None";
-		} else {
-			for(int i = 0; i<jID.size(); i++) {
-				jDests = jDests +  dataStructure.journeys.get(jID.get(i)).getDestination() + "\n";
-			}
-		}
-		
-		JTextArea journeyDestArea = new JTextArea(jDests);
-		journeyDestArea.setEditable(false);
-		journeyDestArea.setWrapStyleWord(true);
-		journeyDestArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
-		journeyDestArea.setBackground(Color.BLACK);
-		journeyDestArea.setForeground(SystemColor.controlDkShadow);
-		journeyDestArea.setFont(new Font("Monospaced", Font.BOLD, 14));
-		journeyDestArea.setBounds(95, 50, 110, 285);
-		clientContainersInfoPanel.add(journeyDestArea);
-		
-		String jTemp = "";
-		if(jID.size() == 0) {
-			jTemp = "None";
-		} else {
-			for(int i = 0; i<jID.size(); i++) {
-				jTemp = jTemp +  dataStructure.journeys.get(jID.get(i)).getLastTemp() + "\n";
-			}
-		}
-
-		JTextArea temperatureArea = new JTextArea(jTemp);
-		temperatureArea.setEditable(false);
-		temperatureArea.setWrapStyleWord(true);
-		temperatureArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
-		temperatureArea.setBackground(Color.BLACK);
-		temperatureArea.setForeground(SystemColor.controlDkShadow);
-		temperatureArea.setLineWrap(true);
-		temperatureArea.setFont(new Font("Monospaced", Font.BOLD, 14));
-		temperatureArea.setBounds(325, 50, 90, 285);
-		clientContainersInfoPanel.add(temperatureArea);
-		
-		String jStats = "";
-		if(jID.size() == 0) {
-			jStats = "None";
-		} else {
-			for(int i = 0; i<jID.size(); i++) {
-				jStats = jStats +  dataStructure.journeys.get(jID.get(i)).getStatus() + "\n";
-			}
-		}
-		
-		JTextArea statusArea = new JTextArea(jStats);
-		statusArea.setEditable(false);
-		statusArea.setWrapStyleWord(true);
-		statusArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
-		statusArea.setForeground(SystemColor.controlDkShadow);
-		statusArea.setBackground(Color.BLACK);
-		statusArea.setLineWrap(true);
-		statusArea.setFont(new Font("Monospaced", Font.BOLD, 14));
-		statusArea.setBounds(205, 50, 120, 285);
-		clientContainersInfoPanel.add(statusArea);
-		
-		String jHum = "";
-		if(jID.size() == 0) {
-			jHum = "None";
-		} else {
-			for(int i = 0; i<jID.size(); i++) {
-				jHum = jHum +  dataStructure.journeys.get(jID.get(i)).getLastHumidity() + "\n";
-			}
-		}
-		
-		JTextArea humidityArea = new JTextArea(jHum);
-		humidityArea.setEditable(false);
-		humidityArea.setWrapStyleWord(true);
-		humidityArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
-		humidityArea.setForeground(SystemColor.controlDkShadow);
-		humidityArea.setBackground(Color.BLACK);
-		humidityArea.setLineWrap(true);
-		humidityArea.setFont(new Font("Monospaced", Font.BOLD, 14));
-		humidityArea.setBounds(415, 50, 90, 285);
-		clientContainersInfoPanel.add(humidityArea);
-		
-		String jPres = "";
-		if(jID.size() == 0) {
-			jPres = "None";
-		} else {
-			for(int i = 0; i<jID.size(); i++) {
-				jPres = jPres +  dataStructure.journeys.get(jID.get(i)).getLastAtmPressure() + "\n";
-			}
-		}
-		
-		JTextArea pressureArea = new JTextArea(jPres);
-		pressureArea.setEditable(false);
-		pressureArea.setWrapStyleWord(true);
-		pressureArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
-		pressureArea.setBackground(Color.BLACK);
-		pressureArea.setForeground(SystemColor.controlDkShadow);
-		pressureArea.setLineWrap(true);
-		pressureArea.setFont(new Font("Monospaced", Font.BOLD, 14));
-		pressureArea.setBounds(505, 50, 90, 285);
-		clientContainersInfoPanel.add(pressureArea);		
-		
+		clientManagePanel.add(returnLoginButton);		
 	}
 
 	public static void clientInterface(int genUser) {

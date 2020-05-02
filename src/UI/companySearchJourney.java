@@ -5,7 +5,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -55,6 +54,28 @@ public class companySearchJourney extends JFrame{
 		header.setFont(new Font("Tahoma", Font.BOLD, 16));
 		header.setBackground(Color.LIGHT_GRAY);
 		panel.add(header);
+
+		JLabel clientIDLabel = new JLabel("ClientID:");
+		clientIDLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		clientIDLabel.setBounds(75, 180, 75, 25);
+		panel.add(clientIDLabel);
+				
+		JLabel keywordLabel = new JLabel("Keyword:");
+		keywordLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		keywordLabel.setBounds(75, 150, 75, 25);
+		panel.add(keywordLabel);	
+		
+		keywordField = new JTextField();
+		keywordField.setFont(new Font("Tahoma", Font.BOLD, 13));
+		keywordField.setBounds(150, 150, 75, 25);
+		panel.add(keywordField);
+		keywordField.setColumns(10);
+		
+		clientIDField = new JTextField();
+		clientIDField.setFont(new Font("Tahoma", Font.BOLD, 13));
+		clientIDField.setColumns(10);
+		clientIDField.setBounds(150, 180, 75, 25);
+		panel.add(clientIDField);
 		
 		JRadioButton originRadioButton = new JRadioButton("Origin");
 		originRadioButton.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -83,18 +104,7 @@ public class companySearchJourney extends JFrame{
 		statusRadioButton.setBackground(Color.LIGHT_GRAY);
 		statusRadioButton.setBounds(100, 90, 100, 25);
 		panel.add(statusRadioButton);
-		
-		keywordField = new JTextField();
-		keywordField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		keywordField.setBounds(150, 150, 75, 25);
-		panel.add(keywordField);
-		keywordField.setColumns(10);
-		
-		JLabel keywordLabel = new JLabel("Keyword:");
-		keywordLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		keywordLabel.setBounds(75, 150, 75, 25);
-		panel.add(keywordLabel);
-		
+
 		JButton backButton = new JButton("Back");
 		backButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		backButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -172,17 +182,6 @@ public class companySearchJourney extends JFrame{
 			}
 		});
 		panel.add(confirmButton);
-		
-		JLabel clientIDLabel = new JLabel("ClientID:");
-		clientIDLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		clientIDLabel.setBounds(75, 180, 75, 25);
-		panel.add(clientIDLabel);
-		
-		clientIDField = new JTextField();
-		clientIDField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		clientIDField.setColumns(10);
-		clientIDField.setBounds(150, 180, 75, 25);
-		panel.add(clientIDField);
 	}
 	
 	public static void companySearchJourney() {

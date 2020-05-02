@@ -54,14 +54,7 @@ public class companyCreateClient extends JFrame{
 		header.setFont(new Font("Tahoma", Font.BOLD, 16));
 		header.setBackground(Color.LIGHT_GRAY);
 		panel.add(header);
-		
-		textFieldAddress = new JTextField();
-		textFieldAddress.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldAddress.setFont(new Font("Tahoma", Font.BOLD, 13));
-		textFieldAddress.setBounds(141, 70, 96, 25);
-		panel.add(textFieldAddress);
-		textFieldAddress.setColumns(10);
-		
+				
 		JLabel createClientAddress = new JLabel("Address:");
 		createClientAddress.setHorizontalTextPosition(SwingConstants.CENTER);
 		createClientAddress.setHorizontalAlignment(SwingConstants.CENTER);
@@ -69,6 +62,69 @@ public class companyCreateClient extends JFrame{
 		createClientAddress.setBounds(35, 73, 96, 17);
 		panel.add(createClientAddress);
 		
+		JLabel createClientEmail = new JLabel("Email:");
+		createClientEmail.setHorizontalTextPosition(SwingConstants.CENTER);
+		createClientEmail.setHorizontalAlignment(SwingConstants.CENTER);
+		createClientEmail.setFont(new Font("Tahoma", Font.BOLD, 16));
+		createClientEmail.setBounds(35, 103, 96, 17);
+		panel.add(createClientEmail);
+				
+		JLabel createClientTelephone = new JLabel("Telephone:");
+		createClientTelephone.setHorizontalTextPosition(SwingConstants.CENTER);
+		createClientTelephone.setHorizontalAlignment(SwingConstants.CENTER);
+		createClientTelephone.setFont(new Font("Tahoma", Font.BOLD, 16));
+		createClientTelephone.setBounds(35, 133, 96, 17);
+		panel.add(createClientTelephone);
+				
+		JLabel createClientName = new JLabel("Name:");
+		createClientName.setHorizontalTextPosition(SwingConstants.CENTER);
+		createClientName.setHorizontalAlignment(SwingConstants.CENTER);
+		createClientName.setFont(new Font("Tahoma", Font.BOLD, 16));
+		createClientName.setBounds(35, 43, 96, 17);
+		panel.add(createClientName);
+				
+		JLabel createClientPassword = new JLabel("Password:");
+		createClientPassword.setHorizontalTextPosition(SwingConstants.CENTER);
+		createClientPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		createClientPassword.setFont(new Font("Tahoma", Font.BOLD, 16));
+		createClientPassword.setBounds(35, 163, 96, 17);
+		panel.add(createClientPassword);
+		
+		textFieldAddress = new JTextField();
+		textFieldAddress.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldAddress.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textFieldAddress.setBounds(141, 70, 96, 25);
+		panel.add(textFieldAddress);
+		textFieldAddress.setColumns(10);
+
+		textFieldEmail = new JTextField();
+		textFieldEmail.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldEmail.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textFieldEmail.setColumns(10);
+		textFieldEmail.setBounds(141, 100, 96, 25);
+		panel.add(textFieldEmail);
+
+		textFieldTelephone = new JTextField();
+		textFieldTelephone.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldTelephone.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textFieldTelephone.setColumns(10);
+		textFieldTelephone.setBounds(141, 130, 96, 25);
+		panel.add(textFieldTelephone);
+
+		textFieldName = new JTextField();
+		textFieldName.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldName.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textFieldName.setColumns(10);
+		textFieldName.setBounds(141, 40, 96, 25);
+		panel.add(textFieldName);
+
+		textFieldPassword = new JTextField();
+		textFieldPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldPassword.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textFieldPassword.setColumns(10);
+		textFieldPassword.setBounds(141, 160, 96, 25);
+		panel.add(textFieldPassword);
+
 		JButton clientCreateBack = new JButton("Back");
 		clientCreateBack.setFont(new Font("Tahoma", Font.BOLD, 16));
 		clientCreateBack.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -127,62 +183,6 @@ public class companyCreateClient extends JFrame{
 				}
 			}
 		});
-		
-		JLabel createClientEmail = new JLabel("Email:");
-		createClientEmail.setHorizontalTextPosition(SwingConstants.CENTER);
-		createClientEmail.setHorizontalAlignment(SwingConstants.CENTER);
-		createClientEmail.setFont(new Font("Tahoma", Font.BOLD, 16));
-		createClientEmail.setBounds(35, 103, 96, 17);
-		panel.add(createClientEmail);
-		
-		textFieldEmail = new JTextField();
-		textFieldEmail.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldEmail.setFont(new Font("Tahoma", Font.BOLD, 13));
-		textFieldEmail.setColumns(10);
-		textFieldEmail.setBounds(141, 100, 96, 25);
-		panel.add(textFieldEmail);
-		
-		JLabel createClientTelephone = new JLabel("Telephone:");
-		createClientTelephone.setHorizontalTextPosition(SwingConstants.CENTER);
-		createClientTelephone.setHorizontalAlignment(SwingConstants.CENTER);
-		createClientTelephone.setFont(new Font("Tahoma", Font.BOLD, 16));
-		createClientTelephone.setBounds(35, 133, 96, 17);
-		panel.add(createClientTelephone);
-		
-		textFieldTelephone = new JTextField();
-		textFieldTelephone.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldTelephone.setFont(new Font("Tahoma", Font.BOLD, 13));
-		textFieldTelephone.setColumns(10);
-		textFieldTelephone.setBounds(141, 130, 96, 25);
-		panel.add(textFieldTelephone);
-		
-		JLabel createClientName = new JLabel("Name:");
-		createClientName.setHorizontalTextPosition(SwingConstants.CENTER);
-		createClientName.setHorizontalAlignment(SwingConstants.CENTER);
-		createClientName.setFont(new Font("Tahoma", Font.BOLD, 16));
-		createClientName.setBounds(35, 43, 96, 17);
-		panel.add(createClientName);
-		
-		textFieldName = new JTextField();
-		textFieldName.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldName.setFont(new Font("Tahoma", Font.BOLD, 13));
-		textFieldName.setColumns(10);
-		textFieldName.setBounds(141, 40, 96, 25);
-		panel.add(textFieldName);
-		
-		JLabel createClientPassword = new JLabel("Password:");
-		createClientPassword.setHorizontalTextPosition(SwingConstants.CENTER);
-		createClientPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		createClientPassword.setFont(new Font("Tahoma", Font.BOLD, 16));
-		createClientPassword.setBounds(35, 163, 96, 17);
-		panel.add(createClientPassword);
-		
-		textFieldPassword = new JTextField();
-		textFieldPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldPassword.setFont(new Font("Tahoma", Font.BOLD, 13));
-		textFieldPassword.setColumns(10);
-		textFieldPassword.setBounds(141, 160, 96, 25);
-		panel.add(textFieldPassword);
 	}
 	
 	public static void companyCreateClient() {

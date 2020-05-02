@@ -5,30 +5,23 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
-import io.cucumber.core.internal.gherkin.StringUtils;
 import main.Journey;
 import main.dataStructure;
-import main.request;
 
 public class clientContainerHistory extends JFrame{
 	public clientContainerHistory(int genUser) {
@@ -54,6 +47,20 @@ public class clientContainerHistory extends JFrame{
 		clientRegContainerLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		clientRegContainerLabel.setBounds(5, 15, 300, 25);
 		panel.add(clientRegContainerLabel);
+		
+		JLabel containerHistoryJourneyIDLabel = new JLabel("JourneyID:");
+		containerHistoryJourneyIDLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		containerHistoryJourneyIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		containerHistoryJourneyIDLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		containerHistoryJourneyIDLabel.setBounds(55, 80, 95, 25);
+		panel.add(containerHistoryJourneyIDLabel);
+		
+		JLabel containerHistoryStatusLabel = new JLabel("Status:");
+		containerHistoryStatusLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		containerHistoryStatusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		containerHistoryStatusLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		containerHistoryStatusLabel.setBounds(55, 125, 95, 25);
+		panel.add(containerHistoryStatusLabel);
 		
 		String[] statusList = {"Temperature", "Humidity", "Pressure"};
 		
@@ -143,22 +150,7 @@ public class clientContainerHistory extends JFrame{
 				}
 			}
 		});
-		panel.add(clientConfirmButton);
-		
-		JLabel containerHistoryJourneyIDLabel = new JLabel("JourneyID:");
-		containerHistoryJourneyIDLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		containerHistoryJourneyIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		containerHistoryJourneyIDLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		containerHistoryJourneyIDLabel.setBounds(55, 80, 95, 25);
-		panel.add(containerHistoryJourneyIDLabel);
-		
-		JLabel containerHistoryStatusLabel = new JLabel("Status:");
-		containerHistoryStatusLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		containerHistoryStatusLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		containerHistoryStatusLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		containerHistoryStatusLabel.setBounds(55, 125, 95, 25);
-		panel.add(containerHistoryStatusLabel);
-		
+		panel.add(clientConfirmButton);		
 	}
 
 	public static void clientContainerHistory(int genUser) {

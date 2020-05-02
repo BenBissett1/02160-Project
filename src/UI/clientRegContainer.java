@@ -5,7 +5,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -50,6 +49,34 @@ public class clientRegContainer extends JFrame {
 		clientRegContainerLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		clientRegContainerLabel.setBounds(5, 10, 300, 25);
 		panel.add(clientRegContainerLabel);
+		
+		JLabel regContainerOrigin = new JLabel("Origin:");
+		regContainerOrigin.setHorizontalTextPosition(SwingConstants.CENTER);
+		regContainerOrigin.setHorizontalAlignment(SwingConstants.CENTER);
+		regContainerOrigin.setFont(new Font("Tahoma", Font.BOLD, 16));
+		regContainerOrigin.setBounds(55, 65, 95, 20);
+		panel.add(regContainerOrigin);
+		
+		JLabel regContainerDestination = new JLabel("Destination:");
+		regContainerDestination.setHorizontalTextPosition(SwingConstants.CENTER);
+		regContainerDestination.setHorizontalAlignment(SwingConstants.CENTER);
+		regContainerDestination.setFont(new Font("Tahoma", Font.BOLD, 16));
+		regContainerDestination.setBounds(55, 105, 100, 20);
+		panel.add(regContainerDestination);
+		
+		JLabel regContainerContents = new JLabel("Contents:");
+		regContainerContents.setHorizontalTextPosition(SwingConstants.CENTER);
+		regContainerContents.setHorizontalAlignment(SwingConstants.CENTER);
+		regContainerContents.setFont(new Font("Tahoma", Font.BOLD, 16));
+		regContainerContents.setBounds(55, 145, 95, 20);
+		panel.add(regContainerContents);
+		
+		regContainerContentsField = new JTextField();
+		regContainerContentsField.setHorizontalAlignment(SwingConstants.CENTER);
+		regContainerContentsField.setFont(new Font("Tahoma", Font.BOLD, 13));
+		regContainerContentsField.setColumns(10);
+		regContainerContentsField.setBounds(160, 145, 95, 25);
+		panel.add(regContainerContentsField);	
 		
 		String[] mapLocations = { "Copenhagen", "New York", "Toronto", "Edinburgh", "Busan", "Shenzhen", "Shanghai", "Tanjung", "Dubai", "Los Angeles", "Valencia",
                 "Santos", "Tanger Med", "Salalah", "Cape Town", "Colombo", "Comodoro", "Christchurch", "Perth", "Mogadishu"};
@@ -103,36 +130,7 @@ public class clientRegContainer extends JFrame {
 				}
 			}
 		});
-		panel.add(clientRegContainerButton);
-		
-		JLabel regContainerOrigin = new JLabel("Origin:");
-		regContainerOrigin.setHorizontalTextPosition(SwingConstants.CENTER);
-		regContainerOrigin.setHorizontalAlignment(SwingConstants.CENTER);
-		regContainerOrigin.setFont(new Font("Tahoma", Font.BOLD, 16));
-		regContainerOrigin.setBounds(55, 65, 95, 20);
-		panel.add(regContainerOrigin);
-		
-		JLabel regContainerDestination = new JLabel("Destination:");
-		regContainerDestination.setHorizontalTextPosition(SwingConstants.CENTER);
-		regContainerDestination.setHorizontalAlignment(SwingConstants.CENTER);
-		regContainerDestination.setFont(new Font("Tahoma", Font.BOLD, 16));
-		regContainerDestination.setBounds(55, 105, 100, 20);
-		panel.add(regContainerDestination);
-		
-		JLabel regContainerContents = new JLabel("Contents:");
-		regContainerContents.setHorizontalTextPosition(SwingConstants.CENTER);
-		regContainerContents.setHorizontalAlignment(SwingConstants.CENTER);
-		regContainerContents.setFont(new Font("Tahoma", Font.BOLD, 16));
-		regContainerContents.setBounds(55, 145, 95, 20);
-		panel.add(regContainerContents);
-		
-		regContainerContentsField = new JTextField();
-		regContainerContentsField.setHorizontalAlignment(SwingConstants.CENTER);
-		regContainerContentsField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		regContainerContentsField.setColumns(10);
-		regContainerContentsField.setBounds(160, 145, 95, 25);
-		panel.add(regContainerContentsField);	
-		
+		panel.add(clientRegContainerButton);		
 	}
 
 	public static void clientRegContainer(int genUser) {

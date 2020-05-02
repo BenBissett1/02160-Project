@@ -1,52 +1,31 @@
 package UI;
 
-import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Stroke;
 import java.awt.SystemColor;
 
-import javax.imageio.ImageIO;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
-import main.Client;
 import main.Painter;
 import main.dataStructure;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import java.awt.ComponentOrientation;
 
 class companyInterface extends JFrame {
-	private ButtonGroup group;
 	private JPanel panel;
-	private JTextField txtinit;
-    private BufferedImage Worldmap;
-	
 	public companyInterface() {
 		super("Company Interface");
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -72,19 +51,24 @@ class companyInterface extends JFrame {
 		headerPanel.setBackground(Color.BLACK);
 		headerPanel.setBounds(0, 0, 605, 50);
 		panel.add(headerPanel);
-		
-		JLabel companyHeaderLabel = new JLabel("Company Interface");
-		companyHeaderLabel.setForeground(SystemColor.controlShadow);
-		companyHeaderLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		headerPanel.add(companyHeaderLabel);
-		
+				
 		JPanel clientManagePanel = new JPanel();
 		clientManagePanel.setBorder(null);
 		clientManagePanel.setBackground(Color.BLACK);
 		clientManagePanel.setBounds(0, 50, 605, 620);
 		panel.add(clientManagePanel);
 		clientManagePanel.setLayout(null);
+
+		Painter paintedPanel = new Painter(0);
+		paintedPanel.setOpaque(true);
+		paintedPanel.setBounds(0, 185, 595, 335);
+		clientManagePanel.add(paintedPanel);	
 		
+		JLabel companyHeaderLabel = new JLabel("Company Interface");
+		companyHeaderLabel.setForeground(SystemColor.controlShadow);
+		companyHeaderLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		headerPanel.add(companyHeaderLabel);
+
 		JLabel containerStatusLabel = new JLabel("Container Status");
 		containerStatusLabel.setForeground(SystemColor.controlShadow);
 		containerStatusLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -201,9 +185,16 @@ class companyInterface extends JFrame {
 		updateContainerStatusButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dataStructure.save();
-				companyUpdateStatus.companyUpdateStatus();		
-			}
+				 if(dataStructure.allJourneys().size() == 0) {
+					JOptionPane.showMessageDialog(panel,
+							"There are no JourneyIDs",
+							"Journey Error",
+							JOptionPane.ERROR_MESSAGE);
+				 } else {
+					dataStructure.save();
+					companyUpdateStatus.companyUpdateStatus();
+				 }
+			  }
 		});
 		clientManagePanel.add(updateContainerStatusButton);
 		
@@ -236,11 +227,18 @@ class companyInterface extends JFrame {
 		});
 		clientManagePanel.add(returnLoginButton);
 		
-		Painter paintedPanel = new Painter(0);
-		paintedPanel.setOpaque(true);
-		paintedPanel.setBounds(0, 185, 595, 335);
-		clientManagePanel.add(paintedPanel);		
-
+		JButton companyChangePasswordButton = new JButton("Change Password");
+		companyChangePasswordButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		companyChangePasswordButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		companyChangePasswordButton.setBounds(425, 540, 150, 25);
+		companyChangePasswordButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.save();
+				companyChangePassword.companyChangePassword();
+			}
+		});
+		clientManagePanel.add(companyChangePasswordButton);	
 	}
 
 	public static void companyInterface() {

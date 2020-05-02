@@ -5,7 +5,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -54,6 +53,17 @@ public class companySearchClient extends JFrame {
 		header.setFont(new Font("Tahoma", Font.BOLD, 16));
 		header.setBackground(Color.LIGHT_GRAY);
 		panel.add(header);
+				
+		JLabel keywordLabel = new JLabel("Keyword:");
+		keywordLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		keywordLabel.setBounds(75, 160, 75, 25);
+		panel.add(keywordLabel);
+		
+		keywordField = new JTextField();
+		keywordField.setFont(new Font("Tahoma", Font.BOLD, 13));
+		keywordField.setBounds(150, 162, 75, 25);
+		panel.add(keywordField);
+		keywordField.setColumns(10);
 		
 		JRadioButton nameRadioButton = new JRadioButton("Name");
 		nameRadioButton.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -82,17 +92,6 @@ public class companySearchClient extends JFrame {
 		telephoneRadioButton.setBackground(Color.LIGHT_GRAY);
 		telephoneRadioButton.setBounds(100, 100, 100, 25);
 		panel.add(telephoneRadioButton);
-		
-		keywordField = new JTextField();
-		keywordField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		keywordField.setBounds(150, 162, 75, 25);
-		panel.add(keywordField);
-		keywordField.setColumns(10);
-		
-		JLabel keywordLabel = new JLabel("Keyword:");
-		keywordLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		keywordLabel.setBounds(75, 160, 75, 25);
-		panel.add(keywordLabel);
 		
 		JButton backButton = new JButton("Back");
 		backButton.setFont(new Font("Tahoma", Font.BOLD, 16));
