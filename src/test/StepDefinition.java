@@ -52,11 +52,11 @@ public class StepDefinition {
 	}
 	@Then("save client info")
 	public void saveCInfo() {
-		dataStructure.saveC();
+		dataStructure.save();
 	}
 	@When("load clients")
 	public void loadCInfo() {
-		dataStructure.loadC();
+		dataStructure.load();
 	}
 	@Then("display all client info")
 	public void displayAllInfo() {
@@ -70,7 +70,7 @@ public class StepDefinition {
 	}
 	@When("load journeys")
 	public void loadclients() {
-		dataStructure.loadJ();
+		dataStructure.load();
 	}
 	@When("search by name") 
 	public void searchName() {
@@ -82,7 +82,7 @@ public class StepDefinition {
 	}
 	@Then("check client")
 	public void clientcheck() {
-		System.out.println(dataStructure.clientExists(client.getID()));
+		System.out.println(Client.clientExists(client.getID()));
 
 	}
 	
@@ -162,7 +162,7 @@ public class StepDefinition {
 	}
 	@Then("check journey")
 	public void journeycheck() {
-		System.out.println(dataStructure.journeyExists(journey.getJID()));
+		System.out.println(Journey.journeyExists(journey.getJID()));
 
 	}
 	@When("search for clients journeys")
@@ -171,11 +171,10 @@ public class StepDefinition {
 	}
 	@When("save journey info")
 	public void saveJ() {
-		dataStructure.saveJ();
+		dataStructure.save();
 	}
 	@Then("update journey")
 	public void updateJ() {
-		System.out.println("HEELO"+journey.getJID()+journey.getDestination()+journey.getStatus());
 		Journey.updateJourney(journey.getJID(), journey.getDestination(), journey.getStatus());
 	}
 	@Given("client")

@@ -53,6 +53,7 @@ public class Client extends dataStructure {
 		c.phone=phone;
 		clients.put(ID,c);	
 	}
+	public static boolean clientExists(int cID) {return !(clients.get(cID)==null);}
 	public int getID() {
 		return clientID;
 	}

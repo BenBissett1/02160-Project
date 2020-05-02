@@ -55,7 +55,7 @@ public class dataStructure {
 		}
 		return allJs;
 	}
-	public static void saveC() {
+	public static void save() {
 		String serialClients = "";
 		Iterator<Integer> itr = clients.keySet().iterator();
 		while(itr.hasNext()) {
@@ -67,10 +67,8 @@ public class dataStructure {
 		out.close();
 		}
 		catch (Exception c) {System.out.println("CLIENT LIST SAVING FAILED");}
-	}
-	public static void saveJ() {
 		String serialJourneys = "";
-		Iterator<Integer> itr = journeys.keySet().iterator();
+		itr = journeys.keySet().iterator();
 		while(itr.hasNext()) {
 			int i = itr.next();
 			serialJourneys+=i+"|"+journeys.get(i).origin+"|"+journeys.get(i).destination+"|"+journeys.get(i).status+"|"+journeys.get(i).content+"|"+journeys.get(i).ClientID+"|>";
@@ -93,11 +91,7 @@ public class dataStructure {
 		}
 		catch (Exception c) {System.out.println("JOURNEY LIST SAVING FAILED");}
 	}
-	public static void save() {
-		saveC();
-		saveJ();
-	}
-	public static void loadC() {
+	public static void load() {
 		if (new File("clients.txt").isFile()) {
 			try {
 				InputStream scl = new FileInputStream("clients.txt");
@@ -131,8 +125,6 @@ public class dataStructure {
 			}
 			catch (Exception c) {System.out.println("CLIENT LIST LOADING FAILED\n"+c);}
 			}
-	}
-	public static void loadJ() {
 		if (new File("journeys.txt").isFile()) {
 			try {
 				InputStream scl = new FileInputStream("journeys.txt");
@@ -183,25 +175,5 @@ public class dataStructure {
 			}
 			catch (Exception c) {System.out.println("JOURNEY LIST LOADING FAILED\n"+c);}
 			}
-	}
-	public static void load() {
-		loadC();
-		loadJ();
 		}
-	public static boolean clientExists(int cID) {
-		if (clients.get(cID)==null) {
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
-	public static boolean journeyExists(int jID) {
-		if (journeys.get(jID)==null) {
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
 }
