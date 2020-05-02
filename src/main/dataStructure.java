@@ -335,15 +335,4 @@ public class dataStructure {
 			return true;
 		}
 	}
-//	public static void main(String[] args) {
-//		Journey j = new Journey();
-//		j.temperatures.add(3F);
-//		System.out.println(j.getTemp());
-////		load();
-////		System.out.println(allClients());
-////		System.out.println(allJourneys());
-//////		System.out.println(journeys.get(1914101302).temperatures);
-////		regNewJourney("Ben","Not Ben","idk",1949);
-////		save();
-//	}
 }

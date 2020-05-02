@@ -10,22 +10,16 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import main.Client;
-//import main.Container;
 import main.Journey;
 import main.dataStructure;
-//import main.Port;
-import main.ResponseObject;
 import main.request;
 
 public class StepDefinition {
 	
-	//Port port = new Port();
-	//Container container = new Container();
 	Client client = new Client();
 	dataStructure data = new dataStructure();
 	Journey journey = new Journey();
 	request request = new request();
-	ResponseObject response;
 	
 	///////////////////////
 	// Start //////////////
@@ -198,55 +192,6 @@ public class StepDefinition {
 	// End //////////////////////////
 	// JourneyRegistration.feature //
 	/////////////////////////////////
-	
-	
-	///////////////////////////////
-	// Start //////////////////////
-	// ContainerPosition.feature //
-	///////////////////////////////
-	
-	/*
-	
-	@Given("a containerid {int}")
-	public void a_containerid(Integer int1) {
-		container.setJourneyID(int1);
-	}
-	
-	@Given("^containeridInvalid is (true|false)$")
-	public void containeridinvalid_is_false(boolean validContainerID) {
-		container.setValidContainerID(validContainerID);
-	}
-	
-	@Given("^enroute status is (true|false)$")
-	public void enroute_status_is_true(boolean isEnroute) {
-		container.setEnroute(isEnroute);
-	}
-	
-	@When("retrieving")
-	public void retrieving() {
-		response = dataStructure.position(container);
-	}
-	
-	@Then("output coordinates of container")
-	public void output_coordinates_of_container() {
-		assertEquals(response.getErrorMessage(), "Container enroute");
-	}
-	
-	@Then("output container arrived at destination")
-	public void output_container_arrived_at_destination() {
-		assertEquals(response.getErrorMessage(), "Container arrived");
-	}
-	
-	@Then("output containerID not found in database")
-	public void output_containerID_not_found_in_database() {
-		assertEquals(response.getErrorMessage(), "Container not found");
-	}
-	*/
-	
-	///////////////////////////////
-	// End ////////////////////////
-	// ContainerPosition.feature //
-	///////////////////////////////
 	
 	
 	// Start
