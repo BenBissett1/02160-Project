@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 1821155099|Copenhagen|New York|Origin|Apples|1821|>>>>
 1016113399|Copenhagen|Edinburgh|Origin|Hello|1016|>17.4;>36.6;>1099.4;>
+=======
+1318117478|Edinburgh|Christchurch|Destination|Dildos|1318|>24.3;>52.3;>944.4;>
+1318162092|Copenhagen|New York|Destination|Dildos|1318|>24.4;>46.4;>995.1;>
+>>>>>>> branch 'master' of https://github.com/BenBissett1/02160-Project.git
 End
