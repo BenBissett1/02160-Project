@@ -18,10 +18,11 @@ import javax.swing.JPanel;
 public class Painter extends JPanel {
 
     private BufferedImage Worldmap;
-    private int genUser;
+    private int User;
 
     public Painter(int genUser) {
         try {
+        	User = genUser;
             Worldmap = ImageIO.read(new File("Images/grayscale-vector-worldmap.jpg"));
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -41,33 +42,33 @@ public class Painter extends JPanel {
             //g2d.setColor(Color.MAGENTA);
             //g2d.fillRoundRect(620, 330, 20, 20, 10, 10);
             
-            int[] Copenhagen = {300, 92};
-            int[] NewYork = {167, 122};
-            int[] Toronto = {145, 110};
-            int[] Edinburgh = {276, 91};
-            int[] Busan = {483, 134};
-            int[] Shenzhen = {458, 156};
-            int[] Shanghai = {471, 143};
-            int[] TanjungPerak = {456, 206};
-            int[] Dubai = {368, 151};
-            int[] LosAngeles = {91, 135};
-            int[] Valencia = {282, 126};
-            int[] Santos = {208, 233};
-            int[] TangerMed = {271, 133};
-            int[] Salalah = {371, 163};
-            int[] CapeTown = {309, 250};
-            int[] Colombo = {406, 181};
-            int[] Comodoro = {174, 273};
-            int[] Christchurch = {532, 270};
-            int[] Perth = {460, 247};
-            int[] Mogadishu = {359, 182};
+            int[] Copenhagen = {297, 89};
+            int[] NewYork = {164, 119};
+            int[] Toronto = {142, 107};
+            int[] Edinburgh = {273, 88};
+            int[] Busan = {480, 131};
+            int[] Shenzhen = {455, 153};
+            int[] Shanghai = {468, 140};
+            int[] TanjungPerak = {453, 203};
+            int[] Dubai = {365, 148};
+            int[] LosAngeles = {88, 132};
+            int[] Valencia = {279, 123};
+            int[] Santos = {205, 230};
+            int[] TangerMed = {268, 130};
+            int[] Salalah = {368, 160};
+            int[] CapeTown = {306, 247};
+            int[] Colombo = {403, 178};
+            int[] Comodoro = {171, 270};
+            int[] Christchurch = {529, 267};
+            int[] Perth = {457, 244};
+            int[] Mogadishu = {356, 179};
             
             //int[][] allLocations = {Copenhagen, NewYork, Toronto, Edinburgh, Busan, Shenzhen, Shanghai, TanjungPerak, Dubai, LosAngeles, Valencia, Santos, TangerMed, Salalah, CapeTown, Colombo, Comodoro, Christchurch, Perth, Mogadishu};
             	
             int[] location_initial2;
             int[] location_final2;
             
-            if (dataStructure.clients.isEmpty() || genUser == 0) {
+            if (dataStructure.clients.isEmpty() || User == 0) {
             	//Do the company side of things
             	
             	Iterator<Integer> itr = dataStructure.journeys.keySet().iterator();
@@ -127,14 +128,14 @@ public class Painter extends JPanel {
                     g2d.setStroke(dashed);
                     g2d.drawLine(location_initial2[0] + 7, location_initial2[1] + 7, location_final2[0] + 7, location_final2[1] + 7); //+ 7 is half of the rectangle size in order to center it)
 
-                    g2d.setColor(Color.BLACK);
+                    g2d.setColor(new Color(255, 255, 255, 0));
                     g2d.fillRoundRect(location_initial2[0], location_initial2[1], 15, 15, 10, 10);
                     g2d.setColor(Color.RED);
-                    g2d.fillRoundRect(location_initial2[0] + 4, location_initial2[1] + 4, 7, 7, 10, 10);
-                    g2d.setColor(Color.BLACK);
+                    g2d.fillRoundRect(location_initial2[0] + 4, location_initial2[1] + 4, 10, 10, 13, 13);
+                    g2d.setColor(new Color(255, 255, 255, 0));
                     g2d.fillRoundRect(location_final2[0], location_final2[1], 15, 15, 10, 10);
                     g2d.setColor(Color.GREEN);
-                    g2d.fillRoundRect(location_final2[0] + 4, location_final2[1] + 4, 7, 7, 10, 10);
+                    g2d.fillRoundRect(location_final2[0] + 4, location_final2[1] + 4, 10, 10, 13, 13);
                     
                     double slope = ((double) location_final2[1] - (double) location_initial2[1]) / ((double) location_final2[0] - (double) location_initial2[0]);
                     double b = ((double) location_initial2[1] - (slope * (double) location_initial2[0]));
@@ -144,43 +145,38 @@ public class Painter extends JPanel {
                     
                     
                     if (status.equals("Origin")) {
-                    	g2d.setColor(Color.BLACK);
+                    	g2d.setColor(new Color(255, 255, 255, 0));
                         g2d.fillRoundRect(location_initial2[0], location_initial2[1], 15, 15, 10, 10);
-                        g2d.setColor(Color.WHITE);
-                        g2d.fillRoundRect(location_initial2[0] + 4, location_initial2[1] + 4, 7, 7, 10, 10);
+                        g2d.setColor(Color.RED);
+                        g2d.fillRoundRect(location_initial2[0] + 4, location_initial2[1] + 4, 10, 10, 13, 13);
                     }
                     else if (status.equals("Destination")) {
-                    	g2d.setColor(Color.BLACK);
+                    	g2d.setColor(new Color(255, 255, 255, 0));
                         g2d.fillRoundRect(location_final2[0], location_final2[1], 15, 15, 10, 10);
-                        g2d.setColor(Color.WHITE);
-                        g2d.fillRoundRect(location_final2[0] + 4, location_final2[1] + 4, 7, 7, 10, 10);
+                        g2d.setColor(Color.BLUE);
+                        g2d.fillRoundRect(location_final2[0] + 4, location_final2[1] + 4, 10, 10, 13, 13);
                     }
                     else if (location_initial2[0] < location_final2[0]) {
                     	double random = r.nextInt(location_final2[0] - location_initial2[0]) + location_initial2[0];
                         double ycoord = random * slope + b;
-                        g2d.setColor(Color.BLACK);
+                        g2d.setColor(new Color(255, 255, 255, 0));
                         g2d.fillRoundRect((int) random, (int) ycoord, 15, 15, 10, 10);
-                        g2d.setColor(Color.WHITE);
-                        g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 7, 7, 10, 10);
+                        g2d.setColor(Color.BLUE);
+                        g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 10, 10, 13, 13);
                     } else {
                     	double random = r.nextInt(location_initial2[0] - location_final2[0]) + location_final2[0];
                         double ycoord = random * slope + b;
-                        g2d.setColor(Color.BLACK);
+                        g2d.setColor(new Color(255, 255, 255, 0));
                         g2d.fillRoundRect((int) random, (int) ycoord, 15, 15, 10, 10);
-                        g2d.setColor(Color.WHITE);
-                        g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 7, 7, 10, 10);
+                        g2d.setColor(Color.BLUE);
+                        g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 10, 10, 13, 13);
                     }
-        			
-        			
-        			
-        			
         		}
             	
             } else {
-            	//Do the client side of things
-            	Client C = dataStructure.clients.get(genUser);
-            	
-            	List<Integer> in = dataStructure.searchJ("" + C.getID(), 4, C.getID());
+            	//Do the client side of things            	
+            	List<Integer> in = dataStructure.searchJ(""+User, 4, User);
+
             	for (int i = 0; i < in.size(); i++) {
             		
             		Iterator<Integer> itr = dataStructure.journeys.keySet().iterator();
@@ -242,14 +238,14 @@ public class Painter extends JPanel {
                             g2d.setStroke(dashed);
                             g2d.drawLine(location_initial2[0] + 7, location_initial2[1] + 7, location_final2[0] + 7, location_final2[1] + 7); //+ 7 is half of the rectangle size in order to center it)
 
-                            g2d.setColor(Color.BLACK);
+                            g2d.setColor(new Color(255, 255, 255, 0));
                             g2d.fillRoundRect(location_initial2[0], location_initial2[1], 15, 15, 10, 10);
                             g2d.setColor(Color.RED);
-                            g2d.fillRoundRect(location_initial2[0] + 4, location_initial2[1] + 4, 7, 7, 10, 10);
-                            g2d.setColor(Color.BLACK);
+                            g2d.fillRoundRect(location_initial2[0] + 4, location_initial2[1] + 4, 10, 10, 13, 13);
+                            g2d.setColor(new Color(255, 255, 255, 0));
                             g2d.fillRoundRect(location_final2[0], location_final2[1], 15, 15, 10, 10);
                             g2d.setColor(Color.GREEN);
-                            g2d.fillRoundRect(location_final2[0] + 4, location_final2[1] + 4, 7, 7, 10, 10);
+                            g2d.fillRoundRect(location_final2[0] + 4, location_final2[1] + 4, 10, 10, 13, 13);
                             
                             double slope = ((double) location_final2[1] - (double) location_initial2[1]) / ((double) location_final2[0] - (double) location_initial2[0]);
                             double b = ((double) location_initial2[1] - (slope * (double) location_initial2[0]));
@@ -259,31 +255,31 @@ public class Painter extends JPanel {
                             
                             
                             if (status.equals("Origin")) {
-                            	g2d.setColor(Color.BLACK);
+                            	g2d.setColor(new Color(255, 255, 255, 0));
                                 g2d.fillRoundRect(location_initial2[0], location_initial2[1], 15, 15, 10, 10);
-                                g2d.setColor(Color.WHITE);
-                                g2d.fillRoundRect(location_initial2[0] + 4, location_initial2[1] + 4, 7, 7, 10, 10);
+                                g2d.setColor(Color.RED);
+                                g2d.fillRoundRect(location_initial2[0] + 4, location_initial2[1] + 4, 10, 10, 13, 13);
                             }
                             else if (status.equals("Destination")) {
-                            	g2d.setColor(Color.BLACK);
+                            	g2d.setColor(new Color(255, 255, 255, 0));
                                 g2d.fillRoundRect(location_final2[0], location_final2[1], 15, 15, 10, 10);
-                                g2d.setColor(Color.WHITE);
-                                g2d.fillRoundRect(location_final2[0] + 4, location_final2[1] + 4, 7, 7, 10, 10);
+                                g2d.setColor(Color.BLUE);
+                                g2d.fillRoundRect(location_final2[0] + 4, location_final2[1] + 4, 10, 10, 13, 13);
                             }
                             else if (location_initial2[0] < location_final2[0]) {
                             	double random = r.nextInt(location_final2[0] - location_initial2[0]) + location_initial2[0];
                                 double ycoord = random * slope + b;
-                                g2d.setColor(Color.BLACK);
+                                g2d.setColor(new Color(255, 255, 255, 0));
                                 g2d.fillRoundRect((int) random, (int) ycoord, 15, 15, 10, 10);
-                                g2d.setColor(Color.WHITE);
-                                g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 7, 7, 10, 10);
+                                g2d.setColor(Color.BLUE);
+                                g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 10, 10, 13, 13);
                             } else {
                             	double random = r.nextInt(location_initial2[0] - location_final2[0]) + location_final2[0];
                                 double ycoord = random * slope + b;
-                                g2d.setColor(Color.BLACK);
+                                g2d.setColor(new Color(255, 255, 255, 0));
                                 g2d.fillRoundRect((int) random, (int) ycoord, 15, 15, 10, 10);
-                                g2d.setColor(Color.WHITE);
-                                g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 7, 7, 10, 10);
+                                g2d.setColor(Color.BLUE);
+                                g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 10, 10, 13, 13);
                             }
             				
             				
@@ -329,14 +325,14 @@ public class Painter extends JPanel {
 //                    double ycoord = random * slope + b;
 //                    g2d.setColor(Color.BLACK);
 //                    g2d.fillRoundRect((int) random, (int) ycoord, 15, 15, 10, 10);
-//                    g2d.setColor(Color.WHITE);
+//                    g2d.setColor(Color.BLUE);
 //                    g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 7, 7, 10, 10);
 //                } else {
 //                	double random = r.nextInt(location_initial[0] - location_final[0]) + location_final[0];
 //                    double ycoord = random * slope + b;
 //                    g2d.setColor(Color.BLACK);
 //                    g2d.fillRoundRect((int) random, (int) ycoord, 15, 15, 10, 10);
-//                    g2d.setColor(Color.WHITE);
+//                    g2d.setColor(Color.BLUE);
 //                    g2d.fillRoundRect((int) random + 4, (int) ycoord + 4, 7, 7, 10, 10);
 //                }
 //            }
