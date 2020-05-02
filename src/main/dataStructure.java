@@ -35,41 +35,6 @@ public class dataStructure {
 		}
 	}
 	
-	/*public static ResponseObject register(Client client, Port port, Container container) {
-		ResponseObject response;
-		if (!container.isRegistered()) {
-			
-			if (port.getLocationInitial().equals("")
-					|| port.getLocationFinal().equals("")
-					|| container.getContent().equals("")) {
-				response = new ResponseObject(220, "Registration unsuccessful");
-			} else {
-				container.setRegistered(true);
-				response = new ResponseObject(200, "Registration successful"); 
-			}
-		} else {
-			response = new ResponseObject(210, "Already registered");
-		}
-		return response;
-	}*/
-	/*
-	public static ResponseObject position(Container container) {
-		ResponseObject response;
-		
-		if (container.getJourneyID() < 1000) {
-			response = new ResponseObject(320, "Container not found");
-		} else {
-			if (container.isEnroute()) {
-				response = new ResponseObject(310, "Container enroute");
-			} else {
-				response = new ResponseObject(300, "Container arrived");
-			}
-		}
-		return response;
-	}*/
-	
-	
-	
 	static int clientsSize = 1000;
 	static int journeysSize = 100000;
 	public static Map<Integer, Client> clients= new HashMap<Integer, Client>();
