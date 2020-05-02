@@ -5,7 +5,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -16,21 +15,16 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.border.SoftBevelBorder;
 
-import main.Client;
 import main.Journey;
 import main.dataStructure;
 
 import javax.swing.border.BevelBorder;
 
 public class companyUpdateJourney extends JFrame {
-	private JTextField journeyIDField;
-	private JTextField destinationField;
-	private JTextField statusField;
 	public companyUpdateJourney() {
 		super("Update a Journey");
 		setSize(new Dimension(313, 300));
@@ -63,6 +57,20 @@ public class companyUpdateJourney extends JFrame {
 		companyUpdateJourneyID.setBounds(55, 75, 95, 20);
 		panel.add(companyUpdateJourneyID);
 		
+		JLabel companyUpdateDestination = new JLabel("Destination:");
+		companyUpdateDestination.setHorizontalTextPosition(SwingConstants.CENTER);
+		companyUpdateDestination.setHorizontalAlignment(SwingConstants.CENTER);
+		companyUpdateDestination.setFont(new Font("Tahoma", Font.BOLD, 16));
+		companyUpdateDestination.setBounds(55, 115, 100, 20);
+		panel.add(companyUpdateDestination);
+		
+		JLabel companyUpdateStatus = new JLabel("Status:");
+		companyUpdateStatus.setHorizontalTextPosition(SwingConstants.CENTER);
+		companyUpdateStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		companyUpdateStatus.setFont(new Font("Tahoma", Font.BOLD, 16));
+		companyUpdateStatus.setBounds(55, 155, 95, 20);
+		panel.add(companyUpdateStatus);
+		
 		List<Integer> journeyID = dataStructure.allJourneys();
 		String[] jIDs = new String[journeyID.size()];
 		if(journeyID.size() == 0) {
@@ -83,27 +91,13 @@ public class companyUpdateJourney extends JFrame {
 		
 		String[] mapLocations = { "Copenhagen", "New York", "Toronto", "Edinburgh", "Busan", "Shenzhen", "Shanghai", "Tanjung", "Dubai", "Los Angeles", "Valencia",
                 "Santos", "Tanger Med", "Salalah", "Cape Town", "Colombo", "Comodoro", "Christchurch", "Perth", "Mogadishu"};
-		
-		JLabel companyUpdateDestination = new JLabel("Destination:");
-		companyUpdateDestination.setHorizontalTextPosition(SwingConstants.CENTER);
-		companyUpdateDestination.setHorizontalAlignment(SwingConstants.CENTER);
-		companyUpdateDestination.setFont(new Font("Tahoma", Font.BOLD, 16));
-		companyUpdateDestination.setBounds(55, 115, 100, 20);
-		panel.add(companyUpdateDestination);
-		
+
 		JComboBox regContainerDestinationComboBox = new JComboBox(mapLocations);
 		regContainerDestinationComboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
 		regContainerDestinationComboBox.setBounds(160, 115, 95, 25);
 		panel.add(regContainerDestinationComboBox);
 		
 		String[] statuses = { "Origin", "Embarked", "Destination"};
-		
-		JLabel companyUpdateStatus = new JLabel("Status:");
-		companyUpdateStatus.setHorizontalTextPosition(SwingConstants.CENTER);
-		companyUpdateStatus.setHorizontalAlignment(SwingConstants.CENTER);
-		companyUpdateStatus.setFont(new Font("Tahoma", Font.BOLD, 16));
-		companyUpdateStatus.setBounds(55, 155, 95, 20);
-		panel.add(companyUpdateStatus);
 		
 		JComboBox statusComboBox = new JComboBox(statuses);
 		statusComboBox.setFont(new Font("Tahoma", Font.BOLD, 13));

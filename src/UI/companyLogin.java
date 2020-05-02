@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
-import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.border.SoftBevelBorder;
@@ -51,13 +50,7 @@ public class companyLogin extends JFrame{
 		header.setFont(new Font("Tahoma", Font.BOLD, 16));
 		header.setBackground(Color.LIGHT_GRAY);
 		panel.add(header);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(150, 95, 100, 25);
-		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
-		passwordField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		panel.add(passwordField);
-		
+				
 		JLabel passwordClient = new JLabel("Password:");
 		passwordClient.setBounds(50, 95, 100, 25);
 		passwordClient.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -65,6 +58,12 @@ public class companyLogin extends JFrame{
 		passwordClient.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panel.add(passwordClient);
 		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(150, 95, 100, 25);
+		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
+		passwordField.setFont(new Font("Tahoma", Font.BOLD, 13));
+		panel.add(passwordField);
+
 		JButton logInButton = new JButton("Log In");
 		logInButton.setBounds(160, 175, 130, 25);
 		logInButton.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -117,8 +116,6 @@ public class companyLogin extends JFrame{
 			  }
 			});
 		panel.add(exitButton);
-		
-
 	}
 	
 	public static void companyLogin() {

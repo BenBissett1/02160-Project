@@ -5,7 +5,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -58,6 +57,13 @@ public class companyClientGen extends JFrame {
 		clientIDLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		clientIDLabel.setBounds(44, 90, 96, 17);
 		panel.add(clientIDLabel);
+				
+		JLabel clientPasswordLabel = new JLabel("Password:");
+		clientPasswordLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		clientPasswordLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		clientPasswordLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		clientPasswordLabel.setBounds(44, 130, 96, 17);
+		panel.add(clientPasswordLabel);
 		
 		clientIDField = new JTextField(Integer.toString(cID));
 		clientIDField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -66,14 +72,7 @@ public class companyClientGen extends JFrame {
 		clientIDField.setEditable(false);
 		clientIDField.setBounds(150, 90, 96, 25);
 		panel.add(clientIDField);
-		
-		JLabel clientPasswordLabel = new JLabel("Password:");
-		clientPasswordLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		clientPasswordLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		clientPasswordLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		clientPasswordLabel.setBounds(44, 130, 96, 17);
-		panel.add(clientPasswordLabel);
-		
+
 		clientPasswordField = new JTextField(pass);
 		clientPasswordField.setHorizontalAlignment(SwingConstants.CENTER);
 		clientPasswordField.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -108,6 +107,7 @@ public class companyClientGen extends JFrame {
 			});
 		panel.add(loginPageButton);
 	}
+	
 	public static void companyClientGen(int cID, String pass) {
 		companyClientGen cmpCltGen= new companyClientGen(cID, pass);
 		cmpCltGen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

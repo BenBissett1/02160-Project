@@ -54,19 +54,6 @@ public class clientLogin extends JFrame{
 		header.setBackground(Color.LIGHT_GRAY);
 		panel.add(header);
 		
-		textFieldUsername = new JTextField();
-		textFieldUsername.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldUsername.setFont(new Font("Tahoma", Font.BOLD, 13));
-		textFieldUsername.setBounds(155, 70, 100, 25);
-		panel.add(textFieldUsername);
-		textFieldUsername.setColumns(10);
-		
-		passwordField = new JPasswordField();
-		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
-		passwordField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		passwordField.setBounds(155, 115, 100, 25);
-		panel.add(passwordField);
-		
 		JLabel usernameClient = new JLabel("ClientID:");
 		usernameClient.setHorizontalTextPosition(SwingConstants.CENTER);
 		usernameClient.setHorizontalAlignment(SwingConstants.CENTER);
@@ -81,19 +68,18 @@ public class clientLogin extends JFrame{
 		passwordClient.setBounds(45, 115, 100, 25);
 		panel.add(passwordClient);
 		
-// Obsolete
-//		JButton createUserButton = new JButton("Create User");
-//		createUserButton.setFont(new Font("Tahoma", Font.BOLD, 16));
-//		createUserButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-//		createUserButton.setBounds(10, 170, 130, 25);
-//		panel.add(createUserButton);
-//		createUserButton.addActionListener(new ActionListener(){
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				clientCreateUser.clientCreateUser();
-//				dispose();
-//			}
-//		});
+		textFieldUsername = new JTextField();
+		textFieldUsername.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldUsername.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textFieldUsername.setBounds(155, 70, 100, 25);
+		panel.add(textFieldUsername);
+		textFieldUsername.setColumns(10);
+		
+		passwordField = new JPasswordField();
+		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
+		passwordField.setFont(new Font("Tahoma", Font.BOLD, 13));
+		passwordField.setBounds(155, 115, 100, 25);
+		panel.add(passwordField);
 		
 		JButton exitButton = new JButton("Exit");
 		exitButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));

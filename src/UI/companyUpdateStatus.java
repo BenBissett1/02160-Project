@@ -5,11 +5,12 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,7 +28,6 @@ public class companyUpdateStatus extends JFrame{
 	private JTextField temperatureTextField;
 	private JTextField humidityTextField;
 	private JTextField atmPressureTextField;
-	private JTextField journeyIDField;
 	public companyUpdateStatus() {
 		super("Company Update Container Status");
 		setTitle("Update Container Status");
@@ -74,6 +74,52 @@ public class companyUpdateStatus extends JFrame{
 		updateHumidity.setBounds(10, 120, 150, 25);
 		panel.add(updateHumidity);
 		
+		JLabel journeyID = new JLabel("JourneyID:");
+		journeyID.setHorizontalTextPosition(SwingConstants.CENTER);
+		journeyID.setHorizontalAlignment(SwingConstants.RIGHT);
+		journeyID.setFont(new Font("Tahoma", Font.BOLD, 16));
+		journeyID.setBounds(10, 60, 150, 25);
+		panel.add(journeyID);
+		
+		temperatureTextField = new JTextField();
+		temperatureTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		temperatureTextField.setFont(new Font("Tahoma", Font.BOLD, 13));
+		temperatureTextField.setColumns(10);
+		temperatureTextField.setBounds(165, 90, 96, 25);
+		panel.add(temperatureTextField);
+		
+		humidityTextField = new JTextField();
+		humidityTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		humidityTextField.setFont(new Font("Tahoma", Font.BOLD, 13));
+		humidityTextField.setColumns(10);
+		humidityTextField.setBounds(165, 120, 96, 25);
+		panel.add(humidityTextField);
+		
+		atmPressureTextField = new JTextField();
+		atmPressureTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		atmPressureTextField.setFont(new Font("Tahoma", Font.BOLD, 13));
+		atmPressureTextField.setColumns(10);
+		atmPressureTextField.setBounds(165, 150, 96, 25);
+		panel.add(atmPressureTextField);
+		
+		List<Integer> journeyIDs = dataStructure.allJourneys();
+		String[] jIDs = new String[journeyIDs.size()];
+		if(journeyIDs.size() == 0) {
+			JOptionPane.showMessageDialog(panel,
+					"There are no JourneyIDs",
+					"Journey Error",
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+			for(int i = 0; i<journeyIDs.size(); i++) {
+				jIDs[i] =  Integer.toString(((List<Integer>) journeyIDs).get(i));
+			}
+		}
+		
+		JComboBox journeysComboBox = new JComboBox(jIDs);
+		journeysComboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
+		journeysComboBox.setBounds(165, 60, 95, 25);
+		panel.add(journeysComboBox);
+		
 		JButton clientCreateBack = new JButton("Back");
 		clientCreateBack.setFont(new Font("Tahoma", Font.BOLD, 16));
 		clientCreateBack.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -94,7 +140,7 @@ public class companyUpdateStatus extends JFrame{
 		companyUpdateStatusButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String inputJourneyID = journeyIDField.getText();
+				String inputJourneyID = (String) journeysComboBox.getSelectedItem();
 				String inputTemp = temperatureTextField.getText();
 				String inputHumidity = humidityTextField.getText();
 				String inputPressure = atmPressureTextField.getText();
@@ -136,41 +182,6 @@ public class companyUpdateStatus extends JFrame{
 			}
 		});
 		panel.add(companyUpdateStatusButton);
-		
-		temperatureTextField = new JTextField();
-		temperatureTextField.setHorizontalAlignment(SwingConstants.CENTER);
-		temperatureTextField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		temperatureTextField.setColumns(10);
-		temperatureTextField.setBounds(165, 90, 96, 25);
-		panel.add(temperatureTextField);
-		
-		humidityTextField = new JTextField();
-		humidityTextField.setHorizontalAlignment(SwingConstants.CENTER);
-		humidityTextField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		humidityTextField.setColumns(10);
-		humidityTextField.setBounds(165, 120, 96, 25);
-		panel.add(humidityTextField);
-		
-		atmPressureTextField = new JTextField();
-		atmPressureTextField.setHorizontalAlignment(SwingConstants.CENTER);
-		atmPressureTextField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		atmPressureTextField.setColumns(10);
-		atmPressureTextField.setBounds(165, 150, 96, 25);
-		panel.add(atmPressureTextField);
-		
-		JLabel journeyID = new JLabel("JourneyID:");
-		journeyID.setHorizontalTextPosition(SwingConstants.CENTER);
-		journeyID.setHorizontalAlignment(SwingConstants.RIGHT);
-		journeyID.setFont(new Font("Tahoma", Font.BOLD, 16));
-		journeyID.setBounds(10, 60, 150, 25);
-		panel.add(journeyID);
-		
-		journeyIDField = new JTextField();
-		journeyIDField.setHorizontalAlignment(SwingConstants.CENTER);
-		journeyIDField.setFont(new Font("Tahoma", Font.BOLD, 13));
-		journeyIDField.setColumns(10);
-		journeyIDField.setBounds(165, 60, 96, 25);
-		panel.add(journeyIDField);
 	}
 	
 	public static void companyUpdateStatus() {

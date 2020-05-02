@@ -5,12 +5,9 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -43,6 +40,13 @@ public class clientMoreInformation extends JFrame{
 		panel.setForeground(Color.LIGHT_GRAY);
 		getContentPane().add(panel);
 		panel.setLayout(null);
+		
+		JLabel containerHistoryJourneyIDLabel = new JLabel("JourneyID:");
+		containerHistoryJourneyIDLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		containerHistoryJourneyIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		containerHistoryJourneyIDLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		containerHistoryJourneyIDLabel.setBounds(55, 100, 95, 25);
+		panel.add(containerHistoryJourneyIDLabel);
 
 		JLabel clientTitleLabel = new JLabel("Please Choose a JourneyID");
 		clientTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -110,14 +114,6 @@ public class clientMoreInformation extends JFrame{
 			}
 		});
 		panel.add(clientConfirmButton);
-
-		JLabel containerHistoryJourneyIDLabel = new JLabel("JourneyID:");
-		containerHistoryJourneyIDLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		containerHistoryJourneyIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		containerHistoryJourneyIDLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		containerHistoryJourneyIDLabel.setBounds(55, 100, 95, 25);
-		panel.add(containerHistoryJourneyIDLabel);
-
 	}
 
 	public static void clientMoreInformation(int genUser) {

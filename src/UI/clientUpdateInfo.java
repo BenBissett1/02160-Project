@@ -5,7 +5,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -187,7 +186,6 @@ public class clientUpdateInfo extends JFrame {
 				}
 			}
 		});
-		
 		panel.add(clientUpdateInfoButton);
 	}
 	

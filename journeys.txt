@@ -1,3 +1,6 @@
+<<<<<<< HEAD
 1753174878|Copenhagen|New York|Origin|Apples|1753|>>>>
 1753174656|Copenhagen|New York|Origin|Apples|1753|>>>>
+=======
+>>>>>>> branch 'master' of https://github.com/BenBissett1/02160-Project.git
 End

@@ -51,6 +51,13 @@ public class initInterface extends JFrame {
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		JLabel initHeader = new JLabel("Client or Company Login:");
+		initHeader.setForeground(Color.BLACK);
+		initHeader.setFont(new Font("Tahoma", Font.BOLD, 16));
+		initHeader.setHorizontalAlignment(SwingConstants.CENTER);
+		initHeader.setBounds(10, 25, 280, 25);
+		panel.add(initHeader);
+		
 		JRadioButton clientButton = new JRadioButton("Client");
 		clientButton.setHorizontalTextPosition(SwingConstants.RIGHT);
 		clientButton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -101,7 +108,7 @@ public class initInterface extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if( companyButton.isSelected() == false && clientButton.isSelected() == false ) {
 					JOptionPane.showMessageDialog(panel,
-						    "Please select one or fuck off",
+						    "Please select one",
 						    "Indecisive Error",
 						    JOptionPane.ERROR_MESSAGE);
 				} 
@@ -118,14 +125,6 @@ public class initInterface extends JFrame {
 			}
 		});
 		panel.add(nextButton);
-		
-		JLabel initHeader = new JLabel("Client or Company Login:");
-		initHeader.setForeground(Color.BLACK);
-		initHeader.setFont(new Font("Tahoma", Font.BOLD, 16));
-		initHeader.setHorizontalAlignment(SwingConstants.CENTER);
-		initHeader.setBounds(10, 25, 280, 25);
-		panel.add(initHeader);
-		
 	}
 
 	public static void initInterface() {
