@@ -15,7 +15,7 @@ import java.util.Map;
 public class dataStructure {
 	
 	boolean isCompleteDataSet;
-	Container container2 = new Container();
+	//Container container2 = new Container();
 	
 	
 	public static int generate(int max, int type) {
@@ -52,7 +52,7 @@ public class dataStructure {
 		}
 		return response;
 	}*/
-	
+	/*
 	public static ResponseObject position(Container container) {
 		ResponseObject response;
 		
@@ -66,7 +66,7 @@ public class dataStructure {
 			}
 		}
 		return response;
-	}
+	}*/
 	
 	
 	

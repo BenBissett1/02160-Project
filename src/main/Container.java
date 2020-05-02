@@ -1,4 +1,4 @@
-package main;
+/*package main;
 
 public class Container {
 	
@@ -10,13 +10,7 @@ public class Container {
 	boolean isEnroute;
 	int journeyID;
 
-	public int[] getPosition() {
-		return position;
-	}
-
-	public void setPosition(int[] position) {
-		this.position = position;
-	}
+	
 
 	public int getJourneyID() {
 		return identity;
@@ -29,7 +23,17 @@ public class Container {
 	public Container() {
 		super();
 	}
-
+	public void setValidContainerID(boolean isValidContainerID) {
+		this.isValidContainerID = isValidContainerID;
+	}
+	
+	public boolean isEnroute() {
+		return isEnroute;
+	}
+	public void setEnroute(boolean isEnroute) {
+		this.isEnroute = isEnroute;
+	}
+	
 	public String getContent() {
 		return content;
 	}
@@ -48,16 +52,7 @@ public class Container {
 	public boolean isValidContainerID() {
 		return isValidContainerID;
 	}
-	public void setValidContainerID(boolean isValidContainerID) {
-		this.isValidContainerID = isValidContainerID;
-	}
 	
-	public boolean isEnroute() {
-		return isEnroute;
-	}
-	public void setEnroute(boolean isEnroute) {
-		this.isEnroute = isEnroute;
-	}
 	
 	public int getJourney() {
 		return journeyID;
@@ -66,6 +61,13 @@ public class Container {
 	public void setJourney(int journeyID) {
 		this.journeyID = journeyID;
 	}
+	public int[] getPosition() {
+		return position;
+	}
+
+	public void setPosition(int[] position) {
+		this.position = position;
+	}
 	
 	
-}
+}*/

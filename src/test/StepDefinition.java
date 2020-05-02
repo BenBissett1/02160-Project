@@ -10,7 +10,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import main.Client;
-import main.Container;
+//import main.Container;
 import main.Journey;
 import main.dataStructure;
 //import main.Port;
@@ -20,7 +20,7 @@ import main.request;
 public class StepDefinition {
 	
 	//Port port = new Port();
-	Container container = new Container();
+	//Container container = new Container();
 	Client client = new Client();
 	dataStructure data = new dataStructure();
 	Journey journey = new Journey();
@@ -205,6 +205,8 @@ public class StepDefinition {
 	// ContainerPosition.feature //
 	///////////////////////////////
 	
+	/*
+	
 	@Given("a containerid {int}")
 	public void a_containerid(Integer int1) {
 		container.setJourneyID(int1);
@@ -239,6 +241,7 @@ public class StepDefinition {
 	public void output_containerID_not_found_in_database() {
 		assertEquals(response.getErrorMessage(), "Container not found");
 	}
+	*/
 	
 	///////////////////////////////
 	// End ////////////////////////

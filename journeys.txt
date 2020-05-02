@@ -1,5 +1,3 @@
-1457156394|Copenhagen|Shanghai|Origin|Dildos2|1457|>19.2;>49.8;>1014.2;>
-1904178526|Perth|Mogadishu|Origin|Hello|1904|>17.3;>42.0;>1147.6;>
-1457159512|Copenhagen|New York|Origin|Dildos|1457|>22.5;>40.5;>984.4;>
-1809105744|Tanjung|Cape Town|Origin|Dildos3|1809|>15.4;>46.0;>1010.1;>
+1821155099|Copenhagen|New York|Origin|Apples|1821|>>>>
+1016113399|Copenhagen|Edinburgh|Origin|Hello|1016|>17.4;>36.6;>1099.4;>
 End
