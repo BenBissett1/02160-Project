@@ -223,6 +223,20 @@ class clientInterface extends JFrame {
 		});
 		clientManagePanel.add(seeContainerMapButton);
 		
+		JButton returnLoginButton = new JButton("Return to Login");
+		returnLoginButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		returnLoginButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		returnLoginButton.setBounds(25, 540, 150, 25);
+		returnLoginButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.save();
+				initInterface.initInterface();
+				dispose();
+			}
+		});
+		clientManagePanel.add(returnLoginButton);
+		
 		JLabel containerStatusLabel = new JLabel("Container Status");
 		containerStatusLabel.setBounds(428, 25, 134, 20);
 		containerStatusLabel.setForeground(SystemColor.controlShadow);
@@ -391,8 +405,7 @@ class clientInterface extends JFrame {
 		pressureArea.setLineWrap(true);
 		pressureArea.setFont(new Font("Monospaced", Font.BOLD, 14));
 		pressureArea.setBounds(505, 50, 90, 285);
-		clientContainersInfoPanel.add(pressureArea);
-		
+		clientContainersInfoPanel.add(pressureArea);		
 		
 	}
 

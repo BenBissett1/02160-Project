@@ -222,11 +222,24 @@ class companyInterface extends JFrame {
 		});
 		clientManagePanel.add(refreshTableButton);
 		
+		JButton returnLoginButton = new JButton("Return to Login");
+		returnLoginButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		returnLoginButton.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		returnLoginButton.setBounds(25, 540, 150, 25);
+		returnLoginButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dataStructure.save();
+				initInterface.initInterface();
+				dispose();
+			}
+		});
+		clientManagePanel.add(returnLoginButton);
+		
 		Painter paintedPanel = new Painter(0);
 		paintedPanel.setOpaque(true);
 		paintedPanel.setBounds(0, 185, 595, 335);
-		clientManagePanel.add(paintedPanel);
-		
+		clientManagePanel.add(paintedPanel);		
 
 	}
 
