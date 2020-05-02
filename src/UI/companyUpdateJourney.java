@@ -150,7 +150,7 @@ public class companyUpdateJourney extends JFrame {
 						    	JOptionPane.ERROR_MESSAGE);
 					}
 					if(dataStructure.journeyExists(inputJourneyIDAsInt)) {
-						dataStructure.updateJourney(inputJourneyIDAsInt, inputDestination, inputStatus);
+						Journey.updateJourney(inputJourneyIDAsInt, inputDestination, inputStatus);
 						JOptionPane.showMessageDialog(panel,
 								"Journey Updated!",
 								"Confirmation",

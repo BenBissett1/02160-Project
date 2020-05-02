@@ -53,14 +53,14 @@ class clientInterface extends JFrame {
 		panel.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		panel.setAlignmentY(Component.TOP_ALIGNMENT);
 		panel.setAlignmentX(Component.LEFT_ALIGNMENT);
-		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, SystemColor.desktop, SystemColor.desktop, SystemColor.desktop, SystemColor.desktop));
-		panel.setForeground(SystemColor.desktop);
+		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK));
+		panel.setForeground(Color.BLACK);
 		panel.setBackground(Color.BLACK);
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JPanel headerPanel = new JPanel();
-		headerPanel.setBackground(SystemColor.desktop);
+		headerPanel.setBackground(Color.BLACK);
 		headerPanel.setBounds(0, 0, 600, 50);
 		panel.add(headerPanel);
 		
@@ -70,7 +70,7 @@ class clientInterface extends JFrame {
 		headerPanel.add(clientHeaderLabel);
 		
 		JPanel clientManagePanel = new JPanel();
-		clientManagePanel.setBackground(SystemColor.desktop);
+		clientManagePanel.setBackground(Color.BLACK);
 		clientManagePanel.setBounds(0, 50, 600, 620);
 		panel.add(clientManagePanel);
 		clientManagePanel.setLayout(null);
@@ -87,7 +87,7 @@ class clientInterface extends JFrame {
 		journeyManageLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		clientManagePanel.add(journeyManageLabel);
 		
-		List<Integer> jID = dataStructure.searchJ(Integer.toString(genUser),4,genUser);
+		List<Integer> jID = Journey.searchJ(Integer.toString(genUser),4,genUser);
 		String jIDs = "";
 		if(jID.size() == 0) {
 			jIDs = "None";
@@ -244,7 +244,7 @@ class clientInterface extends JFrame {
 		clientManagePanel.add(containerStatusLabel);
 		
 		JPanel clientContainersInfoPanel = new JPanel();
-		clientContainersInfoPanel.setBackground(SystemColor.desktop);
+		clientContainersInfoPanel.setBackground(Color.BLACK);
 		clientContainersInfoPanel.setBounds(0, 185, 595, 335);
 		clientManagePanel.add(clientContainersInfoPanel);
 		clientContainersInfoPanel.setLayout(null);
@@ -302,7 +302,7 @@ class clientInterface extends JFrame {
 		journeyIDTextArea.setWrapStyleWord(true);
 		journeyIDTextArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
 		journeyIDTextArea.setForeground(SystemColor.controlDkShadow);
-		journeyIDTextArea.setBackground(SystemColor.desktop);
+		journeyIDTextArea.setBackground(Color.BLACK);
 		journeyIDTextArea.setFont(new Font("Monospaced", Font.BOLD, 14));
 		journeyIDTextArea.setLineWrap(true);
 		journeyIDTextArea.setBounds(0, 50, 95, 285);
@@ -321,7 +321,7 @@ class clientInterface extends JFrame {
 		journeyDestArea.setEditable(false);
 		journeyDestArea.setWrapStyleWord(true);
 		journeyDestArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
-		journeyDestArea.setBackground(SystemColor.desktop);
+		journeyDestArea.setBackground(Color.BLACK);
 		journeyDestArea.setForeground(SystemColor.controlDkShadow);
 		journeyDestArea.setFont(new Font("Monospaced", Font.BOLD, 14));
 		journeyDestArea.setBounds(95, 50, 110, 285);
@@ -340,7 +340,7 @@ class clientInterface extends JFrame {
 		temperatureArea.setEditable(false);
 		temperatureArea.setWrapStyleWord(true);
 		temperatureArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
-		temperatureArea.setBackground(SystemColor.desktop);
+		temperatureArea.setBackground(Color.BLACK);
 		temperatureArea.setForeground(SystemColor.controlDkShadow);
 		temperatureArea.setLineWrap(true);
 		temperatureArea.setFont(new Font("Monospaced", Font.BOLD, 14));
@@ -361,7 +361,7 @@ class clientInterface extends JFrame {
 		statusArea.setWrapStyleWord(true);
 		statusArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
 		statusArea.setForeground(SystemColor.controlDkShadow);
-		statusArea.setBackground(SystemColor.desktop);
+		statusArea.setBackground(Color.BLACK);
 		statusArea.setLineWrap(true);
 		statusArea.setFont(new Font("Monospaced", Font.BOLD, 14));
 		statusArea.setBounds(205, 50, 120, 285);
@@ -381,7 +381,7 @@ class clientInterface extends JFrame {
 		humidityArea.setWrapStyleWord(true);
 		humidityArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
 		humidityArea.setForeground(SystemColor.controlDkShadow);
-		humidityArea.setBackground(SystemColor.desktop);
+		humidityArea.setBackground(Color.BLACK);
 		humidityArea.setLineWrap(true);
 		humidityArea.setFont(new Font("Monospaced", Font.BOLD, 14));
 		humidityArea.setBounds(415, 50, 90, 285);
@@ -400,7 +400,7 @@ class clientInterface extends JFrame {
 		pressureArea.setEditable(false);
 		pressureArea.setWrapStyleWord(true);
 		pressureArea.setBorder(new LineBorder(SystemColor.controlDkShadow));
-		pressureArea.setBackground(SystemColor.desktop);
+		pressureArea.setBackground(Color.BLACK);
 		pressureArea.setForeground(SystemColor.controlDkShadow);
 		pressureArea.setLineWrap(true);
 		pressureArea.setFont(new Font("Monospaced", Font.BOLD, 14));

@@ -62,7 +62,7 @@ public class clientContainerHistory extends JFrame{
 		containerHistoryStatusComboBox.setBounds(160, 125, 95, 25);
 		panel.add(containerHistoryStatusComboBox);
 		
-		List<Integer> journeyID = dataStructure.searchJ(Integer.toString(genUser),4,genUser);
+		List<Integer> journeyID = Journey.searchJ(Integer.toString(genUser),4,genUser);
 		String[] jIDs = new String[journeyID.size()];
 		if(journeyID.size() == 0) {
 			JOptionPane.showMessageDialog(panel,

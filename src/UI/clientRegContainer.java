@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.border.SoftBevelBorder;
 
+import main.Journey;
 import main.dataStructure;
 
 import javax.swing.border.BevelBorder;
@@ -92,7 +93,7 @@ public class clientRegContainer extends JFrame {
 							"Error",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
-					int jID = dataStructure.regNewJourney(inputOrigin,inputDestination,inputContents,genUser);
+					int jID = Journey.regNewJourney(inputOrigin,inputDestination,inputContents,genUser);
 					JOptionPane.showMessageDialog(panel,
 							"Your Journey ID is: " + Integer.toString(jID),
 							"Confirmation",

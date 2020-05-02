@@ -32,7 +32,10 @@ public class dataStructure {
 			}
 		}
 	}
-	
+	private static String companyPassword = "0000";
+    public static boolean companyPasswordMatch(String s) {
+        return s.equals(companyPassword);
+    }
 	static int clientsSize = 1000;
 	static int journeysSize = 100000;
 	public static Map<Integer, Client> clients= new HashMap<Integer, Client>();
@@ -48,101 +51,9 @@ public class dataStructure {
 		List<Integer> allJs = new ArrayList<Integer>();
 		List<Integer> allCs = allClients();
 		for (int i =0; i<allCs.size(); i++) {
-			allJs.addAll(searchJ(""+allCs.get(i),4,allCs.get(i)));
+			allJs.addAll(Journey.searchJ(""+allCs.get(i),4,allCs.get(i)));
 		}
 		return allJs;
-	}
-	public static int searchC(String keyword, int type) {
-		for (int i =clientsSize; i<2*clientsSize; i++) {
-			if (clients.get(i) == null) {continue;}
-			if (type == 0) {
-				if (keyword.equals(clients.get(i).name)) {return i;}
-			}
-			if (type == 2) {
-				if (keyword.equals(clients.get(i).address)) {return i;}
-			}
-			if (type == 3) {
-				if (keyword.equals(clients.get(i).email)) {return i;}
-			}
-			if (type == 4) {
-				if (keyword.equals(clients.get(i).phone)) {return i;}
-			}
-		}
-		return -1;
-	} 
-	public static List<Integer> searchJ(String keyword, int type, int cID) {
-		List<Integer> journeyIDs = new ArrayList<Integer>();
-		for (int i = Integer.parseInt(cID+""+journeysSize); i<Integer.parseInt(cID+""+2*journeysSize); i++) {
-			if (journeys.get(i) == null) {continue;}
-			if (type == 0) {
-				if (keyword.equals(journeys.get(i).origin)) {
-					journeyIDs.add(i);
-				}
-			}
-			if (type == 1) {
-				if (keyword.equals(journeys.get(i).destination)) {
-					journeyIDs.add(i);
-				}
-			}
-			if (type == 2) {
-				if (keyword.equals(journeys.get(i).status)) {
-					journeyIDs.add(i);
-				}
-			}
-			if (type == 3) {
-				if (keyword.equals(journeys.get(i).content)) {
-					journeyIDs.add(i);
-				}
-			}
-			if (type == 4) {
-				if (keyword.equals(journeys.get(i).ClientID)) {
-					journeyIDs.add(i);
-				}
-			}
-		}
-		return journeyIDs;
-	}
-	public static int regNewClient(String name, String password, String address, String email, String phone) {
-		Client c = new Client();
-		c.name=name;
-		c.password=password;
-		c.address=address;
-		c.email=email;
-		c.phone=phone;
-		if (searchC(name, 0) !=-1 | searchC(address, 2) !=-1 | searchC(email, 3) != -1 | searchC(phone, 4) != -1) {
-			return -1;
-		}
-		else {
-			int cID = generate(clientsSize, 1);
-			clients.put(cID, c);
-			return cID;
-		}
-	}
-	public static int regNewJourney(String origin, String destination, String content, int ClientID) {
-		Journey j = new Journey();
-		j.origin=origin;
-		j.destination=destination;
-		j.status="Origin";
-		j.content=content;
-		j.ClientID=""+ClientID;
-		int jID=Integer.parseInt(ClientID+""+generate(journeysSize, 2));
-		journeys.put(jID, j);
-		return jID;
-	}
-	public static void updateClient(int ID, String name, String password, String address, String email, String phone) {
-		Client c = new Client();
-		c.name=name;
-		c.password=password;
-		c.address=address;
-		c.email=email;
-		c.phone=phone;
-		clients.put(ID,c);	
-	}
-	public static void updateJourney(int ID, String destination, String status) {
-		Journey j = journeys.get(ID);
-		j.destination=destination;
-		j.status=status;
-		journeys.put(ID, j);		
 	}
 	public static void saveC() {
 		String serialClients = "";

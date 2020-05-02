@@ -44,7 +44,7 @@ public class StepDefinition {
 	}
 	@When("register client") 
 	public void regClient() {
-		client.setID(dataStructure.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone()));
+		client.setID(Client.regNewClient(client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone()));
 	}
 	@Then("display client info")
 	public void displayInfo() {
@@ -74,11 +74,11 @@ public class StepDefinition {
 	}
 	@When("search by name") 
 	public void searchName() {
-		client.setID(dataStructure.searchC(client.getName(), 0));
+		client.setID(Client.searchC(client.getName(), 0));
 	}
 	@Then("update client")
 	public void update() {
-		dataStructure.updateClient(client.getID(), client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone());
+		Client.updateClient(client.getID(), client.getName(), client.getPassword(), client.getAddress(), client.getEmail(), client.getPhone());
 	}
 	@Then("check client")
 	public void clientcheck() {
@@ -128,7 +128,7 @@ public class StepDefinition {
 
 	@When("register journey")
 	public void register() {
-		int i = dataStructure.regNewJourney(journey.getOrigin(),journey.getDestination(),journey.getContent(),Integer.parseInt(journey.getClientID()));
+		int i = Journey.regNewJourney(journey.getOrigin(),journey.getDestination(),journey.getContent(),Integer.parseInt(journey.getClientID()));
 		journey.setStatus(dataStructure.journeys.get(i).getStatus());
 		journey.setJID(i);
 //		journey.setStatus(dataStructure.journeys.get(journey.getJID()).getStatus());
@@ -141,19 +141,19 @@ public class StepDefinition {
 	}
 	@Then("search by origin")
 	public void origin() {
-		System.out.println(dataStructure.searchJ(journey.getOrigin(), 0, Integer.parseInt(journey.getClientID())));
+		System.out.println(Journey.searchJ(journey.getOrigin(), 0, Integer.parseInt(journey.getClientID())));
 	}
 	@Then("search by destination")
 	public void destination() {
-		System.out.println(dataStructure.searchJ(journey.getDestination(), 1, Integer.parseInt(journey.getClientID())));
+		System.out.println(Journey.searchJ(journey.getDestination(), 1, Integer.parseInt(journey.getClientID())));
 	}
 	@Then("search by status")
 	public void status() {
-		System.out.println(dataStructure.searchJ(journey.getStatus(), 2, Integer.parseInt(journey.getClientID())));
+		System.out.println(Journey.searchJ(journey.getStatus(), 2, Integer.parseInt(journey.getClientID())));
 	}
 	@Then("search by content")
 	public void content() {
-		System.out.println(dataStructure.searchJ(journey.getContent(), 3, Integer.parseInt(journey.getClientID())));
+		System.out.println(Journey.searchJ(journey.getContent(), 3, Integer.parseInt(journey.getClientID())));
 	}
 	@Then("display all journey info")
 	public void displayAllJinfo() {
@@ -167,7 +167,7 @@ public class StepDefinition {
 	}
 	@When("search for clients journeys")
 	public void search_for_clients_journeys() {
-		System.out.println(dataStructure.searchJ(""+journey.getClientID(), 4, Integer.parseInt(journey.getClientID())));
+		System.out.println(Journey.searchJ(""+journey.getClientID(), 4, Integer.parseInt(journey.getClientID())));
 	}
 	@When("save journey info")
 	public void saveJ() {
@@ -176,7 +176,7 @@ public class StepDefinition {
 	@Then("update journey")
 	public void updateJ() {
 		System.out.println("HEELO"+journey.getJID()+journey.getDestination()+journey.getStatus());
-		dataStructure.updateJourney(journey.getJID(), journey.getDestination(), journey.getStatus());
+		Journey.updateJourney(journey.getJID(), journey.getDestination(), journey.getStatus());
 	}
 	@Given("client")
 	public void setClientinJ() {
