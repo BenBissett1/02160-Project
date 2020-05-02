@@ -149,7 +149,7 @@ public class companyUpdateJourney extends JFrame {
 								"Number Error",
 						    	JOptionPane.ERROR_MESSAGE);
 					}
-					if(dataStructure.journeyExists(inputJourneyIDAsInt)) {
+					if(Journey.journeyExists(inputJourneyIDAsInt)) {
 						Journey.updateJourney(inputJourneyIDAsInt, inputDestination, inputStatus);
 						JOptionPane.showMessageDialog(panel,
 								"Journey Updated!",
@@ -157,7 +157,7 @@ public class companyUpdateJourney extends JFrame {
 								JOptionPane.INFORMATION_MESSAGE);
 						dataStructure.save();
 						dispose();
-					} else if (dataStructure.journeyExists(inputJourneyIDAsInt) == false) {
+					} else if (Journey.journeyExists(inputJourneyIDAsInt) == false) {
 						JOptionPane.showMessageDialog(panel,
 								"Invalid JourneyID!",
 								"Error",

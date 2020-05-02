@@ -63,6 +63,7 @@ public class Journey extends dataStructure {
 		j.status=status;
 		journeys.put(ID, j);		
 	}
+	public static boolean journeyExists(int jID) {return !(journeys.get(jID)==null);}
 	public List<Float> getTemp() {
 		return temperatures;
 	}
