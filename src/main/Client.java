@@ -17,9 +17,6 @@ public class Client extends dataStructure {
 	public String getName() {
 		return name;
 	}
-//	public Map<Integer, List<String>> getData() {
-//		return dataStructure.clients;
-//	}
 
 	public String getPassword() {
 		return password;
@@ -52,19 +49,8 @@ public class Client extends dataStructure {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-//	public void display() {
-//		System.out.println(dataStructure.searchC(name, 0));
-//	}
 	public void setID(int id) {
 		clientID=id;
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-
 }

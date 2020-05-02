@@ -1,10 +1,5 @@
 package test;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.List;
-import java.util.Map.Entry;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

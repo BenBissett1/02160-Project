@@ -15,8 +15,6 @@ import java.util.Map;
 public class dataStructure {
 	
 	boolean isCompleteDataSet;
-	//Container container2 = new Container();
-	
 	
 	public static int generate(int max, int type) {
 		int newID = 0;
