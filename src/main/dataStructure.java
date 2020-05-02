@@ -39,11 +39,11 @@ public class dataStructure {
     public static boolean changeCompanyPassword(String op, String np) {
     	if (companyPasswordMatch(op)) {
     		try {BufferedWriter out = new BufferedWriter(new FileWriter("companyPW.txt"));
-    		out.write(np+"End");
+    		out.write(np);
     		out.close();
     		return true;
     		}
-    		catch (Exception c) {System.out.println("CLIENT LIST SAVING FAILED");}
+    		catch (Exception c) {System.out.println("PASSWORD SAVING FAILED");}
     	}
     	return false;
     }
