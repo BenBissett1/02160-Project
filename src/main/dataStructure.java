@@ -36,6 +36,17 @@ public class dataStructure {
     public static boolean companyPasswordMatch(String s) {
         return s.equals(companyPassword);
     }
+    public static boolean changeCompanyPassword(String op, String np) {
+    	if (companyPasswordMatch(op)) {
+    		try {BufferedWriter out = new BufferedWriter(new FileWriter("companyPW.txt"));
+    		out.write(np+"End");
+    		out.close();
+    		return true;
+    		}
+    		catch (Exception c) {System.out.println("CLIENT LIST SAVING FAILED");}
+    	}
+    	return false;
+    }
 	static int clientsSize = 1000;
 	static int journeysSize = 100000;
 	public static Map<Integer, Client> clients= new HashMap<Integer, Client>();
@@ -92,6 +103,13 @@ public class dataStructure {
 		catch (Exception c) {System.out.println("JOURNEY LIST SAVING FAILED");}
 	}
 	public static void load() {
+		if (new File("companyPW.txt").isFile()) {
+			try {
+				InputStream scl = new FileInputStream("companyPW.txt");
+				BufferedReader buf = new BufferedReader(new InputStreamReader(scl));
+				companyPassword  = buf.readLine();}
+			catch (Exception c) {}
+		}
 		if (new File("clients.txt").isFile()) {
 			try {
 				InputStream scl = new FileInputStream("clients.txt");
