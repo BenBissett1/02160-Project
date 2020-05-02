@@ -20,8 +20,8 @@ import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
+import main.Journey;
 import main.dataStructure;
-import main.request;
 
 public class companyUpdateStatus extends JFrame{
 	private JTextField temperatureTextField;
@@ -119,7 +119,12 @@ public class companyUpdateStatus extends JFrame{
 								"Number Error",
 						    	JOptionPane.ERROR_MESSAGE);
 					}
-					request myObject = new request();
+					
+					//I CHANGED BELOW FROM:
+					//request myObject = new request();
+					//because we move request into journey
+					//(Søren)
+					Journey myObject = new Journey();
 					myObject.updateContainerStatus(inputJourneyIDAsInt,inputTempAsFloat, inputHumidityAsFloat, inputPressureAsFloat);
 					JOptionPane.showMessageDialog(panel,
 							"Information Updated!",

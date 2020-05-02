@@ -28,7 +28,6 @@ import javax.swing.border.SoftBevelBorder;
 import io.cucumber.core.internal.gherkin.StringUtils;
 import main.Journey;
 import main.dataStructure;
-import main.request;
 
 public class clientContainerHistory extends JFrame{
 	public clientContainerHistory(int genUser) {

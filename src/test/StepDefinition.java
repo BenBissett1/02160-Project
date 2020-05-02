@@ -1,20 +1,26 @@
 package test;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import main.Client;
 import main.Journey;
+import main.Painter;
 import main.dataStructure;
-import main.request;
 
 public class StepDefinition {
 	
 	Client client = new Client();
 	dataStructure data = new dataStructure();
 	Journey journey = new Journey();
-	request request = new request();
 	
 	///////////////////////
 	// Start //////////////
@@ -189,30 +195,6 @@ public class StepDefinition {
 	// End //////////////////////////
 	// JourneyRegistration.feature //
 	/////////////////////////////////
-	
-	
-	// Start
-	// admin.feature
-	
-	@Given("journey id is {int}")
-	public void journey_id_is(Integer journeyID) {
-	    request.setJourneyID(journeyID);
-	}
-	
-	@Given("internal status parameter is {string}")
-	public void internal_status_parameter_is(String thisData) {
-		request.setThisData(thisData);
-	}
-	
-	@Given("journey id does exist")
-	public void journey_id_does_exist() {
-		request.doesJourneyExist();
-	}
-	
-	@Given("remove data {int}")
-	public void remove_data(Integer data) {
-		
-	}
 
 	
 	//////////////////
@@ -220,14 +202,165 @@ public class StepDefinition {
 	// Client.feature //
 	////////////////////
 	
-	@Given("retrieve data")
+	
+	@Given("journey id is {int}")
+	public void journey_id_is(Integer int1) {
+		journey.setJID(int1);
+	}
+
+	@Given("journey id does exist")
+	public void journey_id_does_exist() {
+	    journey.doesJourneyExist();
+	}
+	
+	String para;
+	@Given("internal status parameter is {string}")
+	public void internal_status_parameter_is(String string) {
+	    if (string.equals("humidity")) {
+	    	para = string;
+	    }
+	    else if (string.equals("temperature")) {
+	    	para = string;
+	    }
+	    else if (string.equals("pressure")) {
+	    	para = string;
+	    }
+	    else {
+	    	return;
+	    }
+	}
+	
+	boolean notEmpty;
+	@When("list is not empty")
+	public void list_is_not_empty() {
+		//Is this method even needed?
+		
+		if (journey.getHum() != null) {
+			notEmpty = true;
+		} else {
+			notEmpty = false;
+		}
+		if (journey.getTemp() != null) {
+			notEmpty = true;
+		} else {
+			notEmpty = false;
+		}
+		if (journey.getPres() != null) {
+			notEmpty = true;
+		} else {
+			notEmpty = false;
+		}
+	}
+
+	@Then("retrieve data")
 	public void retrieve_data() {
-//		request.getData();
+		
+		if (notEmpty) {
+			if (para.equals("humidity")) {
+				journey.getHum();
+			}
+			else if (para.equals("temperature")) {
+				journey.getTemp();
+			}
+			else if (para.equals("pressure")) {
+				journey.getPres();
+			}
+		}
+	}
+	
+	@Then("retrieve last data")
+	public void retrieve_last_data() {
+		if (notEmpty) {
+			if (para.equals("humidity")) {
+				journey.getLastHumidity();
+			}
+			else if (para.equals("temperature")) {
+				journey.getLastTemp();
+			}
+			else if (para.equals("pressure")) {
+				journey.getLastAtmPressure();
+			}
+		}
 	}
 	
 	////////////////////
 	// End /////////////
 	// Client.feature //
 	////////////////////
+	
+	
+	/////////////////////////////
+	// Start ////////////////////
+	// ContainerStatus.feature //
+	/////////////////////////////
+	float temp_temperature;
+	float temp_humidity;
+	float temp_pressure;
+	@Given("a temperature {float}")
+	public void a_temperature(Float float1) {
+		temp_temperature = float1;
+	}
+
+	@Given("a humidity {float}")
+	public void a_humidity(Float float1) {
+		temp_humidity = float1;
+	}
+
+	@Given("a pressure {float}")
+	public void a_pressure(Float float1) {
+		temp_pressure = float1;
+	}
+
+	@Then("add current values")
+	public void add_current_values() {
+	    journey.updateContainerStatus(journey.getJID(), temp_temperature, temp_humidity, temp_pressure);
+	}
+
+
+		
+	/////////////////////////////
+	// End //////////////////////
+	// ContainerStatus.feature //
+	/////////////////////////////
+	
+	
+	
+	
+	///////////////////////////
+	// Start //////////////////
+	// PaintWorldMap.feature //
+	///////////////////////////
+	
+	int User;
+	BufferedImage Worldmap;
+	@Given("a background worldmap image")
+	public void a_backworld_worldmap_image() throws IOException {
+        Worldmap = ImageIO.read(new File("Images/grayscale-vector-worldmap.jpg"));
+	}
+
+	@Given("a number {int}")
+	public void a_number(Integer int1) {
+	    User = int1;
+	}
+
+	@Then("paint the company map")
+	public void paint_the_company_map() {
+		Painter paint = new Painter(User);
+	}
+
+	@Given("a client id value {int}")
+	public void a_client_id_value(Integer int1) {
+		User = int1;
+	}
+
+	@Then("paint the client map")
+	public void paint_the_client_map() {
+		Painter paint = new Painter(User);
+	}
+	
+	///////////////////////////
+	// End ////////////////////
+	// PaintWorldMap.feature //
+	///////////////////////////
 	
 }

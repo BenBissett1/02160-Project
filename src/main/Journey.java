@@ -137,5 +137,25 @@ public class Journey extends dataStructure {
 		this.ClientID=x;
 	}
 	
+	//Journey journey;
+	public void updateContainerStatus(int journeyID,float temp, float hum, float pres) {
+		this.journeyID = journeyID;
+		doesJourneyExist();
+		
+		temperatures.add(temp);
+		humidity.add(hum);
+		atmPressure.add(pres);
+		
+	}
+	
+	public boolean doesJourneyExist() {
+		if (dataStructure.journeys.containsKey(journeyID)) {
+			//journey = dataStructure.journeys.get(journeyID);
+			//dataStructure.journeys.get(journeyID);
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 }
