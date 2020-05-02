@@ -52,7 +52,7 @@ public class Painter extends JPanel {
             	
             } else {
             	//Do the client side of things            	
-            	List<Integer> in = dataStructure.searchJ(""+User, 4, User);
+            	List<Integer> in = Journey.searchJ(""+User, 4, User);
             	for (int i = 0; i < in.size(); i++) {
             		Iterator<Integer> itr = dataStructure.journeys.keySet().iterator();
             		while(itr.hasNext()) {

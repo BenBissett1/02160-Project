@@ -50,7 +50,7 @@ public class clientMoreInformation extends JFrame{
 		clientTitleLabel.setBounds(5, 15, 300, 25);
 		panel.add(clientTitleLabel);
 
-		List<Integer> journeyID = dataStructure.searchJ(Integer.toString(genUser),4,genUser);
+		List<Integer> journeyID = Journey.searchJ(Integer.toString(genUser),4,genUser);
 		String[] jIDs = new String[journeyID.size()];
 		if(journeyID.size() == 0) {
 			JOptionPane.showMessageDialog(panel,

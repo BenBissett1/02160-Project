@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.border.SoftBevelBorder;
 
+import main.Client;
 import main.dataStructure;
 
 import javax.swing.border.BevelBorder;
@@ -137,7 +138,7 @@ public class companySearchClient extends JFrame {
 							type = 4;
 						}
 						
-						int cID = dataStructure.searchC(inputKeyword,type);
+						int cID = Client.searchC(inputKeyword,type);
 						if (cID == -1) {
 							JOptionPane.showMessageDialog(panel,
 									"The ClientID cannot be found with the provided information",

@@ -61,15 +61,15 @@ class companyInterface extends JFrame {
 		panel.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		panel.setAlignmentY(Component.TOP_ALIGNMENT);
 		panel.setAlignmentX(Component.LEFT_ALIGNMENT);
-		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, SystemColor.desktop, SystemColor.desktop, SystemColor.desktop, SystemColor.desktop));
-		panel.setForeground(SystemColor.desktop);
+		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK));
+		panel.setForeground(Color.BLACK);
 		panel.setBackground(Color.BLACK);
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JPanel headerPanel = new JPanel();
-		headerPanel.setForeground(SystemColor.desktop);
-		headerPanel.setBackground(SystemColor.desktop);
+		headerPanel.setForeground(Color.BLACK);
+		headerPanel.setBackground(Color.BLACK);
 		headerPanel.setBounds(0, 0, 605, 50);
 		panel.add(headerPanel);
 		

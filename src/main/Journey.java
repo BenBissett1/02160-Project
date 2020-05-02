@@ -14,6 +14,55 @@ public class Journey extends dataStructure {
 	ArrayList<Float> temperatures = new ArrayList<Float>();
 	ArrayList<Float> humidity = new ArrayList<Float>();
 	ArrayList<Float> atmPressure = new ArrayList<Float>();
+	public static List<Integer> searchJ(String keyword, int type, int cID) {
+		List<Integer> journeyIDs = new ArrayList<Integer>();
+		for (int i = Integer.parseInt(cID+""+journeysSize); i<Integer.parseInt(cID+""+2*journeysSize); i++) {
+			if (journeys.get(i) == null) {continue;}
+			if (type == 0) {
+				if (keyword.equals(journeys.get(i).origin)) {
+					journeyIDs.add(i);
+				}
+			}
+			if (type == 1) {
+				if (keyword.equals(journeys.get(i).destination)) {
+					journeyIDs.add(i);
+				}
+			}
+			if (type == 2) {
+				if (keyword.equals(journeys.get(i).status)) {
+					journeyIDs.add(i);
+				}
+			}
+			if (type == 3) {
+				if (keyword.equals(journeys.get(i).content)) {
+					journeyIDs.add(i);
+				}
+			}
+			if (type == 4) {
+				if (keyword.equals(journeys.get(i).ClientID)) {
+					journeyIDs.add(i);
+				}
+			}
+		}
+		return journeyIDs;
+	}
+	public static int regNewJourney(String origin, String destination, String content, int ClientID) {
+		Journey j = new Journey();
+		j.origin=origin;
+		j.destination=destination;
+		j.status="Origin";
+		j.content=content;
+		j.ClientID=""+ClientID;
+		int jID=Integer.parseInt(ClientID+""+generate(journeysSize, 2));
+		journeys.put(jID, j);
+		return jID;
+	}
+	public static void updateJourney(int ID, String destination, String status) {
+		Journey j = journeys.get(ID);
+		j.destination=destination;
+		j.status=status;
+		journeys.put(ID, j);		
+	}
 	public List<Float> getTemp() {
 		return temperatures;
 	}

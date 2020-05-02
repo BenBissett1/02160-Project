@@ -171,7 +171,7 @@ public class clientUpdateInfo extends JFrame {
 					int inputTelephoneAsInt = 0;
 					try {
 						inputTelephoneAsInt = Integer.parseInt(inputTelephone);
-						dataStructure.updateClient(genUser,inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
+						Client.updateClient(genUser,inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
 						JOptionPane.showMessageDialog(panel,
 								"Information Updated!",
 								"Confirmation",

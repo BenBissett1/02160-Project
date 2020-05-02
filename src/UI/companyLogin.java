@@ -84,7 +84,7 @@ public class companyLogin extends JFrame{
 						    JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-						if (genPass.equals("0000")) {
+						if (dataStructure.companyPasswordMatch(genPass)) {
 							dataStructure.save();
 							companyInterface.companyInterface();
 							dispose();

@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.SoftBevelBorder;
 
+import main.Client;
 import main.dataStructure;
 
 public class companyCreateClient extends JFrame{
@@ -105,7 +106,7 @@ public class companyCreateClient extends JFrame{
 					try {
 						inputTelephoneAsInt = Integer.parseInt(inputTelephone);
 						if (inputTelephoneAsInt == (int)inputTelephoneAsInt) {
-							int cID = dataStructure.regNewClient(inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
+							int cID = Client.regNewClient(inputName, inputPassword, inputAddress, inputEmail, inputTelephone);
 							if (cID == -1) {
 								JOptionPane.showMessageDialog(panel,
 										"There is already a ClientID associated to this information",

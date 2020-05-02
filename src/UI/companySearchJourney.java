@@ -23,6 +23,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
+import main.Journey;
 import main.dataStructure;
 
 public class companySearchJourney extends JFrame{
@@ -148,7 +149,7 @@ public class companySearchJourney extends JFrame{
 							type = 3;
 						}
 						
-						List<Integer> jID = dataStructure.searchJ(inputKeyword,type,inputClientIDAsInt);
+						List<Integer> jID = Journey.searchJ(inputKeyword,type,inputClientIDAsInt);
 						if(jID.size() == 0) {
 							JOptionPane.showMessageDialog(panel,
 									"No JourneyID(s) can be found with the provided information",
