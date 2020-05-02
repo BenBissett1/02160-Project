@@ -118,7 +118,7 @@ public class StepDefinition {
 	
 	@Given("client {string}")
 	public void client(String name) {
-		journey.setClientID(""+client.getID());
+		journey.setClientID(name);
 	}
 	@Given("status {string}")
 	public void status(String x) {
@@ -128,7 +128,9 @@ public class StepDefinition {
 
 	@When("register journey")
 	public void register() {
-		journey.setJID(dataStructure.regNewJourney(journey.getOrigin(),journey.getDestination(),journey.getContent(),Integer.parseInt(journey.getClientID())));
+		int i = dataStructure.regNewJourney(journey.getOrigin(),journey.getDestination(),journey.getContent(),Integer.parseInt(journey.getClientID()));
+		journey.setStatus(dataStructure.journeys.get(i).getStatus());
+		journey.setJID(i);
 //		journey.setStatus(dataStructure.journeys.get(journey.getJID()).getStatus());
 	}
 
@@ -173,6 +175,7 @@ public class StepDefinition {
 	}
 	@Then("update journey")
 	public void updateJ() {
+		System.out.println("HEELO"+journey.getJID()+journey.getDestination()+journey.getStatus());
 		dataStructure.updateJourney(journey.getJID(), journey.getDestination(), journey.getStatus());
 	}
 	@Given("client")

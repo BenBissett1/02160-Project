@@ -125,14 +125,9 @@ public class dataStructure {
 		j.status="Origin";
 		j.content=content;
 		j.ClientID=""+ClientID;
-		if (clients.get(ClientID)==null) {
-			return -1;
-		}
-		else {
-			int jID=Integer.parseInt(ClientID+""+generate(journeysSize, 2));
-			journeys.put(jID, j);
-			return jID;
-		}
+		int jID=Integer.parseInt(ClientID+""+generate(journeysSize, 2));
+		journeys.put(jID, j);
+		return jID;
 	}
 	public static void updateClient(int ID, String name, String password, String address, String email, String phone) {
 		Client c = new Client();
