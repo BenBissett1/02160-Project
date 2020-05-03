@@ -38,6 +38,7 @@ public class dataStructure {
     }
     public static boolean changeCompanyPassword(String op, String np) {
     	if (companyPasswordMatch(op)) {
+    		companyPassword = np;
     		try {BufferedWriter out = new BufferedWriter(new FileWriter("companyPW.txt"));
     		out.write(np);
     		out.close();

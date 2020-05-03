@@ -137,6 +137,9 @@ public class StepDefinition {
 		int i = Journey.regNewJourney(journey.getOrigin(),journey.getDestination(),journey.getContent(),Integer.parseInt(journey.getClientID()));
 		journey.setStatus(dataStructure.journeys.get(i).getStatus());
 		journey.setJID(i);
+		dataStructure.journeys.get(i).getLastAtmPressure();
+		dataStructure.journeys.get(i).getLastHumidity();
+		dataStructure.journeys.get(i).getLastTemp();
 //		journey.setStatus(dataStructure.journeys.get(journey.getJID()).getStatus());
 	}
 
