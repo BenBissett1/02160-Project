@@ -1,4 +1,4 @@
-package main;
+package UI;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -14,6 +14,9 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
+import main.Journey;
+import main.dataStructure;
 
 public class Painter extends JPanel {
 

@@ -7,13 +7,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import UI.Painter;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import main.Client;
 import main.Journey;
-import main.Painter;
 import main.dataStructure;
 
 public class StepDefinition {
@@ -362,5 +362,52 @@ public class StepDefinition {
 	// End ////////////////////
 	// PaintWorldMap.feature //
 	///////////////////////////
+	
+	
+	
+	/////////////////////////////
+	// Start ////////////////////
+	// CompanyPassword.feature //
+	/////////////////////////////
+	
+	
+	String password;
+	@Given("a password {string}")
+	public void a_password(String string) {
+	    this.password = string;
+	}
+
+	@Then("check equals current password")
+	public void check_equals_current_password() {
+	    dataStructure.companyPasswordMatch(password);
+	}
+	
+	@Given("company password match is true")
+	public void company_password_match_is_true() {
+	    dataStructure.companyPasswordMatch(password);
+	    //System.out.println(dataStructure.companyPasswordMatch(password));
+	    //System.out.println("hi");
+	    //System.out.println(password);
+	}
+	
+	String password2;
+	@Given("a new password {string}")
+	public void a_new_password(String string) {
+	    this.password2 = string;
+	}
+
+	@Then("change password")
+	public void change_password() {
+	    dataStructure.changeCompanyPassword(password, password2);
+	}
+
+
+	/////////////////////////////
+	// End //////////////////////
+	// CompanyPassword.feature //
+	/////////////////////////////
+	
+	
+	
 	
 }

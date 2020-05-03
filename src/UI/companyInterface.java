@@ -14,7 +14,6 @@ import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
-import main.Painter;
 import main.dataStructure;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;

@@ -43,7 +43,6 @@ Feature: Registering a Journey
     And client "1753"
     When register journey
   	Then display journey info
-  	Given destination "New York"
   	Then update journey
   	
   @tag6
