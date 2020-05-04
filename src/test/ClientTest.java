@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.Client;
-import main.dataStructure;
 
 public class ClientTest {
 	

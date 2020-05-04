@@ -1,3 +1,2 @@
-1474|John&co|Snow123|275 Brookmere rd|John89@johnco.com|123456>
-1082|John&co2|Snow123|277 Brookmere rd|John88@johnco.com|123467>
+1367|John Smith|abc123|2705 Eagle Street|johnsmith@gmail.com|60188401>
 End
