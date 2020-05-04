@@ -21,7 +21,7 @@ Feature: Registering a Journey
     Then display journey info
     
   @tag3
-  Scenario: Saving journeys
+  Scenario: Saving journeys with container information
     Given port of origin "Copenhagen"
     And destination "New York"
     And content "Apples"
