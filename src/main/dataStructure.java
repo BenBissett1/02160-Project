@@ -98,7 +98,7 @@ public class dataStructure {
 			serialJourneys+=">\n";
 		}
 		try {BufferedWriter out = new BufferedWriter(new FileWriter("journeys.txt"));
-		out.write(serialJourneys+"End");
+		out.write(serialJourneys+"End"); 
 		out.close();
 		}
 		catch (Exception c) {System.out.println("JOURNEY LIST SAVING FAILED");}
