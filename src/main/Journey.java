@@ -1,3 +1,7 @@
+/**
+* @since   2020-05-06 
+*/
+
 package main;
 
 import java.util.ArrayList;
@@ -138,6 +142,14 @@ public class Journey extends dataStructure {
 	}
 	
 	//Journey journey;
+	/**
+	 * Updates one value for each internal status parameter for a certain container.
+	 * @param journeyID integer specific id for this journey.
+	 * @param temp float temperature [celsius]
+	 * @param hum float humidity [g/m3]
+	 * @param pres float pressure [atm]
+	 */
+	
 	public void updateContainerStatus(int journeyID,float temp, float hum, float pres) {
 		this.journeyID = journeyID;
 		doesJourneyExist();
@@ -147,7 +159,7 @@ public class Journey extends dataStructure {
 		atmPressure.add(pres);
 		
 	}
-	
+
 	public boolean doesJourneyExist() {
 		if (dataStructure.journeys.containsKey(journeyID)) {
 			//journey = dataStructure.journeys.get(journeyID);

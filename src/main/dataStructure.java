@@ -1,3 +1,7 @@
+/**
+* @since   2020-05-06 
+*/
+
 package main;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,6 +20,15 @@ public class dataStructure {
 	
 	boolean isCompleteDataSet;
 	
+	/**
+	 * Generate random identifier for either clients or journeys up to integer max.
+	 * @param max integer specifies max value
+	 * @param type integer specifies if it is a client or a journey.
+	 * 1, client
+	 * 2, journey
+	 * @return returns integer client/journey ID.
+	 */
+	
 	public static int generate(int max, int type) {
 		int newID = 0;
 		while(true) {
@@ -33,9 +46,24 @@ public class dataStructure {
 		}
 	}
 	private static String companyPassword = "0000";
+	
+	/**
+	 * Compares two Strings and returns true if match.
+	 * @param s String password
+	 * @return returns boolean.
+	 */
+	
     public static boolean companyPasswordMatch(String s) {
         return s.equals(companyPassword);
     }
+    
+    /**
+     * If password, String op, matches current password then current password is changed to String np.
+     * @param op String old password
+     * @param np String new password
+     * @return returns boolean, change complete true/false.
+     */
+    
     public static boolean changeCompanyPassword(String op, String np) {
     	if (companyPasswordMatch(op)) {
     		companyPassword = np;
