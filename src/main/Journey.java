@@ -1,8 +1,18 @@
+
+
 package main;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The methods used in the interface concerning the journey aspect of things are kept here. 
+ * <p>
+ * This class forms a journey, and the variables are easily accessed with "dataStructure.journeys.get(journeyID)"
+ * which returns a journey object.
+ * 
+ * @since   2020-05-06 
+ */
 public class Journey extends dataStructure {
 
 	int journeyID;
@@ -139,6 +149,14 @@ public class Journey extends dataStructure {
 	}
 	
 	//Journey journey;
+	/**
+	 * Updates one value for each internal status parameter for a certain container.
+	 * @param journeyID integer specific id for this journey.
+	 * @param temp float temperature [celsius]
+	 * @param hum float humidity [g/m3]
+	 * @param pres float pressure [atm]
+	 */
+	
 	public void updateContainerStatus(int journeyID,float temp, float hum, float pres) {
 		if (dataStructure.journeys.get(journeyID) != null) {
 			Journey j = dataStructure.journeys.get(journeyID);
@@ -151,7 +169,7 @@ public class Journey extends dataStructure {
 		}
 		
 	}
-	
+
 	public boolean doesJourneyExist() {
 		if (dataStructure.journeys.containsKey(journeyID)) {
 //			journey = dataStructure.journeys.get(journeyID);
