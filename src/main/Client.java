@@ -1,10 +1,16 @@
-/**
-* @since   2020-05-06 
-*/
-
 package main;
 
 import java.util.List;
+
+
+/**
+ * The methods used in the interface concerning the client aspect of things are kept here. 
+ * <p>
+ * This class forms a client, and the variables are easily accessed with "dataStructure.clients.get(clientID)"
+ * which returns a client object.
+ * 
+ * @since   2020-05-06 
+ */
 
 public class Client extends dataStructure {
 	int clientID;
@@ -16,9 +22,10 @@ public class Client extends dataStructure {
 	
 	/**
 	 * Searches for client information with String keyword (a client name) and integer type to clarify what type of information.
-	 * 0, name
-	 * 2, address
-	 * 3, email
+	 * <p>
+	 * 0, name <p>
+	 * 2, address <p>
+	 * 3, email <p>
 	 * 4, phone number
 	 * @param keyword String of the name/address/phone number/email that is searched for.
 	 * @param type integer specifying type of client information.

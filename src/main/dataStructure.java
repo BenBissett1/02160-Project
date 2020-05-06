@@ -1,7 +1,3 @@
-/**
-* @since   2020-05-06 
-*/
-
 package main;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,6 +11,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+/**
+ * The dataStructure class holds all information used for the methods in Client and Journey.
+ * <p>
+ * The dataStructure class contains maps with information about clients and journeys
+ * along with methods for generating data and save/load data into .txt files (clients.txt, companyPW.txt, journeys.txt)
+ * 
+ * @since 2020-05-06
+ */
 
 public class dataStructure {
 	

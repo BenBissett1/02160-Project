@@ -1,12 +1,18 @@
-/**
-* @since   2020-05-06 
-*/
+
 
 package main;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The methods used in the interface concerning the journey aspect of things are kept here. 
+ * <p>
+ * This class forms a journey, and the variables are easily accessed with "dataStructure.journeys.get(journeyID)"
+ * which returns a journey object.
+ * 
+ * @since   2020-05-06 
+ */
 public class Journey extends dataStructure {
 
 	int journeyID;
