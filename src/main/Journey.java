@@ -64,6 +64,7 @@ public class Journey extends dataStructure {
 		journeys.put(ID, j);		
 	}
 	public static boolean journeyExists(int jID) {return !(journeys.get(jID)==null);}
+	
 	public List<Float> getTemp() {
 		return temperatures;
 	}
@@ -139,12 +140,15 @@ public class Journey extends dataStructure {
 	
 	//Journey journey;
 	public void updateContainerStatus(int journeyID,float temp, float hum, float pres) {
-		this.journeyID = journeyID;
-		doesJourneyExist();
-		
-		temperatures.add(temp);
-		humidity.add(hum);
-		atmPressure.add(pres);
+		if (dataStructure.journeys.get(journeyID) != null) {
+			Journey j = dataStructure.journeys.get(journeyID);
+			
+			j.temperatures.add(temp);
+			j.humidity.add(hum);
+			j.atmPressure.add(pres);
+		} else {
+			System.out.println("UPDATE FAILED!");
+		}
 		
 	}
 	

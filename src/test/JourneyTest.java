@@ -2,7 +2,10 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,14 +17,13 @@ public class JourneyTest {
 		
 		private static Journey j;
 		private static Client c;
+	
 		
 		@Before
 		public void createEmptyJourney() {
 			j = new Journey();
 		}	
-
-		
-		
+	
 	@Test
 	public void testSearchJ() {
 		assertEquals(j.searchJ("Copenhagen", 0, c.searchC("Billy Bob", 0)),Collections.EMPTY_LIST);
@@ -64,32 +66,71 @@ public class JourneyTest {
 
 	@Test
 	public void testGetTemp() {
-		
+		List<Float> L = new ArrayList<Float>();
+		int matias = c.regNewClient("Matias", "MIAoly", "Hawaii 50" , "matias@gmail.com", "11110000");
+		int matiasj = j.regNewJourney("Honolulu", "Saipan", "coconuts", matias);
+		assertEquals(j.journeys.get(matiasj).getTemp(), Collections.EMPTY_LIST);
+		j.updateContainerStatus(matiasj, 200, 20, 2);
+		L.add(200F);
+		assertEquals(L, j.journeys.get(matiasj).getTemp());
 	}
 
 	@Test
 	public void testGetHum() {
-		fail("Not yet implemented");
+		List<Float> L = new ArrayList<Float>();
+		int matias = c.regNewClient("Matias", "MIAoly", "Hawaii 50" , "matias@gmail.com", "11110000");
+		int matiasj = j.regNewJourney("Honolulu", "Saipan", "coconuts", matias);
+		assertEquals(j.journeys.get(matiasj).getHum(), Collections.EMPTY_LIST);
+		j.updateContainerStatus(matiasj, 200, 20, 2);
+		L.add(20F);
+		assertEquals(L, j.journeys.get(matiasj).getHum());
 	}
 
 	@Test
 	public void testGetPres() {
-		fail("Not yet implemented");
+		List<Float> L = new ArrayList<Float>();
+		int matias = c.regNewClient("Matias", "MIAoly", "Hawaii 50" , "matias@gmail.com", "11110000");
+		int matiasj = j.regNewJourney("Honolulu", "Saipan", "coconuts", matias);
+		assertEquals(j.journeys.get(matiasj).getPres(), Collections.EMPTY_LIST);
+		j.updateContainerStatus(matiasj, 200, 20, 2);
+		L.add(2F);
+		assertEquals(L, j.journeys.get(matiasj).getPres());
 	}
 
 	@Test
 	public void testGetLastTemp() {
-		fail("Not yet implemented");
+		List<Float> L = new ArrayList<Float>();
+		int matias = c.regNewClient("Matias", "MIAoly", "Hawaii 50" , "matias@gmail.com", "11110000");
+		int matiasj = j.regNewJourney("Honolulu", "Saipan", "coconuts", matias);
+		assertEquals(j.journeys.get(matiasj).getTemp(), Collections.EMPTY_LIST);
+		j.updateContainerStatus(matiasj, 200, 20, 2);
+		L.add(200F);
+		assertEquals(L, j.journeys.get(matiasj).getTemp());
+		assertEquals(200,Math.round(j.journeys.get(matiasj).getLastTemp()));
 	}
 
 	@Test
 	public void testGetLastHumidity() {
-		fail("Not yet implemented");
+		List<Float> L = new ArrayList<Float>();
+		int matias = c.regNewClient("Matias", "MIAoly", "Hawaii 50" , "matias@gmail.com", "11110000");
+		int matiasj = j.regNewJourney("Honolulu", "Saipan", "coconuts", matias);
+		assertEquals(j.journeys.get(matiasj).getHum(), Collections.EMPTY_LIST);
+		j.updateContainerStatus(matiasj, 200, 20, 2);
+		L.add(20F);
+		assertEquals(L, j.journeys.get(matiasj).getHum());
+		assertEquals(20,Math.round(j.journeys.get(matiasj).getLastHumidity()));
 	}
 
 	@Test
 	public void testGetLastAtmPressure() {
-		fail("Not yet implemented");
+		List<Float> L = new ArrayList<Float>();
+		int matias = c.regNewClient("Matias", "MIAoly", "Hawaii 50" , "matias@gmail.com", "11110000");
+		int matiasj = j.regNewJourney("Honolulu", "Saipan", "coconuts", matias);
+		assertEquals(j.journeys.get(matiasj).getPres(), Collections.EMPTY_LIST);
+		j.updateContainerStatus(matiasj, 200, 20, 2);
+		L.add(2F);
+		assertEquals(L, j.journeys.get(matiasj).getPres());
+		assertEquals(2,Math.round(j.journeys.get(matiasj).getLastAtmPressure()));
 	}
 
 	@Test
@@ -124,14 +165,25 @@ public class JourneyTest {
 	public void testGetClientID() {
 		int matias = c.regNewClient("Matias", "MIAoly", "Hawaii 50" , "matias@gmail.com", "11110000");
 		int matiasj = j.regNewJourney("Honolulu", "Saipan", "coconuts", matias);
-		assertEquals(matias,j.journeys.get(matiasj).getClientID());
+		assertEquals("" + matias,j.journeys.get(matiasj).getClientID());
 	}
 	@Test
 	public void testUpdateContainerStatus() {
+		List<Float> L = new ArrayList<Float>();
 		int matias = c.regNewClient("Matias", "MIAoly", "Hawaii 50" , "matias@gmail.com", "11110000");
 		int matiasj = j.regNewJourney("Honolulu", "Saipan", "coconuts", matias);
+		assertEquals(j.journeys.get(matiasj).getTemp(), Collections.EMPTY_LIST);
+		assertEquals(j.journeys.get(matiasj).getHum(), Collections.EMPTY_LIST);
+		assertEquals(j.journeys.get(matiasj).getPres(), Collections.EMPTY_LIST);
 		j.updateContainerStatus(matiasj, 200, 20, 2);
-		System.out.println(j.journeys.get(matiasj).getHum());
+		L.add(200F);
+		assertEquals(L, j.journeys.get(matiasj).getTemp());
+		L.remove(0);
+		L.add(20F);
+		assertEquals(L, j.journeys.get(matiasj).getHum());
+		L.remove(0);
+		L.add(2F);
+		assertEquals(L, j.journeys.get(matiasj).getPres());
 	}
 
 }
