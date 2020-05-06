@@ -1,2 +1,3 @@
-1367180410|Copenhagen|New York|Origin|Beer|1367|>>>>
+1753149738|Copenhagen|New York|Origin|Apples|1753|>21.6;>43.7;>919.9;>
+1753187009|Copenhagen|New York|Origin|Apples|1753|>24.9;>39.2;>1133.0;>
 End
