@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.Collections;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,13 +11,23 @@ import main.Client;
 
 public class ClientTest {
 	
-	private Client c;
+	private static Client c;
 	
 	@Before
 	public void createEmptyClient() {
 		c = new Client();
 	}
 
+	
+	@Test
+	public void testSearchC() {
+		int jonah = c.regNewClient("Jonah", "123", "2707 Heron Street","jonah@gmail.com","11112222");
+		assertEquals(jonah,c.searchC("Jonah", 0)); 
+		assertEquals(jonah,c.searchC("2707 Heron Street", 2));
+		assertEquals(jonah,c.searchC("jonah@gmail.com", 3));
+		assertEquals(jonah,c.searchC("11112222", 4));
+	}
+	
 	@Test
 	public void testSetName() {
 		c.setName("John Smith");
@@ -46,67 +58,56 @@ public class ClientTest {
 		assertEquals("Should be 60188401", "60188401",c.getPhone()); 
 	}
 	
-//	@Test
-//	public void testSetID() {
-//		c.setID(1234);
-//		assertEquals(c.setID(),1234);
-//	}
-//	
-//	
-//	@Test
-//	public void testRegNewClient() {
-//		Client.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
-//		assertEquals(Client.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401"),Client.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401"));
-//	}
-//
-//	@Test
-//	public void testUpdateClient() {
-//	}
+	@Test
+	public void testRegNewClient() {
+		int bob = c.regNewClient("Bob", "123456", "2706 Heron Street","Bob@gmail.com","12345678");
+		assertEquals(bob,c.searchC("Bob", 0));
+	}
 
 	@Test
 	public void testClientExists() {
-		c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
-		assertNotSame(c.clientExists(c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401")),null);
+		int john = c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
+		assertNotSame(c.clientExists(john),null);
 	}
 
 	@Test
 	public void testGetID() {
-		c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
+		int john = c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
 		c.getID();
 		assertNotNull(c.getID());
 	}
 
 	@Test
 	public void testGetName() {
-		c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
+		int john = c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
 		c.setName("John Smith");
 		assertSame(c.getName(),"John Smith");
 	}
 
 	@Test
 	public void testGetPassword() {
-		c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
+		int john = c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
 		c.setPassword("123abc");
 		assertSame(c.getPassword(),"123abc");
 	}
 
 	@Test
 	public void testGetAddress() {
-		c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
+		int john = c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
 		c.setAddress("2705 Heron Street");
 		assertSame(c.getAddress(),"2705 Heron Street");
 	}
 
 	@Test
 	public void testGetEmail() {
-		c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
+		int john = c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
 		c.setEmail("johnsmith@gmail.com");
 		assertSame(c.getEmail(),"johnsmith@gmail.com");
 	}
 
 	@Test
 	public void testGetPhone() {
-		c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
+		int john = c.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
 		c.setPhone("60188401");
 		assertSame(c.getPhone(),"60188401");
 	}
