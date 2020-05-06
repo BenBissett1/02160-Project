@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.Collections;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,13 +11,22 @@ import main.Client;
 
 public class ClientTest {
 	
-	private Client c;
+	private static Client c;
 	
 	@Before
 	public void createEmptyClient() {
 		c = new Client();
 	}
 
+	
+	@Test
+	public void testSearchC() {
+		assertEquals(c.regNewClient("Jonah", "123", "2707 Heron Street","jonah@gmail.com","11112222"),c.searchC("Jonah", 0)); 
+		assertEquals(c.searchC("Jonah", 0),c.searchC("2707 Heron Street", 2));
+		assertEquals(c.searchC("Jonah", 0),c.searchC("jonah@gmail.com", 3));
+		assertEquals(c.searchC("Jonah", 0),c.searchC("11112222", 4));
+	}
+	
 	@Test
 	public void testSetName() {
 		c.setName("John Smith");
@@ -46,22 +57,10 @@ public class ClientTest {
 		assertEquals("Should be 60188401", "60188401",c.getPhone()); 
 	}
 	
-//	@Test
-//	public void testSetID() {
-//		c.setID(1234);
-//		assertEquals(c.setID(),1234);
-//	}
-//	
-//	
-//	@Test
-//	public void testRegNewClient() {
-//		Client.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401");
-//		assertEquals(Client.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401"),Client.regNewClient("John Smith", "123abc", "2705 Eagle Street","johnsmith@gmail.com","60188401"));
-//	}
-//
-//	@Test
-//	public void testUpdateClient() {
-//	}
+	@Test
+	public void testRegNewClient() {
+		assertEquals(c.regNewClient("Bob", "123456", "2706 Heron Street","Bob@gmail.com","12345678"),c.searchC("Bob", 0));
+	}
 
 	@Test
 	public void testClientExists() {

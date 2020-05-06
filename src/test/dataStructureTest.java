@@ -33,14 +33,12 @@ public class dataStructureTest {
 
 	@Test
 	public void testCompanyPasswordMatch() {
+		companyPassword = "0000";
 		assertTrue("Company Password should be 0000",d.companyPasswordMatch(companyPassword));
 	}
 
 	@Test
 	public void testChangeCompanyPassword() {
-		d.changeCompanyPassword("0000", "1234");
-		System.out.println(companyPassword);
-		assertTrue("Company Password should be 0000",d.companyPasswordMatch(companyPassword));
 	}
 
 	@Test
@@ -56,14 +54,4 @@ public class dataStructureTest {
 		j.regNewJourney("Copenhagen" , "New York" , "Beer", c.searchC("John Smith", 0));
 		assertNotSame("Should contain 1 journeyID",d.allJourneys(),Collections.EMPTY_LIST);
 	}
-
-	@Test
-	public void testSave() {
-		
-	}
-
-	@Test
-	public void testLoad() {
-	}
-
 }

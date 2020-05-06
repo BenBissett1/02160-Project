@@ -150,7 +150,7 @@ public class Journey extends dataStructure {
 	
 	public boolean doesJourneyExist() {
 		if (dataStructure.journeys.containsKey(journeyID)) {
-			//journey = dataStructure.journeys.get(journeyID);
+//			journey = dataStructure.journeys.get(journeyID);
 			//dataStructure.journeys.get(journeyID);
 			return true;
 		} else {
