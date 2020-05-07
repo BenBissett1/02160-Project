@@ -1,3 +1,3 @@
-1753149738|Copenhagen|New York|Origin|Apples|1753|>21.6;>43.7;>919.9;>
-1753187009|Copenhagen|New York|Origin|Apples|1753|>24.9;>39.2;>1133.0;>
+1753153655|Copenhagen|New York|Origin|Apples|1753|>24.4;>38.9;>914.1;>
+1753125509|Copenhagen|New York|Origin|Apples|1753|>19.8;>50.2;>1045.2;>
 End
