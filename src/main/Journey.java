@@ -15,15 +15,15 @@ import java.util.List;
  */
 public class Journey extends dataStructure {
 
-	int journeyID;
-	String origin;
-	String destination;
-	String status;
-	String content;
-	String ClientID;
-	ArrayList<Float> temperatures = new ArrayList<Float>();
-	ArrayList<Float> humidity = new ArrayList<Float>();
-	ArrayList<Float> atmPressure = new ArrayList<Float>();
+	private int journeyID;
+	private String origin;
+	private String destination;
+	private String status;
+	private String content;
+	private String ClientID;
+	private ArrayList<Float> temperatures = new ArrayList<Float>();
+	private ArrayList<Float> humidity = new ArrayList<Float>();
+	private ArrayList<Float> atmPressure = new ArrayList<Float>();
 	public static List<Integer> searchJ(String keyword, int type, int cID) {
 		List<Integer> journeyIDs = new ArrayList<Integer>();
 		for (int i = Integer.parseInt(cID+""+journeysSize); i<Integer.parseInt(cID+""+2*journeysSize); i++) {
@@ -76,39 +76,39 @@ public class Journey extends dataStructure {
 	public static boolean journeyExists(int jID) {return !(journeys.get(jID)==null);}
 	
 	public List<Float> getTemp() {
-		return temperatures;
+		return getTemperatures();
 	}
 	public List<Float> getHum() {
-		return humidity;
+		return getHumidity();
 	}
 	public List<Float> getPres() {
-		return atmPressure;
+		return getAtmPressure();
 	}
 	public Float getLastTemp() {
-		if (temperatures.size()==0) {
-			temperatures.add((float) (150 + Math.floor(Math.random() * (( 250 - 150 ) + 1 )))/10);
-			return temperatures.get(0);
+		if (getTemperatures().size()==0) {
+			getTemperatures().add((float) (150 + Math.floor(Math.random() * (( 250 - 150 ) + 1 )))/10);
+			return getTemperatures().get(0);
 		}
 		else {
-			return temperatures.get(temperatures.size()-1);		
+			return getTemperatures().get(getTemperatures().size()-1);		
 		}
 	}
 	public Float getLastHumidity() {
-		if (humidity.size()==0) {
-			humidity.add((float) (350 + Math.floor(Math.random() * (( 550 - 350 ) + 1 )))/10);
-			return humidity.get(0);
+		if (getHumidity().size()==0) {
+			getHumidity().add((float) (350 + Math.floor(Math.random() * (( 550 - 350 ) + 1 )))/10);
+			return getHumidity().get(0);
 		}
 		else {
-			return humidity.get(humidity.size()-1);	
+			return getHumidity().get(getHumidity().size()-1);	
 		}
 	}
 	public Float getLastAtmPressure() {
-		if (atmPressure.size()==0) {
-			atmPressure.add((float) (9000 + Math.floor(Math.random() * (( 12000 - 9000 ) + 1 )))/10);
-			return atmPressure.get(0);
+		if (getAtmPressure().size()==0) {
+			getAtmPressure().add((float) (9000 + Math.floor(Math.random() * (( 12000 - 9000 ) + 1 )))/10);
+			return getAtmPressure().get(0);
 		}
 		else {
-			return atmPressure.get(atmPressure.size()-1);
+			return getAtmPressure().get(getAtmPressure().size()-1);
 		}
 	}
 	public int getJID() {
@@ -161,9 +161,9 @@ public class Journey extends dataStructure {
 		if (dataStructure.journeys.get(journeyID) != null) {
 			Journey j = dataStructure.journeys.get(journeyID);
 			
-			j.temperatures.add(temp);
-			j.humidity.add(hum);
-			j.atmPressure.add(pres);
+			j.getTemperatures().add(temp);
+			j.getHumidity().add(hum);
+			j.getAtmPressure().add(pres);
 		} else {
 			System.out.println("UPDATE FAILED!");
 		}
@@ -179,5 +179,42 @@ public class Journey extends dataStructure {
 			return false;
 		}
 	}
+	void tempAdd(Float s) {
+		this.getTemperatures().add(s);
+	}
+	void humAdd(Float s) {
+		this.getHumidity().add(s);
+	}
+	void presAdd(Float s) {
+		this.getAtmPressure().add(s);
+	}
+	int tempSize() {
+		return this.getTemperatures().size();
+	}
+	int humSize() {
+		return this.getHumidity().size();
+	}
+	int presSize() {
+		return this.getAtmPressure().size();
+	}
+	public ArrayList<Float> getAtmPressure() {
+		return atmPressure;
+	}
+	public void setAtmPressure(ArrayList<Float> atmPressure) {
+		this.atmPressure = atmPressure;
+	}
+	public ArrayList<Float> getHumidity() {
+		return humidity;
+	}
+	public void setHumidity(ArrayList<Float> humidity) {
+		this.humidity = humidity;
+	}
+	public ArrayList<Float> getTemperatures() {
+		return temperatures;
+	}
+	public void setTemperatures(ArrayList<Float> temperatures) {
+		this.temperatures = temperatures;
+	}
+	
 	
 }

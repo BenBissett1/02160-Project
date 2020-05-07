@@ -105,7 +105,7 @@ public class dataStructure {
 		Iterator<Integer> itr = clients.keySet().iterator();
 		while(itr.hasNext()) {
 			int i = itr.next();
-			serialClients+=i+"|"+clients.get(i).name+"|"+clients.get(i).password+"|"+clients.get(i).address+"|"+clients.get(i).email+"|"+clients.get(i).phone+">\n";
+			serialClients+=i+"|"+clients.get(i).getName()+"|"+clients.get(i).getPassword()+"|"+clients.get(i).getAddress()+"|"+clients.get(i).getEmail()+"|"+clients.get(i).getPhone()+">\n";
 		}
 		try {BufferedWriter out = new BufferedWriter(new FileWriter("clients.txt"));
 		out.write(serialClients+"End");
@@ -116,17 +116,17 @@ public class dataStructure {
 		itr = journeys.keySet().iterator();
 		while(itr.hasNext()) {
 			int i = itr.next();
-			serialJourneys+=i+"|"+journeys.get(i).origin+"|"+journeys.get(i).destination+"|"+journeys.get(i).status+"|"+journeys.get(i).content+"|"+journeys.get(i).ClientID+"|>";
-			for (int u = 0; u<journeys.get(i).temperatures.size(); u++) {
-				serialJourneys+=journeys.get(i).temperatures.get(u)+";";
+			serialJourneys+=i+"|"+journeys.get(i).getOrigin()+"|"+journeys.get(i).getDestination()+"|"+journeys.get(i).getStatus()+"|"+journeys.get(i).getContent()+"|"+journeys.get(i).getClientID()+"|>";
+			for (int u = 0; u<journeys.get(i).tempSize(); u++) {
+				serialJourneys+=journeys.get(i).getTemperatures().get(u)+";";
 			}
 			serialJourneys+=">";
-			for (int u = 0; u<journeys.get(i).humidity.size(); u++) {
-				serialJourneys+=journeys.get(i).humidity.get(u)+";";
+			for (int u = 0; u<journeys.get(i).humSize(); u++) {
+				serialJourneys+=journeys.get(i).getHumidity().get(u)+";";
 			}
 			serialJourneys+=">";
-			for (int u = 0; u<journeys.get(i).atmPressure.size(); u++) {
-				serialJourneys+=journeys.get(i).atmPressure.get(u)+";";
+			for (int u = 0; u<journeys.get(i).presSize(); u++) {
+				serialJourneys+=journeys.get(i).getAtmPressure().get(u)+";";
 			}
 			serialJourneys+=">\n";
 		}
@@ -157,13 +157,13 @@ public class dataStructure {
 					for (int i =0; i<l.length(); i++) {
 						if (l.charAt(i) == '|' | l.charAt(i) =='>') {
 							if (u==5) {
-								c.phone=s;
+								c.setPhone(s);
 								clients.put(cID,c);
 							}
-							if (u==4) {c.email=s;}
-							if (u==3) {c.address=s;}
-							if (u==2) {c.password=s;}
-							if (u==1) {c.name=s;}
+							if (u==4) {c.setEmail(s);}
+							if (u==3) {c.setAddress(s);}
+							if (u==2) {c.setPassword(s);}
+							if (u==1) {c.setName(s);}
 							if (u==0) {cID = Integer.parseInt(s);}
 							s = "";
 							u++;
@@ -190,24 +190,24 @@ public class dataStructure {
 					String s = "";
 					for (int i =0; i<l.length(); i++) {
 						if (l.charAt(i) == '|') {
-							if (u==5) {j.ClientID=s;}
-							if (u==4) {j.content=s;}
-							if (u==3) {j.status=s;}
-							if (u==2) {j.destination=s;}
-							if (u==1) {j.origin=s;} 
+							if (u==5) {j.setClientID(s);}
+							if (u==4) {j.setContent(s);}
+							if (u==3) {j.setStatus(s);}
+							if (u==2) {j.setDestination(s);}
+							if (u==1) {j.setOrigin(s);} 
 							if (u==0) {jID = Integer.parseInt(s);}
 							u++;
 							s="";
 						}
 						if (l.charAt(i) == ';') {
 							if (y==1) {
-								j.temperatures.add(Float.parseFloat(s));
+								j.tempAdd(Float.parseFloat(s));
 							}
 							if (y==2) {
-								j.humidity.add(Float.parseFloat(s));
+								j.humAdd(Float.parseFloat(s));
 							}
 							if (y==3) {
-								j.atmPressure.add(Float.parseFloat(s));
+								j.presAdd(Float.parseFloat(s));
 							}
 							s="";
 						}
