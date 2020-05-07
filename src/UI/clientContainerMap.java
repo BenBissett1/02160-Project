@@ -33,8 +33,8 @@ public class clientContainerMap extends JFrame {
 		getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(SystemColor.desktop);
-		panel.setForeground(SystemColor.desktop);
+		panel.setBackground(Color.BLACK);
+		panel.setForeground(Color.BLACK);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
