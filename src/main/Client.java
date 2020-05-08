@@ -13,12 +13,12 @@ import java.util.List;
  */
 
 public class Client extends dataStructure {
-	int clientID;
-	String name;
-	String password;
-	String address;
-	String email;
-	String phone;
+	private int clientID;
+	private String name;
+	private String password;
+	private String address;
+	private String email;
+	private String phone;
 	
 	/**
 	 * Searches for client information with String keyword (a client name) and integer type to clarify what type of information.
