@@ -26,7 +26,7 @@ public class Painter extends JPanel {
     public Painter(int genUser) {
         try {
         	User = genUser;
-            Worldmap = ImageIO.read(new File("Images/grayscale-vector-worldmap.jpg"));
+            Worldmap = ImageIO.read(getClass().getResource("/UI/grayscale-vector-worldmap.jpg"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
