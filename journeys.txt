@@ -1,3 +1,5 @@
+1932174863|Copenhagen|Tanjung|Origin|D|1932|>>>>
 1753161655|Copenhagen|New York|Origin|Apples|1753|>24.1;>35.5;>903.9;>
 1753145239|Copenhagen|New York|Origin|Apples|1753|>19.4;>47.4;>1052.3;>
+1932100402|Copenhagen|Shenzhen|Embarked|S|1932|>21.9;>54.7;>1170.1;>
 End
